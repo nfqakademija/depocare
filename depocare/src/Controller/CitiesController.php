@@ -6,7 +6,7 @@
  * Time: 22.07
  */
 
-namespace App\Controller\Api;
+namespace App\Controller;
 use App\Services\CitiesService;
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Context\Context;

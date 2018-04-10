@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller\Api;
+namespace App\Controller;
 use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Context\Context;
