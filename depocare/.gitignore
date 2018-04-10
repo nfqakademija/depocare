@@ -39,3 +39,7 @@ npm-debug.log
 /.deploy/*.retry
 .idea
 ###< Old symfony and common infrastructure ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###

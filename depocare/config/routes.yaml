@@ -1,15 +1,15 @@
 login:
    type: rest
-   resource: App\Controller\Api\RestLoginController
+   resource: App\Controller\RestLoginController
 
 profile:
    type: rest
-   resource: App\Controller\Api\UserController
+   resource: App\Controller\UserController
 
 project:
    type: rest
-   resource: App\Controller\Api\ProjectsController
+   resource: App\Controller\ProjectsController
 
 projectCreate:
    type: rest
-   resource: App\Controller\Api\ProjectCreateController
+   resource: App\Controller\ProjectCreateController
