@@ -25,3 +25,15 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    projects.service:
+        public: true
+        class: App\Services\ProjectsService
+        arguments:
+            - '@App\Repository\ProjectRepository'
+
+    cities.service:
+        public: true
+        class: App\Services\CitiesService
+        arguments:
+            - '@App\Repository\CitiesRepository'

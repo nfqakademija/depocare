@@ -14,10 +14,24 @@
         "symfony/maker-bundle": "^1.3",
         "symfony/twig-bundle": "^4.0",
         "symfony/webpack-encore-pack": "^1.0",
-        "symfony/yaml": "^4.0"
+        "symfony/yaml": "^4.0",
+        "csa/guzzle-bundle": "^3.0",
+        "friendsofsymfony/rest-bundle": "^2.3",
+        "friendsofsymfony/user-bundle": "dev-master",
+        "guzzlehttp/guzzle": "^6.3",
+        "jms/serializer-bundle": "^2.3",
+        "lexik/jwt-authentication-bundle": "^2.4",
+        "monolog/monolog": "^1.23",
+        "nelmio/cors-bundle": "^1.5",
+        "symfony/http-foundation": "^4.0",
+        "symfony/monolog-bundle": "^3.2",
+        "symfony/orm-pack": "^1.0",
+        "symfony/swiftmailer-bundle": "^3.2",
+        "symfony/templating": "^4.0"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "symfony/dotenv": "^4.0"
     },
     "config": {
         "preferred-install": {
@@ -60,6 +74,7 @@
         "symfony": {
             "id": "01CA1DRRWWN28XDHMVQ5S5F53S",
             "allow-contrib": false
-        }
+        },
+        "symfony.id": "01CA6A4A706N8VZT7HW3GRCP20"
     }
 }
