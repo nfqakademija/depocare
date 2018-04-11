@@ -13,3 +13,7 @@ project:
 projectCreate:
    type: rest
    resource: App\Controller\ProjectCreateController
+
+home:
+   type: rest
+   resource: App\Controller\HomeController

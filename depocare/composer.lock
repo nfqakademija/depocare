@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a550971e0f04a6b05acb72153a9d77c",
+    "content-hash": "02b16bfa744cd5918e89b745ee99e914",
     "packages": [
         {
             "name": "csa/guzzle-bundle",
@@ -5689,8 +5689,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/lts": 20,
-        "friendsofsymfony/user-bundle": 20
+        "friendsofsymfony/user-bundle": 20,
+        "symfony/lts": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
