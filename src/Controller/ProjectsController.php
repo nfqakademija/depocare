@@ -33,7 +33,13 @@ class ProjectsController extends FOSRestController
         return $this->getProjectsService()->getProjectsByCategory($cat);
 
     }
-
+    /**
+     * @Get("/project/{id}")
+     * @return View
+     */
+    public function getProjectById($id){
+        return $this->getProjectsService()->getProjectsById($id);
+    }
 
     /**
      * @return ProjectsService

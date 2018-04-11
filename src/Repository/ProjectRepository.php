@@ -61,4 +61,13 @@ class ProjectRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
     }
+
+    public function getProjectById($id) {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
 }

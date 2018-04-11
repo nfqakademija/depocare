@@ -31,6 +31,10 @@ class ProjectsService
         return $this->repository->getProjectsByCategory($cat);
     }
 
+    public function getProjectsById($id){
+        return $this->repository->getProjectById($id);
+    }
+
     public function updateProject($request, $user_id) {
         return $this->repository->updateProject($request, $user_id);
     }
