@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ */
 class HomeController extends Controller
 {
     /**

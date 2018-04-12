@@ -40,7 +40,7 @@ class User extends BaseUser
      * @var double
      * @ORM\Column(type="float", scale=2)
      */
-    private $balance;
+    private $balance = 0;
 
     public function __construct()
     {

@@ -24,17 +24,32 @@ class ProjectsService
         return $this->repository->getProjectCreateById($user_id);
     }
 
+    /**
     public function getProjects(){
         return $this->repository->getProjects();
     }
+
+    /**
+     * @param $cat
+     * @return mixed
+     */
     public function getProjectsByCategory($cat){
         return $this->repository->getProjectsByCategory($cat);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getProjectsById($id){
         return $this->repository->getProjectById($id);
     }
 
+    /**
+     * @param $request
+     * @param $user_id
+     * @return
+     */
     public function updateProject($request, $user_id) {
         return $this->repository->updateProject($request, $user_id);
     }

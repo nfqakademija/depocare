@@ -17,3 +17,27 @@ projectCreate:
 home:
    type: rest
    resource: App\Controller\HomeController
+
+registration:
+    type: rest
+    resource: App\Controller\RestRegistrationController
+
+# app/config/routing.yml
+fos_user_security:
+   resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+   prefix: /fos
+fos_user_profile:
+   resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+   prefix: /fosprofile
+
+fos_user_register:
+   resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+   prefix: /fosregister
+
+fos_user_resetting:
+   resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+   prefix: /fosresetting
+
+fos_user_change_password:
+   resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+   prefix: /fosprofile
