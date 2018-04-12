@@ -20,6 +20,6 @@ class UserController extends FOSRestController
 
     public function getUserAction()
     {
-        return $this->success([$this->getUser()]);
+        return $this->success($this->getUser());
     }
 }
