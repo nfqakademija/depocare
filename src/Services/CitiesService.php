@@ -2,20 +2,20 @@
 
 namespace App\Services;
 
-use App\Repository\CitiesRepository;
+use App\Repository\CityRepository;
 
 class CitiesService
 {
     /**
-     * @var CitiesRepository
+     * @var CityRepository
      */
     private $repository;
 
     /**
      * ProjectService constructor.
-     * @param CitiesRepository $repository
+     * @param CityRepository $repository
      */
-    public function __construct(CitiesRepository $repository)
+    public function __construct(CityRepository $repository)
     {
         $this->repository = $repository;
     }

@@ -41,21 +41,6 @@ class Project
     private $user_id;
 
     /**
-     * @return User
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * @param User $user_id
-     */
-    public function setUserId($user_id)
-    {
-        $this->user_id = $user_id;
-    }
-    /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="City")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
@@ -63,21 +48,6 @@ class Project
      */
     private $city;
 
-    /**
-     * @return Category
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param Category $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
     /**
      * @var string
      *
@@ -104,26 +74,10 @@ class Project
     private $duration;
     /**
      * @var double
-     *
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="float", scale=2)
      */
     private $goal;
 
-    /**
-     * @return int
-     */
-    public function getFlagCreate()
-    {
-        return $this->flag_create;
-    }
-
-    /**
-     * @param int $flag_create
-     */
-    public function setFlagCreate($flag_create)
-    {
-        $this->flag_create = $flag_create;
-    }
     /**
      * @ORM\Column(type="integer")
      * @var int
@@ -131,8 +85,7 @@ class Project
     private $flag_create;
     /**
      * @var double
-     *
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="float", scale=2)
      */
     private $reached;
     /**
@@ -140,12 +93,12 @@ class Project
      *
      * @ORM\Column(type="string")
      */
-    private $by;
+    private $charity_fund;
 
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -153,7 +106,7 @@ class Project
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id): void
     {
         $this->id = $id;
     }
@@ -161,7 +114,7 @@ class Project
     /**
      * @return Category
      */
-    public function getCategory()
+    public function getCategory(): Category
     {
         return $this->category;
     }
@@ -169,15 +122,47 @@ class Project
     /**
      * @param Category $category
      */
-    public function setCategory($category)
+    public function setCategory(Category $category): void
     {
         $this->category = $category;
     }
 
     /**
+     * @return User
+     */
+    public function getUserId(): User
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param User $user_id
+     */
+    public function setUserId(User $user_id): void
+    {
+        $this->user_id = $user_id;
+    }
+
+    /**
+     * @return City
+     */
+    public function getCity(): City
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param City $city
+     */
+    public function setCity(City $city): void
+    {
+        $this->city = $city;
+    }
+
+    /**
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -185,7 +170,7 @@ class Project
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -193,7 +178,7 @@ class Project
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -201,7 +186,7 @@ class Project
     /**
      * @param string $description
      */
-    public function setDescription($description)
+    public function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -209,7 +194,7 @@ class Project
     /**
      * @return string
      */
-    public function getImage()
+    public function getImage(): string
     {
         return $this->image;
     }
@@ -217,7 +202,7 @@ class Project
     /**
      * @param string $image
      */
-    public function setImage($image)
+    public function setImage(string $image): void
     {
         $this->image = $image;
     }
@@ -225,7 +210,7 @@ class Project
     /**
      * @return int
      */
-    public function getDuration()
+    public function getDuration(): int
     {
         return $this->duration;
     }
@@ -233,7 +218,7 @@ class Project
     /**
      * @param int $duration
      */
-    public function setDuration($duration)
+    public function setDuration(int $duration): void
     {
         $this->duration = $duration;
     }
@@ -241,7 +226,7 @@ class Project
     /**
      * @return float
      */
-    public function getGoal()
+    public function getGoal(): float
     {
         return $this->goal;
     }
@@ -249,15 +234,31 @@ class Project
     /**
      * @param float $goal
      */
-    public function setGoal($goal)
+    public function setGoal(float $goal): void
     {
         $this->goal = $goal;
     }
 
     /**
+     * @return int
+     */
+    public function getFlagCreate(): int
+    {
+        return $this->flag_create;
+    }
+
+    /**
+     * @param int $flag_create
+     */
+    public function setFlagCreate(int $flag_create): void
+    {
+        $this->flag_create = $flag_create;
+    }
+
+    /**
      * @return float
      */
-    public function getReached()
+    public function getReached(): float
     {
         return $this->reached;
     }
@@ -265,7 +266,7 @@ class Project
     /**
      * @param float $reached
      */
-    public function setReached($reached)
+    public function setReached(float $reached): void
     {
         $this->reached = $reached;
     }
@@ -273,18 +274,16 @@ class Project
     /**
      * @return string
      */
-    public function getBy()
+    public function getCharityFund(): string
     {
-        return $this->by;
+        return $this->charity_fund;
     }
 
     /**
-     * @param string $by
+     * @param string $charity_fund
      */
-    public function setBy($by)
+    public function setCharityFund(string $charity_fund): void
     {
-        $this->by = $by;
+        $this->charity_fund = $charity_fund;
     }
-
-
 }

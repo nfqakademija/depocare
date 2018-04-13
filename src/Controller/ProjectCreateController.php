@@ -20,7 +20,7 @@ class ProjectCreateController extends FOSRestController
      */
     public function getProjectCreateById()
     {
-        return $this->getProjectsService()->getProjectCreateById($this->getUser());
+        return $this->success($this->getProjectsService()->getProjectCreateById($this->getUser()));
     }
 
     /**

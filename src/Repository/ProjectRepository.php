@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use App\Entity\User;
+
 /**
  * Class ProjectRepository
  * @package App\Repository
@@ -34,32 +34,21 @@ class ProjectRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function updateProject($request, $user_id){
-        $content = json_decode($request->getContent());;
-        return $this->createQueryBuilder('p')
-             ->update('App\Entity\Project', 'p')
-             ->set('p.title', '?1')
-             ->set('p.category', '?2')
-             ->set('p.city', '?3')
-             ->set('p.description', '?4')
-             ->set('p.goal', '?5')
-             ->where('p.user_id =:userKintamasis')
-             ->setParameter('1', $content->title)
-             ->setParameter('2', $content->category)
-             ->setParameter('3', $content->city)
-             ->setParameter('4', $content->description)
-             ->setParameter('5', $content->goal)
-             ->setParameter('userKintamasis', $user_id)
-             ->getQuery()->getResult();
+    /**
+     * @param $entity
+     *
+     * @return void
+     */
+    public function save($entity)
+    {
+        $this->_em->persist($entity);
+        $this->_em->flush($entity);
     }
 
     public function getProjectCreateById($user_id) {
-            return $this->createQueryBuilder('p')
-                ->select('p')
-                ->where('p.flag_create = 1')->andWhere('p.user_id =:userKintamasis')
-                ->setParameter('userKintamasis', $user_id)
-                ->getQuery()
-                ->getResult();
+        return $this->findOneBy([
+            'user_id' => $user_id,
+            'flag_create' => 1]);
     }
 
     public function getProjectById($id) {

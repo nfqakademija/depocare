@@ -16,11 +16,11 @@ security:
            security: false
 
        projects:
-           pattern: ^/projects/*
+           pattern: (?=^/projects/[0-9])(?=/^/projects$/)
            anonymous: true
 
        project:
-           pattern: ^/project/*
+           pattern: ^/project/[0-9]
            anonymous: true
 
        api_register:
@@ -44,10 +44,14 @@ security:
            stateless: true
            lexik_jwt: ~
 
+       llasdasdll:
+           pattern:   ^lasdasdlll/
+           stateless: true
+           lexik_jwt: ~
 
    access_control:
-       - { path: ^/projects/*, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/project/*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: (?=^/projects/[0-9])(?=/^/projects$/), role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/project/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
        - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
        - { path: ^/, role: IS_AUTHENTICATED_FULLY }

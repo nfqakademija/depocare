@@ -35,9 +35,9 @@ services:
 
     cities.service:
         public: true
-        class: App\Services\CitiesService
+        class: App\Services\CityService
         arguments:
-            - '@App\Repository\CitiesRepository'
+            - '@App\Repository\CityRepository'
 
     app_fos_user.user_manager:
         alias: 'fos_user.user_manager'
