@@ -7,16 +7,15 @@
  */
 
 namespace App\Controller;
+
+use App\Entity\City;
 use App\Services\CitiesService;
 use App\Traits\ApiTraits;
-use FOS\RestBundle\Context\Context;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\Post;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class CitiesController extends FOSRestController
 {
@@ -38,5 +37,18 @@ class CitiesController extends FOSRestController
     private function getCitiesService()
     {
         return $this->get('cities.service');
+    }
+
+    /**
+     * @Post("/updatecity")
+     * @ParamConverter("city", converter="fos_rest.request_body")
+     * @param City $city
+     * @return View
+     */
+    public function updateCities(City $city)
+    {
+        var_dump($city);
+        die;
+
     }
 }
