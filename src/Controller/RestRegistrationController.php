@@ -8,13 +8,13 @@ use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Form\Type\RegistrationFormType;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Form\RegistrationType;
+
 
 /**
  * @RouteResource("registration", pluralize=false)
@@ -42,7 +42,7 @@ class RestRegistrationController extends FOSRestController implements ClassResou
             return $event->getResponse();
         }
 
-        $form = $this->createForm(RegistrationFormType::class, $user, [
+        $form = $this->createForm(RegistrationType::class, $user, [
             'csrf_protection' => false
         ]);
 
@@ -71,17 +71,9 @@ class RestRegistrationController extends FOSRestController implements ClassResou
 
         $response = new JsonResponse(
             [
-                'msg' => $this->get('translator')->trans('registration.flash.user_created', [], 'FOSUserBundle'),
-                'token' => 'abc-123' // some way of creating the token
+                'msg' => $this->get('translator')->trans('registration.flash.user_created', [], 'FOSUserBundle')
             ],
-            JsonResponse::HTTP_CREATED,
-            [
-                'Location' => $this->generateUrl(
-                    'get_profile',
-                    ['user' => $user->getId()],
-                    UrlGeneratorInterface::ABSOLUTE_URL
-                )
-            ]
+            JsonResponse::HTTP_CREATED
         );
 
         $dispatcher->dispatch(
