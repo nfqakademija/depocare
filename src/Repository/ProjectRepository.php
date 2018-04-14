@@ -30,10 +30,22 @@ class ProjectRepository extends ServiceEntityRepository
             ->select('p')
             ->where('p.category = :cat')
             ->setParameter('cat', $cat)
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
     }
 
+    public function loadMoreProjectsByCat($cat,$from, $to)
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.category = :cat')
+            ->setParameter('cat', $cat)
+            ->setFirstResult($from)
+            ->setMaxResults($to)
+            ->getQuery()
+            ->getResult();
+    }
     /**
      * @param $entity
      *

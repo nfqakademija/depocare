@@ -46,10 +46,12 @@ class ProjectsService
 
     /**
      * @param $cat
+     * @param $from
+     * @param $to
      * @return mixed
      */
-    public function getProjectsByCategory($cat){
-        return $this->repository->getProjectsByCategory($cat);
+    public function loadMoreProjectsByCat($cat, $from, $to){
+        return $this->repository->loadMoreProjectsByCat($cat,$from, $to);
     }
 
     /**
