@@ -84,4 +84,8 @@ class ProjectsService
 
         $this->repository->save($project);
     }
+
+    public function getAllUserProjects($user_id) {
+        return $this->repository->getAllUserProjects($user_id);
+    }
 }

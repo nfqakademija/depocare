@@ -16,7 +16,6 @@ class ProjectCreateController extends FOSRestController
 
     /**
      * @Get("/projectCreate")
-     * @return View
      */
     public function getProjectCreateById()
     {

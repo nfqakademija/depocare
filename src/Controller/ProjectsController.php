@@ -40,10 +40,19 @@ class ProjectsController extends FOSRestController
     }
 
     /**
+     * @Get("/userProjects")
+     */
+    public function getAllUserProjects()
+    {
+        return $this->success($this->getProjectsService()->getAllUserProjects($this->getUser()));
+    }
+
+    /**
      * @return ProjectsService
      */
     private function getProjectsService()
     {
         return $this->get('projects.service');
     }
+
 }

@@ -71,4 +71,10 @@ class ProjectRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getAllUserProjects($user_id) {
+        return $this->findBy([
+            'user_id' => $user_id
+        ]);
+    }
 }
