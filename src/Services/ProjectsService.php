@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repository\ProjectRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
+use App\Entity\Project;
 
 class ProjectsService
 {
@@ -87,5 +88,18 @@ class ProjectsService
 
     public function getAllUserProjects($user_id) {
         return $this->repository->getAllUserProjects($user_id);
+    }
+
+    /**
+     * @param $user_id
+     * @return int
+     */
+    public function createEmptyProject($user_id) {
+        $project = new Project();
+        $project->setUserId($user_id);
+        $project->setTitle('');
+        $this->repository-> save($project);
+
+        return $project->getId();
     }
 }
