@@ -92,7 +92,7 @@ class ProjectsService
 
     /**
      * @param $user_id
-     * @return Project
+     * @return array
      */
     public function createEmptyProject($user_id) {
         $project = new Project();
@@ -107,6 +107,6 @@ class ProjectsService
         $project->setCharityFund('');
         $this->repository-> save($project);
 
-        return $project;
+        return [$project];
     }
 }
