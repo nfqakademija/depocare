@@ -92,14 +92,21 @@ class ProjectsService
 
     /**
      * @param $user_id
-     * @return int
+     * @return Project
      */
     public function createEmptyProject($user_id) {
         $project = new Project();
         $project->setUserId($user_id);
         $project->setTitle('');
+        $project->setImage('');
+        $project->setDescription('');
+        $project->setFlagCreate(1);
+        $project->setDuration(0);
+        $project->setGoal(0);
+        $project->setReached(0);
+        $project->setCharityFund('');
         $this->repository-> save($project);
 
-        return $project->getId();
+        return $project;
     }
 }
