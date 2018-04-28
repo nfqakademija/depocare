@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +14,14 @@ class ProjectCreateController extends FOSRestController
     use ApiTraits;
 
     /**
-     * @Put("/projectCreate")
-     * @var Request $request *
-     * @return View
+     * @Put("/updateProject/{id}")
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function updateProject(Request $request)
+    public function updateProject(Request $request, $id)
     {
-        return $this->getProjectsService()->updateProject($request);
+        return $this->getProjectsService()->updateProject($request, $id, $this->getUser()->getId());
     }
 
     /**

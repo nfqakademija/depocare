@@ -35,7 +35,7 @@ services:
 
     cities.service:
         public: true
-        class: App\Services\CityService
+        class: App\Services\CitiesService
         arguments:
             - '@App\Repository\CityRepository'
 

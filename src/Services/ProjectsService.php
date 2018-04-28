@@ -6,6 +6,7 @@ use App\Repository\ProjectRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
 use App\Entity\Project;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProjectsService
 {
@@ -58,30 +59,44 @@ class ProjectsService
         return $this->repository->getProjectById($id);
     }
 
+
     /**
      * @param $request
-     * @param $user_id
-     * @return mixed
+     * @param $id
+     * @param $user
+     * @return Response
      */
-    public function updateProject($request) {
+    public function updateProject($request, $id, $user) {
+        $project = $this->repository->find($id);
         $content = json_decode($request->getContent());
 
-        $project = $this->repository->find($content->id);
-
         if ($project) {
+            if(!$project->getUserId()->getId() === $user) {
+                return new Response("Neturite teisių redaguoti projektą", 403);
+            }
+            if(!$project->getFlagCreate() == 1) {
+                return new Response("Projekto negalima redaguoti", 403);
+            }
+
             $project->setCategory($this->categoryRepository->find($content->category));
             $project->setCity($this->cityRepository->find($content->city));
             $project->setTitle($content->title);
             $project->setDescription($content->description);
             $project->setGoal($content->goal);
             $project->setCharityFund($content->charity_fund);
+        } else {
+            return new Response('Nera tokio projekto su tokiu id',400);
         }
 
         $this->repository->save($project);
 
-        return [$project];
+        return new Response('',200);
     }
 
+    /**
+     * @param $user_id
+     * @return array
+     */
     public function getAllUserProjects($user_id) {
         return $this->repository->getAllUserProjects($user_id);
     }
