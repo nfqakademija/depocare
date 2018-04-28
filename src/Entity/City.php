@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 class City
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -45,7 +46,7 @@ class City
     }
 
     /**
-     * @return City
+     * @return string
      */
     public function getCity()
     {

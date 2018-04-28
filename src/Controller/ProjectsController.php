@@ -6,8 +6,6 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
-use FOS\RestBundle\Controller\Annotations\Post;
-
 
 class ProjectsController extends FOSRestController
 {
@@ -46,13 +44,6 @@ class ProjectsController extends FOSRestController
     public function getAllUserProjects()
     {
         return $this->success($this->getProjectsService()->getAllUserProjects($this->getUser()));
-    }
-
-    /**
-     * @Post("/newProject")
-     */
-    public function createEmptyProject() {
-        return $this->success($this->getProjectsService()->createEmptyProject($this->getUser()));
     }
 
     /**

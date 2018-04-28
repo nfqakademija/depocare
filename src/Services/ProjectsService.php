@@ -36,11 +36,6 @@ class ProjectsService
         $this->cityRepository = $cityRepository;
     }
 
-    public function getProjectCreateById($user_id){
-        return $this->repository->getProjectCreateById($user_id);
-    }
-
-
     public function getProjects(){
         return $this->repository->getProjects();
     }
@@ -68,11 +63,10 @@ class ProjectsService
      * @param $user_id
      * @return mixed
      */
-    public function updateProject($request, $user_id) {
-        $content = json_decode($request->getContent());;
+    public function updateProject($request) {
+        $content = json_decode($request->getContent());
 
-        $project = $this->repository->getProjectCreateById($user_id);
-
+        $project = $this->repository->find($content->id);
 
         if ($project) {
             $project->setCategory($this->categoryRepository->find($content->category));
@@ -84,6 +78,8 @@ class ProjectsService
         }
 
         $this->repository->save($project);
+
+        return [$project];
     }
 
     public function getAllUserProjects($user_id) {
@@ -105,6 +101,8 @@ class ProjectsService
         $project->setGoal(0);
         $project->setReached(0);
         $project->setCharityFund('');
+        $project->setCity($this->cityRepository->find(1));
+        $project->setCategory($this->categoryRepository->find(1));
         $this->repository-> save($project);
 
         return [$project];
