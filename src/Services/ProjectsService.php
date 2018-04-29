@@ -84,6 +84,8 @@ class ProjectsService
             $project->setDescription($content->description);
             $project->setGoal($content->goal);
             $project->setCharityFund($content->charity_fund);
+            $project->setYoutube($content->youtube);
+            $project->setLongDescription($content->long_description);
         } else {
             return new Response('Nera tokio projekto su tokiu id',400);
         }
@@ -116,6 +118,8 @@ class ProjectsService
         $project->setGoal(0);
         $project->setReached(0);
         $project->setCharityFund('');
+        $project->setLongDescription('');
+        $project->setYoutube('');
         $project->setCity($this->cityRepository->find(1));
         $project->setCategory($this->categoryRepository->find(1));
         $this->repository-> save($project);
