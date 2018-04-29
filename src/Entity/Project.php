@@ -9,7 +9,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Table(name="projects")
@@ -83,6 +82,7 @@ class Project
      * @var int
      */
     private $flag_create;
+
     /**
      * @var double
      * @ORM\Column(type="float", scale=2)
@@ -94,6 +94,18 @@ class Project
      * @ORM\Column(type="string")
      */
     private $charity_fund;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=100)
+     */
+    private $youtube;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    private $long_description;
 
     /**
      * @return int
@@ -285,5 +297,37 @@ class Project
     public function setCharityFund(string $charity_fund): void
     {
         $this->charity_fund = $charity_fund;
+    }
+
+    /**
+     * @return string
+     */
+    public function getYoutube(): string
+    {
+        return $this->youtube;
+    }
+
+    /**
+     * @param string $youtube
+     */
+    public function setYoutube(string $youtube): void
+    {
+        $this->youtube = $youtube;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongDescription(): string
+    {
+        return $this->long_description;
+    }
+
+    /**
+     * @param string $long_description
+     */
+    public function setLongDescription(string $long_description): void
+    {
+        $this->long_description = $long_description;
     }
 }
