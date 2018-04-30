@@ -17,12 +17,12 @@ use App\Form\RegistrationType;
 
 
 /**
- * @RouteResource("api/registration", pluralize=false)
+ * @RouteResource("registration", pluralize=false)
  */
 class RestRegistrationController extends FOSRestController implements ClassResourceInterface
 {
     /**
-     * @Annotations\Post("/register")
+     * @Annotations\Post("api/register")
      */
     public function registerAction(Request $request)
     {
