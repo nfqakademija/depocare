@@ -86,6 +86,7 @@ class ProjectsService
             $project->setCharityFund($content->charity_fund);
             $project->setYoutube($content->youtube);
             $project->setLongDescription($content->long_description);
+            $project->setImage($content->image);
         } else {
             return new Response('Nera tokio projekto su tokiu id',400);
         }
@@ -120,6 +121,7 @@ class ProjectsService
         $project->setCharityFund('');
         $project->setLongDescription('');
         $project->setYoutube('');
+        $project->setImage('https://s3.eu-central-1.amazonaws.com/haroldas-depocare/photos/no-image.jpg');
         $project->setCity($this->cityRepository->find(1));
         $project->setCategory($this->categoryRepository->find(1));
         $this->repository-> save($project);
