@@ -31,7 +31,7 @@ class Version20180404165306 extends AbstractMigration
         );
 
         $this->addSql(
-            "INSERT INTO `symfony`.`categories` (`id`, `title`) 
+            "INSERT INTO `categories` (`id`, `title`) 
                 VALUES ('1', 'Vaikai'), ('2', 'Sveikata'), ('3', 'Gyvūnai ir gamta'), 
                 ('4', 'Senjorai'), ('5', 'Visuomenė'), ('6', 'Neįgalieji');"
                 );

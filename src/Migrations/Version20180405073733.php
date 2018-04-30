@@ -13,7 +13,7 @@ class Version20180405073733 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql(
-            "INSERT INTO `symfony`.`city` (`id`, `city`) VALUES 
+            "INSERT INTO `city` (`id`, `city`) VALUES 
             (1 ,'Visa Lietuva'),
             (2, 'Vilnius raj.'),
             (3, 'Kauno raj.'),
@@ -131,7 +131,7 @@ class Version20180405073733 extends AbstractMigration
             (115, 'Žiežmariai');");
 
         $this->addSql(
-            "INSERT INTO `symfony`.`projects` 
+            "INSERT INTO `projects` 
             (`id`, `category_id`, `user_id`, `flag_create`,`city_id`,`youtube`,`long_description`, `title`,`description`, `image`, `duration`, `goal`, `reached`, `charity_fund`) VALUES 
             (1, 2, 1,0,1,'https://www.youtube.com/watch?v=AptPGnVAXeM', '<p>This is super long <strong>description</strong></p>','Charlie Chan Carries On','Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 'http://dummyimage.com/217x214.png/5fa2dd/ffffff', 118, 160, 132, 'Kuvalis, Bashirian and Streich'),
             (2, 4, 1,1,1,'https://www.youtube.com/watch?v=AptPGnVAXeM', '<p>This is super long <strong>description</strong></p>','Maecenas tincidunt lacus at velit.', 'Description','http://dummyimage.com/228x216.png/ff4444/ffffff', 163, 159, 46, 'Weimann, Wehner and Reichert'),
