@@ -16,7 +16,11 @@ use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/api")
+ */
 class CitiesController extends FOSRestController
 {
     use ApiTraits;

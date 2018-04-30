@@ -17,7 +17,7 @@ use App\Form\RegistrationType;
 
 
 /**
- * @RouteResource("registration", pluralize=false)
+ * @RouteResource("api/registration", pluralize=false)
  */
 class RestRegistrationController extends FOSRestController implements ClassResourceInterface
 {

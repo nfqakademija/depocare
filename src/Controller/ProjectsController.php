@@ -6,7 +6,12 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations\Get;
+use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * @Route("/api")
+ */
 class ProjectsController extends FOSRestController
 {
     use ApiTraits;
