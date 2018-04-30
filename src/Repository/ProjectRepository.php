@@ -20,6 +20,7 @@ class ProjectRepository extends ServiceEntityRepository
     public function getProjects(){
         return $this->createQueryBuilder('p')
             ->select('p')
+            ->where('p.flag_create = 0')
             ->getQuery()
             ->getResult();
     }
@@ -29,6 +30,7 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->select('p')
             ->where('p.category = :cat')
+            ->andWhere('p.flag_create = 0')
             ->setParameter('cat', $cat)
             ->setMaxResults(6)
             ->getQuery()
@@ -40,6 +42,7 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->select('p')
             ->where('p.category = :cat')
+            ->andWhere('p.flag_create = 0')
             ->setParameter('cat', $cat)
             ->setFirstResult($from)
             ->setMaxResults($to)
