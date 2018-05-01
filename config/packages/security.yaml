@@ -12,27 +12,27 @@ security:
 
    firewalls:
        dev:
-           pattern: ^ api/(_(profiler|wdt)|css|images|js)/
+           pattern: ^/api/(_(profiler|wdt)|css|images|js)/
            security: false
 
        projects:
-           pattern: ^api/projects/[0-9]
+           pattern: ^/api/projects/[0-9]
            anonymous: true
 
        project:
-           pattern: ^api/project/[0-9]
+           pattern: ^/api/project/[0-9]
            anonymous: true
 
        api_register:
-           pattern: ^api/register
+           pattern: ^/api/register
            anonymous: true
 
        api_login:
-           pattern:  ^api/login
+           pattern:  ^/api/login
            stateless: true
            anonymous: true
            form_login:
-               check_path:               api/login
+               check_path:               /api/login
                require_previous_session: false
                username_parameter:       username
                password_parameter:       password
@@ -40,19 +40,19 @@ security:
                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
 
        api:
-           pattern:   ^api/
+           pattern:   ^/api/
            stateless: true
            anonymous: true
            lexik_jwt: ~
 
        llasdasdll:
-           pattern:   ^lasdasdlll/
+           pattern:   ^/lasdasdlll/
            stateless: true
            lexik_jwt: ~
 
    access_control:
-       - { path: ^api/projects/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^api/project/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^api/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^api/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/api/projects/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/api/project/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/api/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/api/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
