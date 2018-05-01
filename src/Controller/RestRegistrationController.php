@@ -22,7 +22,7 @@ use App\Form\RegistrationType;
 class RestRegistrationController extends FOSRestController implements ClassResourceInterface
 {
     /**
-     * @Annotations\Post("/register")
+     * @Annotations\Post("api/register")
      */
     public function registerAction(Request $request)
     {

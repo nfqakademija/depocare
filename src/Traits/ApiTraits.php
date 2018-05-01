@@ -18,6 +18,7 @@ trait ApiTraits
         );        $context = $view->getContext();
         $context->setSerializeNull(true);
         $view->setContext($context);
+        $view->setFormat('json');
         return $view;
     }
 }

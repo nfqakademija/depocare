@@ -8,7 +8,12 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Post;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * @Route("/api")
+ */
 class ProjectCreateController extends FOSRestController
 {
     use ApiTraits;

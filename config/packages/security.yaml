@@ -12,27 +12,27 @@ security:
 
    firewalls:
        dev:
-           pattern: ^ /(_(profiler|wdt)|css|images|js)/
+           pattern: ^ api/(_(profiler|wdt)|css|images|js)/
            security: false
 
        projects:
-           pattern: ^/projects/[0-9]
+           pattern: ^api/projects/[0-9]
            anonymous: true
 
        project:
-           pattern: ^/project/[0-9]
+           pattern: ^api/project/[0-9]
            anonymous: true
 
        api_register:
-           pattern: ^/register
+           pattern: ^api/register
            anonymous: true
 
        api_login:
-           pattern:  ^/login
+           pattern:  ^api/login
            stateless: true
            anonymous: true
            form_login:
-               check_path:               /login
+               check_path:               api/login
                require_previous_session: false
                username_parameter:       username
                password_parameter:       password
@@ -40,8 +40,9 @@ security:
                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
 
        api:
-           pattern:   ^/
+           pattern:   ^api/
            stateless: true
+           anonymous: true
            lexik_jwt: ~
 
        llasdasdll:
@@ -50,8 +51,8 @@ security:
            lexik_jwt: ~
 
    access_control:
-       - { path: ^/projects/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/project/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-       - { path: ^/, role: IS_AUTHENTICATED_FULLY }
+       - { path: ^api/projects/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^api/project/[0-9], role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^api/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^api/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+       - { path: ^api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
