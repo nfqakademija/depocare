@@ -9,7 +9,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity()
@@ -24,11 +23,18 @@ class Category
      * @var int
      */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=50)
      * @var string
      */
     private $title;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     * @var string
+     */
+    private $glyph;
 
     /**
      * @return int
@@ -62,4 +68,19 @@ class Category
         $this->title = $title;
     }
 
+    /**
+     * @return string
+     */
+    public function getGlyph(): string
+    {
+        return $this->glyph;
+    }
+
+    /**
+     * @param string $glyph
+     */
+    public function setGlyph(string $glyph): void
+    {
+        $this->glyph = $glyph;
+    }
 }
