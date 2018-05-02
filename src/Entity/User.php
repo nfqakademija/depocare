@@ -46,6 +46,18 @@ class User extends BaseUser
      */
     protected $email;
 
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $biography = null;
+
+    /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default" = false})
+     */
+    private $flagHasActiveProject;
+
     public function __construct()
     {
         parent::__construct();
@@ -114,6 +126,38 @@ class User extends BaseUser
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBiography(): string
+    {
+        return $this->biography;
+    }
+
+    /**
+     * @param string $biography
+     */
+    public function setBiography(string $biography): void
+    {
+        $this->biography = $biography;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFlagHasActiveProject(): bool
+    {
+        return $this->flagHasActiveProject;
+    }
+
+    /**
+     * @param bool $flagHasActiveProject
+     */
+    public function setFlagHasActiveProject(bool $flagHasActiveProject): void
+    {
+        $this->flagHasActiveProject = $flagHasActiveProject;
     }
 
 
