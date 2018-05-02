@@ -58,6 +58,13 @@ class User extends BaseUser
      */
     private $flagHasActiveProject;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=2000, options={"default" == "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"})
+     */
+    private $image;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -158,6 +165,22 @@ class User extends BaseUser
     public function setFlagHasActiveProject(bool $flagHasActiveProject): void
     {
         $this->flagHasActiveProject = $flagHasActiveProject;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
     }
 
 
