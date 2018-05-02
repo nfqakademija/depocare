@@ -49,3 +49,9 @@ services:
         alias: 'fos_user.user_manager'
         public: true
 
+    categories.service:
+            public: true
+            class: App\Services\CategoriesService
+            arguments:
+                - '@App\Repository\CategoryRepository'
+

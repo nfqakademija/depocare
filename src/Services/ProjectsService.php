@@ -44,8 +44,8 @@ class ProjectsService
         $this->usersService = $usersService;
     }
 
-    public function getProjects(){
-        return $this->repository->getProjects();
+    public function getProjects($from, $to){
+        return $this->repository->getProjects($from, $to);
     }
 
     /**
