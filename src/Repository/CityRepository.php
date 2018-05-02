@@ -7,7 +7,6 @@
  */
 
 namespace App\Repository;
-
 use App\Entity\City;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;

@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Entity\Organization;
 use App\Repository\ProjectRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
+use App\Repository\OrganizationRepository;
 use App\Entity\Project;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,16 +20,18 @@ class ProjectsService
      * @var ProjectRepository
      */
     private $repository;
-
     /**
      * @var CategoryRepository
      */
     private $categoryRepository;
-
     /**
      * @var CityRepository
      */
     private $cityRepository;
+    /**
+     * @var OrganizationRepository
+     */
+    private $organizationRepository;
 
     /**
      * ProjectService constructor.
@@ -36,12 +40,13 @@ class ProjectsService
      * @param CityRepository $cityRepository
      * @param \App\Services\UsersService $usersService
      */
-    public function __construct(ProjectRepository $repository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService)
+    public function __construct(ProjectRepository $repository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationRepository $organizationRepository)
     {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
         $this->usersService = $usersService;
+        $this->organizationRepository =$organizationRepository;
     }
 
     public function getProjects(){
@@ -129,11 +134,15 @@ class ProjectsService
         $project->setGoal(0);
         $project->setReached(0);
         $project->setCharityFund('');
+        $project->setFlagCreate(true);
         $project->setLongDescription('');
         $project->setYoutube('');
         $project->setImage('https://s3.eu-central-1.amazonaws.com/haroldas-depocare/photos/no-image.jpg');
         $project->setCity($this->cityRepository->find(1));
         $project->setCategory($this->categoryRepository->find(1));
+        $organization = new Organization();
+        $this->organizationRepository->save($organization);
+        $project->setOrganization($organization);
         $this->repository-> save($project);
 
         return [$project];

@@ -30,7 +30,13 @@ class Project
      * @var Category
      */
     private $category;
-
+    /**
+     * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="Organization")
+     * @ORM\JoinColumn(name="organization_id", referencedColumnName="id")
+     * @var Organization
+     */
+    private $organization;
     /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
@@ -38,7 +44,6 @@ class Project
      * @var User
      */
     private $user_id;
-
     /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="City")
@@ -46,7 +51,6 @@ class Project
      * @var City
      */
     private $city;
-
     /**
      * @var string
      *
@@ -76,13 +80,11 @@ class Project
      * @ORM\Column(type="float", scale=2)
      */
     private $goal;
-
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default" = true})
      */
     private $flag_create;
-
     /**
      * @var double
      * @ORM\Column(type="float", scale=2)
@@ -106,7 +108,6 @@ class Project
      * @ORM\Column(type="text")
      */
     private $long_description;
-
     /**
      * @return int
      */
@@ -329,5 +330,21 @@ class Project
     public function setFlagCreate(bool $flag_create): void
     {
         $this->flag_create = $flag_create;
+    }
+
+    /**
+     * @return Organization
+     */
+    public function getOrganization(): Organization
+    {
+        return $this->organization;
+    }
+
+    /**
+     * @param Organization $organization
+     */
+    public function setOrganization(Organization $organization): void
+    {
+        $this->organization = $organization;
     }
 }

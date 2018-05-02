@@ -45,6 +45,12 @@ services:
         arguments:
             - '@App\Repository\UserRepository'
 
+    organizations.service:
+        public: true
+        class: App\Services\OrganizationsService
+        arguments:
+            - '@App\Repository\OrganizationRepository'
+
     app_fos_user.user_manager:
         alias: 'fos_user.user_manager'
         public: true
