@@ -37,8 +37,8 @@ class ProjectsService
         $this->cityRepository = $cityRepository;
     }
 
-    public function getProjects(){
-        return $this->repository->getProjects();
+    public function getProjects($from, $to){
+        return $this->repository->getProjects($from, $to);
     }
 
     /**

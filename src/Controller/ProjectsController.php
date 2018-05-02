@@ -19,9 +19,11 @@ class ProjectsController extends FOSRestController
      * @Get("/projects")
      * @return View
      */
-    public function getProjects()
+    public function getProjects(Request $request)
     {
-        return $this->getProjectsService()->getProjects();
+        $from =  $request->get('getFrom');
+        $to = $request->get('getTo');
+        return $this->getProjectsService()->getProjects($from, $to);
     }
     //http://localhost:8000/projects/1?getFrom=6&getTo9
     /**
