@@ -10,7 +10,7 @@ namespace App\Services;
 
 use App\Repository\UserRepository;
 
-use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\HttpFoundation\Response;
 
 class UsersService
 {
@@ -29,30 +29,34 @@ class UsersService
     }
 
     /**
-     * @param $request
+     * @param $first_name
+     * @param $last_name
+     * @param $biography
      * @param $id
      * @param $user_id
-     * @return Response
+     * @return boolean
      */
-    public function updateUserProjectCreate($request, $id, $user_id) {
+    public function updateUserProjectCreate($first_name, $last_name, $biography, $id, $user_id) {
         if($id != $user_id) {
-            return new Response('Neturite tam teisių',404);
+            //return new Response('Neturite tam teisių',403);
+            return false;
         }
 
         $user = $this->repository->find($user_id);
-        $content = json_decode($request->getContent());
         if($user) {
             if (!$user->isFlagHasActiveProject()) {
-                $user->setFirstname($content->first_name);
-                $user->setLastname($content->last_name);
+                $user->setFirstname($first_name);
+                $user->setLastname($last_name);
             }
-            $user->setBiography($content->biography);
+            $user->setBiography($biography);
         } else {
-            return new Response('Nera tokio vartotojo su tokiu id',400);
+            //return new Response('Nera tokio vartotojo su tokiu id',404);
+            return false;
         }
 
         $this->repository->save($user);
 
-        return new Response('Išsaugota',200);
+        //return new Response('Išsaugota',200);
+        return true;
     }
 }
