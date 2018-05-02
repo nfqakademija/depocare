@@ -60,7 +60,7 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=2000, options={"default" == "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"})
+     * @ORM\Column(type="string", length=2000, options={"default" = "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"})
      */
     private $image;
 

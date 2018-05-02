@@ -32,11 +32,12 @@ class UsersService
      * @param $first_name
      * @param $last_name
      * @param $biography
+     * @param $profile_image
      * @param $id
      * @param $user_id
      * @return boolean
      */
-    public function updateUserProjectCreate($first_name, $last_name, $biography, $id, $user_id) {
+    public function updateUserProjectCreate($first_name, $last_name, $biography, $profile_image, $id, $user_id) {
         if($id != $user_id) {
             //return new Response('Neturite tam teisių',403);
             return false;
@@ -49,6 +50,7 @@ class UsersService
                 $user->setLastname($last_name);
             }
             $user->setBiography($biography);
+            $user->setImage($profile_image);
         } else {
             //return new Response('Nera tokio vartotojo su tokiu id',404);
             return false;

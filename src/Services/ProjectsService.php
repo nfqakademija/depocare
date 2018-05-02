@@ -78,11 +78,11 @@ class ProjectsService
         $content = json_decode($request->getContent());
 
         if ($project) {
-            if($this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $project->getUserId()->getId(), $user)) {
+            if($this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $content->profile_image, $project->getUserId()->getId(), $user)) {
                 if (!$project->getUserId()->getId() === $user) {
                     return new Response("Neturite teisių redaguoti projektą", 403);
                 }
-                if (!$project->getFlagCreate() == 1) {
+                if (!$project->isFlagCreate()) {
                     return new Response("Projekto negalima redaguoti", 403);
                 }
 
@@ -125,7 +125,6 @@ class ProjectsService
         $project->setTitle('');
         $project->setImage('');
         $project->setDescription('');
-        $project->setFlagCreate(1);
         $project->setDuration(0);
         $project->setGoal(0);
         $project->setReached(0);
