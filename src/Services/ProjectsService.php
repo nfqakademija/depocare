@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 class ProjectsService
 {
     /**
+     * @var UsersService
+     */
+    private $usersService;
+    /**
      * @var ProjectRepository
      */
     private $repository;
@@ -24,17 +28,20 @@ class ProjectsService
      * @var CityRepository
      */
     private $cityRepository;
+
     /**
      * ProjectService constructor.
      * @param ProjectRepository $repository
      * @param CategoryRepository $categoryRepository
      * @param CityRepository $cityRepository
+     * @param \App\Services\UsersService $usersService
      */
-    public function __construct(ProjectRepository $repository, CategoryRepository $categoryRepository, CityRepository $cityRepository)
+    public function __construct(ProjectRepository $repository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService)
     {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
+        $this->usersService = $usersService;
     }
 
     public function getProjects(){
@@ -71,29 +78,33 @@ class ProjectsService
         $content = json_decode($request->getContent());
 
         if ($project) {
-            if(!$project->getUserId()->getId() === $user) {
-                return new Response("Neturite teisių redaguoti projektą", 403);
-            }
-            if(!$project->getFlagCreate() == 1) {
-                return new Response("Projekto negalima redaguoti", 403);
-            }
+            if($this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $content->profile_image, $project->getUserId()->getId(), $user)) {
+                if (!$project->getUserId()->getId() === $user) {
+                    return new Response("Neturite teisių redaguoti projektą", 403);
+                }
+                if (!$project->isFlagCreate()) {
+                    return new Response("Projekto negalima redaguoti", 403);
+                }
 
-            $project->setCategory($this->categoryRepository->find($content->category));
-            $project->setCity($this->cityRepository->find($content->city));
-            $project->setTitle($content->title);
-            $project->setDescription($content->description);
-            $project->setGoal($content->goal);
-            $project->setCharityFund($content->charity_fund);
-            $project->setYoutube($content->youtube);
-            $project->setLongDescription($content->long_description);
-            $project->setImage($content->image);
+                $project->setCategory($this->categoryRepository->find($content->category));
+                $project->setCity($this->cityRepository->find($content->city));
+                $project->setTitle($content->title);
+                $project->setDescription($content->description);
+                $project->setGoal($content->goal);
+                $project->setCharityFund($content->charity_fund);
+                $project->setYoutube($content->youtube);
+                $project->setLongDescription($content->long_description);
+                $project->setImage($content->image);
+            } else {
+                return new Response("Nepavyko atnaujinti profilio informacijos", 400);
+            }
         } else {
-            return new Response('Nera tokio projekto su tokiu id',400);
+            return new Response('Projektas neegzistuoja',400);
         }
 
         $this->repository->save($project);
 
-        return new Response('',200);
+        return new Response('Projektas išsaugotas',200);
     }
 
     /**
@@ -114,7 +125,6 @@ class ProjectsService
         $project->setTitle('');
         $project->setImage('');
         $project->setDescription('');
-        $project->setFlagCreate(1);
         $project->setDuration(0);
         $project->setGoal(0);
         $project->setReached(0);

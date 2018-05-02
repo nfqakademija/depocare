@@ -78,8 +78,8 @@ class Project
     private $goal;
 
     /**
-     * @ORM\Column(type="integer")
-     * @var int
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default" = true})
      */
     private $flag_create;
 
@@ -252,22 +252,6 @@ class Project
     }
 
     /**
-     * @return int
-     */
-    public function getFlagCreate(): int
-    {
-        return $this->flag_create;
-    }
-
-    /**
-     * @param int $flag_create
-     */
-    public function setFlagCreate(int $flag_create): void
-    {
-        $this->flag_create = $flag_create;
-    }
-
-    /**
      * @return float
      */
     public function getReached(): float
@@ -329,5 +313,21 @@ class Project
     public function setLongDescription(string $long_description): void
     {
         $this->long_description = $long_description;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFlagCreate(): bool
+    {
+        return $this->flag_create;
+    }
+
+    /**
+     * @param bool $flag_create
+     */
+    public function setFlagCreate(bool $flag_create): void
+    {
+        $this->flag_create = $flag_create;
     }
 }
