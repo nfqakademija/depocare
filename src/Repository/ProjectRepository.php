@@ -21,6 +21,8 @@ class ProjectRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->select('p')
             ->where('p.flag_create = 0')
+            ->orderBy('p.goal-p.reached')
+            ->setMaxResults(6)
             ->getQuery()
             ->getResult();
     }
