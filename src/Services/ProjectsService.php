@@ -63,8 +63,8 @@ class ProjectsService
         $this->bankRepository = $bankRepository;
     }
 
-    public function getProjects(){
-        return $this->repository->getProjects();
+    public function getProjects($from, $to){
+        return $this->repository->getProjects($from, $to);
     }
 
     /**

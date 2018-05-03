@@ -17,10 +17,13 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-    public function getProjects(){
+    public function getProjects($from, $to){
         return $this->createQueryBuilder('p')
             ->select('p')
             ->where('p.flag_create = false')
+            ->orderBy('p.goal-p.reached')
+            ->setFirstResult($from)
+            ->setMaxResults($to)
             ->getQuery()
             ->getResult();
     }
