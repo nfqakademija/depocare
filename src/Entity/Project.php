@@ -112,12 +112,6 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=50)
-     */
-    private $iban;
-    /**
-     * @var string
-     *
      * @ORM\Column(type="text")
      */
     private $long_description;
@@ -376,21 +370,5 @@ class Project
     public function setBank(Bank $bank): void
     {
         $this->bank = $bank;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIban(): string
-    {
-        return $this->iban;
-    }
-
-    /**
-     * @param string $iban
-     */
-    public function setIban(string $iban): void
-    {
-        $this->iban = $iban;
     }
 }

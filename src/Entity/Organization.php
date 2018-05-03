@@ -71,7 +71,11 @@ class Organization
      * @var string
      */
     private $organization_owner_email_address = "";
-
+    /**
+     * @ORM\Column(type="string", options={"default" = ""})
+     * @var string
+     */
+    private $organization_iban = "";
     /**
      * @return int
      */
@@ -246,6 +250,22 @@ class Organization
     public function setOrganizationWebAddress(string $organization_web_address): void
     {
         $this->organization_web_address = $organization_web_address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrganizationIban(): string
+    {
+        return $this->organization_iban;
+    }
+
+    /**
+     * @param string $organization_iban
+     */
+    public function setOrganizationIban(string $organization_iban): void
+    {
+        $this->organization_iban = $organization_iban;
     }
 
 }

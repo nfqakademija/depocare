@@ -146,7 +146,6 @@ class ProjectsService
         $project->setLongDescription('');
         $project->setYoutube('');
         $project->setImage('https://s3.eu-central-1.amazonaws.com/haroldas-depocare/photos/no-image.jpg');
-        $project->setIban('');
         $project->setCity($this->cityRepository->find(1));
         $project->setCategory($this->categoryRepository->find(1));
         $project->setBank($this->bankRepository->find(1));
