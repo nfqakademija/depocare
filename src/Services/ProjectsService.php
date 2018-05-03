@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Entity\Organization;
 use App\Repository\ProjectRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\BankRepository;
 use App\Repository\CityRepository;
 use App\Repository\OrganizationRepository;
 use App\Entity\Project;
@@ -32,21 +33,28 @@ class ProjectsService
      * @var OrganizationRepository
      */
     private $organizationRepository;
+    /**
+     * @var BankRepository
+     */
+    private $bankRepository;
 
     /**
      * ProjectService constructor.
      * @param ProjectRepository $repository
+     * @param BankRepository $bankRepository
      * @param CategoryRepository $categoryRepository
      * @param CityRepository $cityRepository
      * @param \App\Services\UsersService $usersService
+     * @param OrganizationRepository $organizationRepository
      */
-    public function __construct(ProjectRepository $repository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationRepository $organizationRepository)
+    public function __construct(ProjectRepository $repository, BankRepository $bankRepository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationRepository $organizationRepository)
     {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
         $this->usersService = $usersService;
-        $this->organizationRepository =$organizationRepository;
+        $this->organizationRepository = $organizationRepository;
+        $this->bankRepository = $bankRepository;
     }
 
     public function getProjects(){
@@ -138,8 +146,10 @@ class ProjectsService
         $project->setLongDescription('');
         $project->setYoutube('');
         $project->setImage('https://s3.eu-central-1.amazonaws.com/haroldas-depocare/photos/no-image.jpg');
+        $project->setIban('');
         $project->setCity($this->cityRepository->find(1));
         $project->setCategory($this->categoryRepository->find(1));
+        $project->setBank($this->bankRepository->find(1));
         $organization = new Organization();
         $this->organizationRepository->save($organization);
         $project->setOrganization($organization);

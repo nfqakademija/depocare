@@ -31,10 +31,15 @@ class Version20180404165306 extends AbstractMigration
         );
 
         $this->addSql(
+            "INSERT INTO `banks` (`id`, `bank_name`) 
+                VALUES ('1', 'Paysera'), ('2', 'Swedbank'), ('3', 'Citadelė'), ('4', 'Danske'), 
+                ('5', 'Nordea'), ('6', 'DNB'), ('7', 'Seb');"
+                );
+        $this->addSql(
             "INSERT INTO `categories` (`id`, `title`) 
                 VALUES ('1', 'Vaikai'), ('2', 'Sveikata'), ('3', 'Gyvūnai ir gamta'), 
                 ('4', 'Senjorai'), ('5', 'Visuomenė'), ('6', 'Neįgalieji');"
-                );
+        );
         $this->addSql(
             "INSERT INTO `organizations` (`id`, `organization_name`, `organization_street_address`, `organization_phone_number`, `organization_email_address`, `organization_code`,`organization_web_address`, `organization_owner_first_name`, `organization_owner_last_name`, `organization_owner_phone_number`, `organization_owner_email_address`) 
                 VALUES ('1', 'Organizacijos pavadinimas', 'Studentu g 71-111, Kaunas LT-588445', '+37068963444', 'Email@gmail.com', '165491515','www.google.lt', 'Jonas', 'Jonaitis', '+370454811812', 'owner@gmail.com');"

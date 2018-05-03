@@ -39,6 +39,13 @@ class Project
     private $organization;
     /**
      * Many Features have One Product.
+     * @ORM\ManyToOne(targetEntity="App\Entity\Bank")
+     * @ORM\JoinColumn(name="bank_id", referencedColumnName="id")
+     * @var Bank
+     */
+    private $bank;
+    /**
+     * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @var User
@@ -84,7 +91,7 @@ class Project
      * @var bool
      * @ORM\Column(type="boolean", options={"default" = true})
      */
-    private $flag_create;
+    private $flag_create = true;
     /**
      * @var double
      * @ORM\Column(type="float", scale=2)
@@ -105,9 +112,16 @@ class Project
     /**
      * @var string
      *
+     * @ORM\Column(type="string", length=50)
+     */
+    private $iban;
+    /**
+     * @var string
+     *
      * @ORM\Column(type="text")
      */
     private $long_description;
+
     /**
      * @return int
      */
@@ -346,5 +360,37 @@ class Project
     public function setOrganization(Organization $organization): void
     {
         $this->organization = $organization;
+    }
+
+    /**
+     * @return Bank
+     */
+    public function getBank(): Bank
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @param Bank $bank
+     */
+    public function setBank(Bank $bank): void
+    {
+        $this->bank = $bank;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIban(): string
+    {
+        return $this->iban;
+    }
+
+    /**
+     * @param string $iban
+     */
+    public function setIban(string $iban): void
+    {
+        $this->iban = $iban;
     }
 }
