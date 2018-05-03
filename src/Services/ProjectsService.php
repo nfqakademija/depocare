@@ -18,6 +18,10 @@ class ProjectsService
      */
     private $usersService;
     /**
+     * @var OrganizationsService
+     */
+    private $organizationService;
+    /**
      * @var ProjectRepository
      */
     private $repository;
@@ -45,14 +49,16 @@ class ProjectsService
      * @param CategoryRepository $categoryRepository
      * @param CityRepository $cityRepository
      * @param \App\Services\UsersService $usersService
+     * @param OrganizationsService $organizationsService
      * @param OrganizationRepository $organizationRepository
      */
-    public function __construct(ProjectRepository $repository, BankRepository $bankRepository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationRepository $organizationRepository)
+    public function __construct(ProjectRepository $repository, BankRepository $bankRepository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationsService $organizationsService, OrganizationRepository $organizationRepository)
     {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
         $this->usersService = $usersService;
+        $this->organizationService = $organizationsService;
         $this->organizationRepository = $organizationRepository;
         $this->bankRepository = $bankRepository;
     }
@@ -90,30 +96,33 @@ class ProjectsService
         $project = $this->repository->find($id);
         $content = json_decode($request->getContent());
 
-        if ($project) {
-            if($this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $content->profile_image, $project->getUserId()->getId(), $user)) {
-                if (!$project->getUserId()->getId() === $user) {
-                    return new Response("Neturite teisių redaguoti projektą", 403);
-                }
-                if (!$project->isFlagCreate()) {
-                    return new Response("Projekto negalima redaguoti", 403);
-                }
-
-                $project->setCategory($this->categoryRepository->find($content->category));
-                $project->setCity($this->cityRepository->find($content->city));
-                $project->setTitle($content->title);
-                $project->setDescription($content->description);
-                $project->setGoal($content->goal);
-                $project->setCharityFund($content->charity_fund);
-                $project->setYoutube($content->youtube);
-                $project->setLongDescription($content->long_description);
-                $project->setImage($content->image);
-            } else {
-                return new Response("Nepavyko atnaujinti profilio informacijos", 400);
-            }
-        } else {
+        if (!$project) {
             return new Response('Projektas neegzistuoja',400);
         }
+        if(!$this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $content->profile_image, $project->getUserId()->getId(), $user))  {
+            return new Response("Nepavyko atnaujinti profilio informacijos", 400);
+        }
+
+        if(!$this->organizationService->updateOrganizationProjectCreate($content->organization_id, $content->organization_name,$content->organization_street_address,$content->organization_phone_number,$content->organization_email_address,$content->organization_web_address,$content->organization_code,$content->organization_owner_first_name,$content->organization_owner_last_name,$content->organization_owner_phone_number,$content->organization_iban,$content->organization_owner_email_address ))  {
+            return new Response("Nepavyko atnaujinti profilio informacijos", 400);
+        }
+
+        if (!$project->getUserId()->getId() === $user) {
+            return new Response("Neturite teisių redaguoti projektą", 403);
+        }
+        if (!$project->isFlagCreate()) {
+            return new Response("Projekto negalima redaguoti", 403);
+        }
+
+        $project->setCategory($this->categoryRepository->find($content->category));
+        $project->setCity($this->cityRepository->find($content->city));
+        $project->setTitle($content->title);
+        $project->setDescription($content->description);
+        $project->setGoal($content->goal);
+        $project->setCharityFund($content->charity_fund);
+        $project->setYoutube($content->youtube);
+        $project->setLongDescription($content->long_description);
+        $project->setImage($content->image);
 
         $this->repository->save($project);
 

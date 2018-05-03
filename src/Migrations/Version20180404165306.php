@@ -13,19 +13,19 @@ class Version20180404165306 extends AbstractMigration
     public function up(Schema $schema)
     {
         $this->addSql(
-            'INSERT INTO `users` (`id`,`username`,`username_canonical`,
+            'INSERT INTO `users` (`id`,`biography`,`username`,`username_canonical`,
           `email`,`email_canonical`,`enabled`,`salt`,`password`,`last_login`,
           `confirmation_token`,`password_requested_at`,`roles`,`lastname`,`balance`, `firstname`)
-          VALUES (1,\'test2\',\'test2\',\'test2@test.lt\',\'test2@test.lt\',1,NULL,
+          VALUES (1,\'biografija\',\'test2\',\'test2\',\'test2@test.lt\',\'test2@test.lt\',1,NULL,
           \'$2y$13$wFpZ4RUvByINqyncCZ/TxOw00KFTVyOjwSDZtEqVbGVY5wvj9HJ92\',NULL,
           NULL,NULL,\'a:0:{}\',\'Testinis\',3, \'Test\'),
-          (2,\'test\',\'test\',\'test@test.lt\',\'test@test.lt\',1,NULL,
+          (2,\'biografija\',\'test\',\'test\',\'test@test.lt\',\'test@test.lt\',1,NULL,
           \'$2y$13$4nZ1ma5s28yl.pjKEEY3nuWaw3SLiGWN0l5lmE/dBuv/Hnwi26e8u\',NULL,
           NULL,NULL,\'a:0:{}\',\'Pirminis\',22, \'Test2\'),
-          (3,\'Liudas\',\'Liudas\',\'liudas@gmail.com\',\'liudas@gmail.com\',1,NULL,
+          (3,\'biografija\',\'Liudas\',\'Liudas\',\'liudas@gmail.com\',\'liudas@gmail.com\',1,NULL,
           \'$2y$13$Ao0GlrNa9xZiFnN356WmU.5aDlZmYkUcVHM3ciM2gAgSZJY2HTaHu\',NULL
           ,NULL,NULL,\'a:0:{}\',\'Kazalupskis\',14, \'Liudas\'),
-          (4,\'Haroldas\',\'Haroldas\',\'haris@gmail.com\',\'haris@gmail.com\',1,NULL,
+          (4,\'biografija\',\'Haroldas\',\'Haroldas\',\'haris@gmail.com\',\'haris@gmail.com\',1,NULL,
           \'$2y$13$4oej2cAnAlx5U3Fk52r85.1zB9NuE1Gtbbu72OlbXxmbwpM83U4fq\',NULL,
           NULL,NULL,\'a:0:{}\',\'Zapalskis\',68, \'Haroldas\');'
         );
