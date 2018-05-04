@@ -131,6 +131,7 @@ class ProjectsService
 
         $project->setCategory($this->categoryRepository->find($content->category));
         $project->setCity($this->cityRepository->find($content->city));
+        $project->setBank($this->bankRepository->find($content->bank));
         $project->setTitle($content->title);
         $project->setDescription($content->description);
         $project->setGoal($content->goal);
