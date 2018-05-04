@@ -81,10 +81,25 @@ class ProjectsService
      * @param $id
      * @return mixed
      */
-    public function getProjectsById($id){
-        return $this->repository->getProjectById($id);
+    public function getProjectById($id){
+        return $this->repository->find($id);
     }
 
+    /**
+     * @param $id
+     * @param $user_id
+     * @return mixed
+     */
+    public function getProjectEditById($id, $user_id){
+        $project = $this->getProjectById($id);
+        if(!$project) {
+            return new Response('Projektas neegzistuoja',400);
+        }
+        if($project->getUserId()->getId() !== $user_id) {
+            return new Response("Neturite teisių redaguoti projektą", 403);
+        }
+        return $project;
+    }
 
     /**
      * @param $request
@@ -139,7 +154,7 @@ class ProjectsService
 
     /**
      * @param $user_id
-     * @return array
+     * @return Project
      */
     public function createEmptyProject($user_id) {
         $project = new Project();
@@ -163,6 +178,6 @@ class ProjectsService
         $project->setOrganization($organization);
         $this->repository-> save($project);
 
-        return [$project];
+        return $project;
     }
 }

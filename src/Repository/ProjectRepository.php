@@ -63,15 +63,6 @@ class ProjectRepository extends ServiceEntityRepository
         $this->_em->flush($entity);
     }
 
-    public function getProjectById($id) {
-        return $this->createQueryBuilder('p')
-            ->select('p')
-            ->where('p.id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()
-            ->getResult();
-    }
-
     public function getAllUserProjects($user_id) {
         return $this->findBy([
             'user_id' => $user_id

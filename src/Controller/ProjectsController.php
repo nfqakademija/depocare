@@ -15,8 +15,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectsController extends FOSRestController
 {
     use ApiTraits;
+
     /**
      * @Get("/projects")
+     * @param Request $request
      * @return View
      */
     public function getProjects(Request $request)
@@ -26,8 +28,11 @@ class ProjectsController extends FOSRestController
         return $this->getProjectsService()->getProjects($from, $to);
     }
     //http://localhost:8000/projects/1?getFrom=6&getTo9
+
     /**
      * @Get("/projects/{cat}")
+     * @param $cat
+     * @param Request $request
      * @return View
      */
     public function loadMoreProjectsByCat($cat, Request $request)
@@ -42,7 +47,16 @@ class ProjectsController extends FOSRestController
      * @return View
      */
     public function getProjectById($id){
-        return $this->getProjectsService()->getProjectsById($id);
+        return $this->getProjectsService()->getProjectById($id);
+    }
+
+    /**
+     * @Get("/projectEdit/{id}")
+     * @param $id
+     * @return mixed
+     */
+    public function getProjectEditById($id){
+        return $this->getProjectsService()->getProjectEditById($id, $this->getUser()->getId());
     }
 
     /**

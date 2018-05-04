@@ -36,9 +36,9 @@ class Version20180404165306 extends AbstractMigration
                 ('5', 'Nordea'), ('6', 'DNB'), ('7', 'Seb');"
                 );
         $this->addSql(
-            "INSERT INTO `categories` (`id`, `title`) 
-                VALUES ('1', 'Vaikai'), ('2', 'Sveikata'), ('3', 'Gyvūnai ir gamta'), 
-                ('4', 'Senjorai'), ('5', 'Visuomenė'), ('6', 'Neįgalieji');"
+            "INSERT INTO `categories` (`id`, `title`, `glyph`) 
+                VALUES ('1', 'Vaikai', 'child.png'), ('2', 'Sveikata', 'health.png'), ('3', 'Gyvūnai ir gamta', 'nature.png'), 
+                ('4', 'Senjorai', 'senior.png'), ('5', 'Visuomenė ir kultūra', 'society.png');"
         );
         $this->addSql(
             "INSERT INTO `organizations` (`id`, `organization_iban`,`organization_name`, `organization_street_address`, `organization_phone_number`, `organization_email_address`, `organization_code`,`organization_web_address`, `organization_owner_first_name`, `organization_owner_last_name`, `organization_owner_phone_number`, `organization_owner_email_address`) 
