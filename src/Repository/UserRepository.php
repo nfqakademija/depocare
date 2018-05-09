@@ -29,4 +29,11 @@ class UserRepository extends ServiceEntityRepository
         $this->_em->persist($entity);
         $this->_em->flush($entity);
     }
+
+
+    public function getUserFavoriteProjects($user_id) {
+        return $this->findBy([
+            'id' => $user_id
+        ]);
+    }
 }

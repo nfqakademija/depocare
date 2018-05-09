@@ -44,6 +44,8 @@ services:
         class: App\Services\UsersService
         arguments:
             - '@App\Repository\UserRepository'
+            - '@App\Repository\ProjectRepository'
+            - '@doctrine.orm.default_entity_manager'
 
     organizations.service:
         public: true

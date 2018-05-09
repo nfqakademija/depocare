@@ -8,7 +8,9 @@
 
 namespace App\Services;
 
+use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 //use Symfony\Component\HttpFoundation\Response;
 
@@ -20,12 +22,28 @@ class UsersService
     private $repository;
 
     /**
+     * @var ProjectRepository
+     */
+    private $projectRepository;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    /**
      * UsersService constructor.
      * @param UserRepository $repository
+     * @param ProjectRepository $projectRepository
+     * @param EntityManagerInterface $entityManager
      */
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository,
+                                ProjectRepository $projectRepository,
+                                EntityManagerInterface $entityManager)
     {
         $this->repository = $repository;
+        $this->projectRepository = $projectRepository;
+        $this->em = $entityManager;
     }
 
     /**
@@ -59,6 +77,44 @@ class UsersService
         $this->repository->save($user);
 
         //return new Response('Išsaugota',200);
+        return true;
+    }
+
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    public function getUserFavoriteProjects($user_id) {
+        return $this->repository->getUserFavoriteProjects($user_id);
+    }
+
+
+    public function removeUserFavoriteProject($user_id, $project_id){
+
+        $user = $this->repository->find($user_id);
+        $project = $this->projectRepository->find($project_id);
+
+        if($user && $project) {
+            $user->removeFavoriteProject($project);
+            $this->em->flush();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public function addUserFavoriteProject($user_id, $project_id){
+
+        $user = $this->repository->find($user_id);
+        $project = $this->projectRepository->find($project_id);
+
+        if($user && $project) {
+            $user->addFavoriteProject($project);
+            $this->em->persist($project);
+            $this->em->flush();
+        } else {
+            return false;
+        }
         return true;
     }
 }
