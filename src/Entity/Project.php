@@ -77,11 +77,11 @@ class Project
      */
     private $image;
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=10)
      */
-    private $duration;
+    private $end_date;
     /**
      * @var double
      * @ORM\Column(type="float", scale=2)
@@ -229,19 +229,19 @@ class Project
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getDuration(): int
+    public function getEnddate(): string
     {
-        return $this->duration;
+        return $this->end_date;
     }
 
     /**
-     * @param int $duration
+     * @param string $end_date
      */
-    public function setDuration(int $duration): void
+    public function setEnddate(string $end_date): void
     {
-        $this->duration = $duration;
+        $this->end_date = $end_date;
     }
 
     /**

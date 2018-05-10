@@ -133,6 +133,7 @@ class ProjectsService
         $project->setCity($this->cityRepository->find($content->city));
         $project->setBank($this->bankRepository->find($content->bank));
         $project->setTitle($content->title);
+        $project->setEnddate($content->end_date);
         $project->setDescription($content->description);
         $project->setGoal($content->goal);
         $project->setCharityFund($content->charity_fund);
@@ -163,7 +164,7 @@ class ProjectsService
         $project->setTitle('');
         $project->setImage('');
         $project->setDescription('');
-        $project->setDuration(0);
+        $project->setEnddate('');
         $project->setGoal(0);
         $project->setReached(0);
         $project->setCharityFund('');
