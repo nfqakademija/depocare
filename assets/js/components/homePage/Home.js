@@ -6,7 +6,7 @@ import {getUserInfo} from "../../reducer/user/actions";
 import SliderContent from "./SliderContent";
 import RenderProjects from '../projects/viewProjects/RenderProjects';
 
-const IMG_URL = "../../Data/images/";
+const IMG_URL = "images/carouselImages/";
 
 class Home extends React.Component {
 
@@ -23,22 +23,28 @@ class Home extends React.Component {
     }
 
     render() {
+        const carouselItems = [
+          '234.jpg',
+          '345.jpg',
+          '456.jpg',
+          '567.jpg',
+        ];
         return (
             <div>
                 <div id="myCarousel" className="carousel slide carousel-fade" data-ride="carousel">
                     <div className="carousel-inner">
+                        {  carouselItems.map((item, index) => {
+                                    return (
+                                        <div key = {index} className={
+                                            index === 0
+                                                ? 'item active'
+                                                : 'item'}>
+                                            <img className="carousel-img" src={IMG_URL+item} alt="forest"/>
+                                        </div>
+                                    );
+                                })
+                        }}
 
-                        <div className="item active">
-                            <img className="carousel-img" src={IMG_URL+"beach.jpg"} alt="forest"/>
-                        </div>
-
-                        <div className="item">
-                            <img className="carousel-img" src={IMG_URL+"oak.jpg"} alt="park"/>
-                        </div>
-
-                        <div className="item">
-                            <img className="carousel-img" src={IMG_URL+"walkaway.jpg"} alt="IMAGE"/>
-                        </div>
                     </div>
                     <SliderContent/>
                 </div>

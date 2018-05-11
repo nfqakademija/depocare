@@ -21,15 +21,17 @@ class SingleProject extends React.Component {
     checkIfFavorite(){
         let currentId = this.props.project.id;
         let favorite = false;
-        this.props.User.userData.favorite_projects.forEach(function(item) {
-            if(currentId === item.id && favorite === false){
-                favorite = true;
-            }
-        });
-        if(this.state.favorite !== favorite){
-            this.setState({
-                favorite
+        if(this.props.User.dataReceived){
+            this.props.User.userData.favorite_projects.forEach(function(item) {
+                if(currentId === item.id && favorite === false){
+                    favorite = true;
+                }
             });
+            if(this.state.favorite !== favorite){
+                this.setState({
+                    favorite
+                });
+            }
         }
     }
 
@@ -52,14 +54,17 @@ class SingleProject extends React.Component {
             <div className="projects-view-grid">
                 <img src={this.props.project.image} className="projects-view-img"/>
                     <div className="projects-view-title-by d-inline">
-                        <span
-                            onClick={this.handleFavoriteClick}
-                            className={
-                            (this.state.favorite)
-                            ? "projects-view-single-favorite glyphicon glyphicon-heart"
-                            : "projects-view-single-favorite glyphicon glyphicon-heart-empty "
+                        {
+                            this.props.User.dataReceived
+                                ? <span
+                                    onClick={this.handleFavoriteClick}
+                                    className={
+                                    (this.state.favorite)
+                                    ? "projects-view-single-favorite glyphicon glyphicon-heart"
+                                    : "projects-view-single-favorite glyphicon glyphicon-heart-empty "
+                                }/>
+                                : false
                         }
-                        />
                         <h5 className="projects-view-h5">{this.props.project.title}</h5>
                         <h5 className="projects-view-h5-small">{this.props.project.charity_fund}</h5>
                     </div>

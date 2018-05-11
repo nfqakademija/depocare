@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import RenderProjects from './RenderProjects';
 import {getCategories, loadMoreProjects} from '../../../reducer/projects/actions';
 
-const IMG_URL = "../../Data/images/categorysGlyphs/";
+const IMG_URL = "images/categorysGlyphs/";
 
 class ProjectsLanding extends React.Component{
 
@@ -60,9 +60,9 @@ class ProjectsLanding extends React.Component{
                 id={id}
                 onClick={this.changeActive.bind(this, title)}
                 className={
-                    this.state.currentCategory == id ?
-                        'col-lg-2 col-md-2 text-center category-button active-category' :
-                        'col-lg-2 col-md-2 text-center category-button'
+                    this.state.currentCategory === id.toString()
+                        ? 'col-lg-2 col-md-2 text-center category-button active-category'
+                        : 'col-lg-2 col-md-2 text-center category-button'
                 }
             >
                 <img id={id} className="category-glyph" src={IMG_URL+img}/>
