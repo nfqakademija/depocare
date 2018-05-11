@@ -22,6 +22,16 @@ Encore
 
     .enableReactPreset()
 
+    .configureBabel(function(babelConfig) {
+        // add additional presets
+        babelConfig.presets.push('env', 'react');
+        babelConfig.plugins.push(
+            'react-hot-loader/babel',
+            'transform-object-rest-spread');
+
+        // no plugins are added by default, but you can add some
+        // babelConfig.plugins.push('styled-jsx/babel');
+    })
 
 
 ;
