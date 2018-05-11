@@ -1,0 +1,123 @@
+.carousel{
+    background: #2f4357;
+}
+
+.carousel-img {
+    filter: grayscale(75%);
+}
+
+.carousel .item{
+    height: 780px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+    vertical-align: middle;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}
+.bs-example{
+    margin: 20px;
+}
+@media (max-width: 767px) {
+    .carousel .item{
+        height: 240px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+    }
+}
+
+.carousel-caption-left {
+    right: 60%;
+    left: 10%;
+    line-height: 40px;
+    margin-bottom: 30px;
+    font-size: 40px;
+}
+
+.carousel-caption-right {
+    right: 0;
+    left: 70%;
+    top: 30%;
+    bottom: 30%;
+    padding-top: 50px;
+    padding-bottom: auto;
+    margin-bottom: 30px;
+    font-size: 25px;
+    text-align: left;
+    padding-left: 25px;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+
+}
+
+.home-inline-buttons{
+
+}
+
+.btn-primary-slider-content{
+    margin: 20px;
+    color: black;
+    background-image: linear-gradient(to bottom, #ffffff 0,#bdd0e0 100%);
+}
+
+.btn-primary-slider-content:hover, .btn-primary-slider-content:focus, .btn-primary-slider-content:active, .btn-primary-slider-content.active, .open>.dropdown-toggle.btn-primary-slider-content {
+    color: #fff;
+    background-color: #bdd0e0;
+    border-color: #285e8e; /*set the color you want here*/
+}
+
+/* Carousel Fading slide */
+.carousel-fade .carousel-inner { background: #000; }
+.carousel-fade .carousel-control { z-index: 2; }
+.carousel-fade .item {
+    opacity: 0;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+}
+
+.carousel-fade .next.left,
+.carousel-fade .prev.right,
+.carousel-fade .item.active { opacity: 1; }
+
+.carousel-fade .active.left,
+.carousel-fade .active.right {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+}
+
+
+/* Safari Fix */
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .carousel-fade .carousel-inner > .item.next,
+    .carousel-fade .carousel-inner > .item.active.right {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.prev,
+    .carousel-fade .carousel-inner > .item.active.left {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .carousel-fade .carousel-inner > .item.next.left,
+    .carousel-fade .carousel-inner > .item.prev.right,
+    .carousel-fade .carousel-inner > .item.active {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Animation */
+.control-box, a.carousel-control, .carousel-indicators li {
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+    /* hardware acceleration causes Bootstrap carousel controlbox margin error in webkit */
+    /* Assigning animation to indicator li will make slides flicker */
+}

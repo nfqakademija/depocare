@@ -1,0 +1,149 @@
+.navbar-fixed-top {
+    height: 64px;
+    font-size: 17px;
+}
+
+.navbar-main {
+    margin-bottom: 0;
+    height: 64px;
+    min-width: 300px;
+}
+
+.navbar-nav > li > a {
+    line-height: 60px;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+        line-height: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+.navbar-default .navbar-nav > li > a{
+    color: black;
+}
+.navbar-default .navbar-nav > li > a:hover{
+    color: #2196F3;
+}
+.icon-bar {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dropdown-menu{
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+    line-height: 30px;
+    background-color: #F9F9F9;
+    border-color: #e7e7e7;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 10px 15px;
+}
+
+.dropdown-menu:hover{
+    color: black;
+}
+
+.mano{
+    text-shadow: 0 1px 0 rgba(255,255,255,.25);
+}
+
+.mano:hover{
+    color: #2196F3;
+    text-decoration: none;
+}
+
+.navbar-toggle {
+    background-color: #265a88 !important;
+}
+
+.navbar-toggle:focus {
+    background-color: #265a88 !important;
+}
+
+.navbar-toggle:hover {
+    background-color: #265a88 !important;
+}
+
+.navbar-profile-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.navbar-profile-image-wraper{
+    display: inline-block;
+    White-space:pre;
+    margin-right: 10px;
+    width: auto;
+}
+
+.navbar-margin-fix{
+    margin: 0;
+    height: 64px;
+}
+
+.navbar-brand-style {
+    font-size: 30px;
+    margin-top: 5px;
+    position: absolute;
+    left: 50%;
+    margin-left: -90px !important;
+    display: block;
+}
+
+.navbar-collapse{
+    overflow:unset !important;
+    background-color: #fafafa;
+}
+
+.navbar-collapse-button{
+    margin-left: 10px !important;
+    margin-top: 7px !important;
+    margin-bottom: 10px !important;
+}
+
+.dropdown-menu > li > a {
+    font-weight: 100;
+    padding: 10px !important;
+    font-size: 17px;
+    color: black !important;
+    font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+}
+
+.dropdown-menu > li > a:hover{
+    color: #2196F3 !important;
+    font-family: "Roboto", Helvetica, Arial, sans-serif !important;
+}
+
+.fa-list {
+    font-size: 25px;
+    padding-left: 8px;
+    padding-top: 7px;
+}
+
+.navbar-collapse-image {
+    margin-top: 10px;
+    margin-right: 7px;
+}
+
+.navbar-profile-name {
+    display: inline-block;
+}
+
+.navbar-profile-wrapper{
+    margin-top: 8px;
+}
+
+.navbar-inline-block {
+    display: inline-block
+}
+
+.navbar-header {
+}
