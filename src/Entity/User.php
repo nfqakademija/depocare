@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -64,6 +67,15 @@ class User extends BaseUser
      */
     private $image;
 
+    /**
+     * Many Users have Many Groups.
+     * @ManyToMany(targetEntity="Project")
+     * @JoinTable(name="favorite_projects",
+     *      joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="project_id", referencedColumnName="id")}
+     *      )
+     */
+    private $favorite_projects;
 
     public function __construct()
     {
@@ -183,5 +195,42 @@ class User extends BaseUser
         $this->image = $image;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFavoriteProjects()
+    {
+        return $this->favorite_projects;
+    }
+
+    /**
+     * @param mixed $favorite_projects
+     */
+    public function setFavoriteProjects($favorite_projects): void
+    {
+        $this->favorite_projects = $favorite_projects;
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function removeFavoriteProject(Project $project)
+    {
+        if (false === $this->favorite_projects->contains($project)) {
+            return;
+        }
+        $this->favorite_projects->removeElement($project);
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function addFavoriteProject(Project $project)
+    {
+        if (true === $this->favorite_projects->contains($project)) {
+            return;
+        }
+        $this->favorite_projects->add($project);
+    }
 
 }
