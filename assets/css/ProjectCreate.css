@@ -1,0 +1,360 @@
+.btn-toolbar {
+    width: 100%;
+}
+.btn-group-left {
+    width: 19%;
+}
+
+.btn-group-center {
+    width: 60%;
+}
+
+.btn-group-right {
+    width: 19%;
+    margin-left: 0 !important;
+}
+
+.btn-center {
+    width:25%;
+}
+
+.btn-left {
+    width: 100%;
+}
+
+.btn-project-create-left {
+    padding: 0;
+}
+
+.btn-project-create-right {
+    padding: 0;
+}
+
+.btn-right {
+    width: 100%;
+}
+
+.container-create {
+    width:1100px; /* or whatever width you want. */
+    max-width:1100px; /* or whatever width you want. */
+}
+
+.project-create-intro {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 50px;
+}
+
+.drop-down {
+    width: 100%;
+    height: 100px;
+    line-height: 90px;
+    border-width: 5px;
+    border: dashed;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.drop-down-text {
+    font-size: 15px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.project-input-body {
+}
+
+.project-create-input {
+    background-color: #2096f41c;
+    padding: 0;
+}
+
+.project-create-input-field {
+    border-radius: 0;
+}
+
+.project-create-comment {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: black;
+}
+
+.project-create-title {
+    font-weight: bold;
+    padding-left: 10px;
+    font-size: 13.5px;
+}
+
+.project-create-select {
+    color: black;
+}
+
+.project-create-button {
+    padding: 10px 10px !important;
+    margin-top: 0;
+}
+
+.project-create-border {
+    border-bottom: solid #F9F9F9 10px;
+    border-right: solid #F9F9F9 5px;
+    margin: 0;
+}
+
+.project-create-content {
+    margin-top: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.project-create-preview {
+    padding-right: 0;
+}
+
+.project-create-body {
+    background: #F9F9F9;
+    padding: 15px 15px 15px 15px;
+    margin: 50px 0;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    width:auto;
+    display:inline-block;
+}
+
+.project-create-counter-wrap {
+    position: relative;
+}
+
+.project-create-counter-wrap span {
+    padding-right: 10px;
+    padding-top: 2px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.project-create-single-project-preview{
+    position: absolute;
+    left:0;right:0;
+    margin: 140px auto auto;
+}
+
+.project-create-saving {
+    pointer-events:none;
+    opacity: 0.4;
+}
+
+.project-create-loader {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    border: 25px solid #f3f3f3; /* Light grey */
+    border-top: 25px solid #2196F3;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    margin-top: -100px;
+    margin-left: -100px;
+}
+
+.user-project-list-image {
+    width: 100%;
+    height: 103px;
+}
+
+.user-project-list-intro {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 55px;
+}
+
+.user-project-list-item{
+    margin-bottom: 20px;
+    padding: 0;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    background-color: #f9f9f9;
+}
+
+.user-project-list-image-wraper {
+    padding: 0;
+}
+
+.user-project-list-button-wraper {
+    padding-top: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.user-project-list-create-project-button{
+    overflow: auto;
+}
+
+.rdw-editor-main {
+    border: 1px solid #F1F1F1 !important;
+    padding: 5px !important;
+    border-radius: 2px !important;
+    height: 80% !important;
+    background-color: rgba(255,255,255,0) !important;
+}
+
+.project-create-organization-input-fields {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.project-create-organization-info{
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.project-create-organization-radio-button-list{
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+.project-create-organization-radio-button{
+    font-size: 17px;
+}
+
+.project-create-organization-bank-select-note{
+    font-size:15px;
+}
+
+
+/*Radio buttons*/
+/* The container */
+.container-radio-buttons {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-radio-buttons input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container-radio-buttons:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-radio-buttons input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-radio-buttons input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-radio-buttons .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.project-create-content-date{
+    overflow: unset;
+}
+
+.project-create-save-bar {
+    background-color: #4a4a4a9c;
+    position: fixed;
+    min-height: 60px;
+    min-width: 100%;
+    bottom: 0;
+}
+
+.project-create-save-button{
+    border-radius: 0;
+    -webkit-appearance: button;
+    background-image: unset;
+    border: unset;
+    background: #007460;
+}
+
+.project-create-discard-button {
+    margin-right:10px;
+    border-radius: 0;
+    -webkit-appearance: button;
+    background-image: unset;
+    border: unset;
+    background-color: #780500;
+}
+
+.project-create-save-button-wrapper {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    left: 65%;
+}
+
+.react-datepicker__input-container input{
+    padding-left: 10px;
+}
+
+.project-create-tabs-tab {
+    display: inline-block;
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    width: 19%;
+}
+
+.project-create-tabs-tab-selected {
+
+}
+
+.project-create-blue-button {
+    width: 95%;
+}
+
+.project-create-tabs-tab-right {
+    width: 100%;
+}
+
+.project-create-tabs-tab-selected {
+    display: inline-block !important;
+}
+
+.project-create-button-menu-margin {
+    margin-top: 20px;
+}

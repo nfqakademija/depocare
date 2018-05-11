@@ -1,0 +1,84 @@
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+.btn-circle.btn-xl {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+    margin: 0;
+}
+
+.blue-button {
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #2196F3;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+.blue-button:hover {
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    color: white !important;
+    background-color: #2196F3 !important;
+    border-color: #2196F3 !important;
+}
+
+.blue-button:focus {
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    color: white !important;
+    background-color: #2196F3 !important;
+    border-color: #2196F3 !important;
+}
+
+.blue-button:active {
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    color: white !important;
+    background-color: #2196F3 !important;
+    border-color: #2196F3 !important;
+}
+
+.blue-button:target {
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
+    color: white !important;
+    background-color: #2196F3 !important;
+    border-color: #2196F3 !important;
+}
+
+.button-start-new-project {
+    cursor: pointer;
+    float: right;
+    margin-bottom: 20px;
+    color: blue;
+    background: unset;
+    border: unset;
+}
+.button-start-new-project:hover{
+    text-decoration: underline;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 2,
+    "bank_name": "Swedbank"
+  },
+  {
+    "id": 3,
+    "bank_name": "Citadelė"
+  },
+  {
+    "id": 4,
+    "bank_name": "Danske"
+  },
+  {
+    "id": 5,
+    "bank_name": "Nordea"
+  },
+  {
+    "id": 6,
+    "bank_name": "DNB"
+    },
+  {
+    "id": 7,
+    "bank_name": "Seb"
+  }
+]

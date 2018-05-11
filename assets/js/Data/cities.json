@@ -1,0 +1,461 @@
+[
+  {
+    "id": 1,
+    "city": "Visa Lietuva"
+  },{
+    "id": 2,
+    "city": "Vilnius raj."
+  },
+  {
+    "id": 3,
+    "city": "Kauno raj."
+  },
+  {
+    "id": 4,
+    "city": "Klaipėdos raj."
+  },
+  {
+    "id": 5,
+    "city": "Šiaulių raj."
+  },
+  {
+    "id": 6,
+    "city": "Penevėžio raj."
+  },
+  {
+    "id": 7,
+    "city": "Alytus raj."
+  },
+  {
+    "id": 8,
+    "city": "Telšių raj."
+  },
+  {
+    "id": 9,
+    "city": "Tauragės raj."
+  },
+  {
+    "id": 10,
+    "city": "Marijampolės raj."
+  },
+  {
+    "id": 11,
+    "city": "Utenos raj."
+  },
+  {
+  "id": 12,
+  "city": "Akmenė"
+  },
+  {
+    "id": 13,
+    "city": "Alytaus m."
+  },
+  {
+  "id": 14,
+  "city": "Anykščiai"
+  },
+  {
+  "id": 15,
+  "city": "Ariogala"
+  },
+  {
+    "id": 16,
+    "city": "Baltoji Vokė"
+  },
+  {
+    "id": 17,
+    "city": "Birštonas"
+  },
+  {
+    "id": 18,
+    "city": "Biržai"
+  },
+  {
+    "id": 19,
+    "city": "Daugai"
+  },
+  {
+    "id": 20,
+    "city": "Druskininkai"
+  },
+  {
+    "id": 21,
+    "city": "Dūkštas"
+  },
+  {
+    "id": 22,
+    "city": "Dusetos"
+  },
+  {
+    "id": 23,
+    "city": "Eišiškės"
+  },
+  {
+    "id": 24,
+    "city": "Elektrėnai"
+  },
+  {
+    "id": 25,
+    "city": "Ežerėlis"
+  },
+  {
+    "id": 26,
+    "city": "Gargždai"
+  },
+  {
+    "id": 27,
+    "city": "Garliava"
+  },
+  {
+    "id": 28,
+    "city": "Gelgaudiškis"
+  },
+  {
+    "id": 29,
+    "city": "Grigiškės"
+  },
+  {
+    "id": 30,
+    "city": "Ignalina"
+  },
+  {
+    "id": 31,
+    "city": "Jieznas"
+  },
+  {
+    "id": 32,
+    "city": "Jonava"
+  },
+  {
+    "id": 33,
+    "city": "Joniškėlis"
+  },
+  {
+    "id": 34,
+    "city": "Joniškis"
+  },
+  {
+    "id": 35,
+    "city": "Jurbarkas"
+  },
+  {
+    "id": 36,
+    "city": "Kaišiadorys"
+  },
+  {
+    "id": 37,
+    "city": "Kalvarija"
+  },
+  {
+    "id": 38,
+    "city": "Kauno m."
+  },
+  {
+    "id": 39,
+    "city": "Kavarskas"
+  },
+  {
+    "id": 40,
+    "city": "Kazlų Rūda"
+  },
+  {
+    "id": 41,
+    "city": "Kėdainiai"
+  },
+  {
+    "id": 42,
+    "city": "Kelmė"
+  },
+  {
+    "id": 43,
+    "city": "Kybartai"
+  },
+  {
+    "id": 44,
+    "city": "Klaipėdos m."
+  },
+  {
+    "id": 45,
+    "city": "Kretinga"
+  },
+  {
+    "id": 46,
+    "city": "Kudirkos Naumiestis"
+  },
+  {
+    "id": 47,
+    "city": "Kupiškis"
+  },
+  {
+    "id": 48,
+    "city": "Kuršėnai"
+  },
+  {
+    "id": 49,
+    "city": "Lazdijai"
+  },
+  {
+    "id": 50,
+    "city": "Lentvaris"
+  },
+  {
+    "id": 51,
+    "city": "Linkuva"
+  },
+  {
+    "id": 52,
+    "city": "Marijampolės m."
+  },
+  {
+    "id": 53,
+    "city": "Mažeikiai"
+  },
+  {
+    "id": 54,
+    "city": "Molėtai"
+  },
+  {
+    "id": 55,
+    "city": "Naujoji Akmenė"
+  },
+  {
+    "id": 56,
+    "city": "Nemenčinė"
+  },
+  {
+    "id": 57,
+    "city": "Neringa"
+  },
+  {
+    "id": 58,
+    "city": "Nida"
+  },
+  {
+    "id": 59,
+    "city": "Obeliai"
+  },
+  {
+    "id": 60,
+    "city": "Pabradė"
+  },
+  {
+    "id": 61,
+    "city": "Pagėgiai"
+  },
+  {
+    "id": 62,
+    "city": "Pakruojis"
+  },
+  {
+    "id": 63,
+    "city": "Palanga"
+  },
+  {
+    "id": 64,
+    "city": "Pandėlys"
+  },
+  {
+    "id": 65,
+    "city": "Panemunė"
+  },
+  {
+    "id": 66,
+    "city": "Panevėžio m."
+  },
+  {
+    "id": 67,
+    "city": "Pasvalys"
+  },
+  {
+    "id": 68,
+    "city": "Plungė"
+  },
+  {
+    "id": 69,
+    "city": "Priekulė"
+  },
+  {
+    "id": 70,
+    "city": "Prienai"
+  },
+  {
+    "id": 71,
+    "city": "Radviliškis"
+  },
+  {
+    "id": 72,
+    "city": "Ramygala"
+  },
+  {
+    "id": 73,
+    "city": "Raseiniai"
+  },
+  {
+    "id": 74,
+    "city": "Rietavas"
+  },
+  {
+    "id": 75,
+    "city": "Rokiškis"
+  },
+  {
+    "id": 76,
+    "city": "Rūdiškės"
+  },
+  {
+    "id": 77,
+    "city": "Salantai"
+  },
+  {
+    "id": 78,
+    "city": "Seda"
+  },
+  {
+    "id": 79,
+    "city": "Simnas"
+  },
+  {
+    "id": 80,
+    "city": "Skaudvilė"
+  },
+  {
+    "id": 81,
+    "city": "Skuodas"
+  },
+  {
+    "id": 82,
+    "city": "Smalininkai"
+  },
+  {
+    "id": 83,
+    "city": "Subačius"
+  },
+  {
+    "id": 84,
+    "city": "Šakiai"
+  },
+  {
+    "id": 85,
+    "city": "Šalčininkai"
+  },
+  {
+    "id": 86,
+    "city": "Šeduva"
+  },
+  {
+    "id": 87,
+    "city": "Šiaulių m."
+  },
+  {
+    "id": 88,
+    "city": "Šilalė"
+  },
+  {
+    "id": 89,
+    "city": "Šilutė"
+  },
+  {
+    "id": 90,
+    "city": "Širvintos"
+  },
+  {
+    "id": 91,
+    "city": "Švenčionėliai"
+  },
+  {
+    "id": 92,
+    "city": "Švenčionys"
+  },
+  {
+    "id": 93,
+    "city": "Tauragės m."
+  },
+  {
+    "id": 94,
+    "city": "Telšių m."
+  },
+  {
+    "id": 95,
+    "city": "Tytuvėnai"
+  },
+  {
+    "id": 96,
+    "city": "Trakai"
+  },
+  {
+    "id": 97,
+    "city": "Troškūnai"
+  },
+  {
+    "id": 98,
+    "city": "Ukmergė"
+  },
+  {
+    "id": 99,
+    "city": "Utenos m."
+  },
+  {
+    "id": 100,
+    "city": "Užventis"
+  },
+  {
+    "id": 101,
+    "city": "Vabalninkas"
+  },
+  {
+    "id": 102,
+    "city": "Varėna"
+  },
+  {
+    "id": 103,
+    "city": "Varniai"
+  },
+  {
+    "id": 104,
+    "city": "Veisiejai"
+  },
+  {
+    "id": 105,
+    "city": "Venta"
+  },
+  {
+    "id": 106,
+    "city": "Viekšniai"
+  },
+  {
+    "id": 107,
+    "city": "Vievis"
+  },
+  {
+    "id": 108,
+    "city": "Vilkaviškis"
+  },
+  {
+    "id": 109,
+    "city": "Vilkija"
+  },
+  {
+    "id": 110,
+    "city": "Vilniaus m."
+  },
+  {
+    "id": 111,
+    "city": "Virbalis"
+  },
+  {
+    "id": 112,
+    "city": "Visaginas"
+  },
+  {
+    "id": 113,
+    "city": "Zarasai"
+  },
+  {
+    "id": 114,
+    "city": "Žagarė"
+  },
+  {
+    "id": 115,
+    "city": "Žiežmariai"
+  }
+]

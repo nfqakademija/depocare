@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
+}
+
+html {
+    overflow-x: unset;
+}
+
+body {
+    padding-top: 64px;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+    line-height: 30px;
+}
+
+.blue {
+    color: #2196F3;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+
+.margin-none {
+    margin: 0 0 0 0;
+}
+
+.strong {
+    font-weight: bold;
+}

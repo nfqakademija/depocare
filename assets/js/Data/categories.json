@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "category": "Vaikai"
+  },
+  {
+    "id": 2,
+    "category": "Sveikata"
+  },
+  {
+    "id": 3,
+    "category": "Gyvūnai ir gamta"
+  },
+  {
+    "id": 4,
+    "category": "Senjorai"
+  },
+  {
+    "id": 5,
+    "category": "Visuomenė ir kultūra"
+  }
+]

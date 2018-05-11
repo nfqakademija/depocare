@@ -1,0 +1,46 @@
+[
+  {
+    "id": "0",
+    "category": "vaikai",
+    "title": "Vardeniui reikia pagalbos",
+    "image": "happyBoy.jpeg",
+    "description": "Vardenis jau 3 metai serga plaučių liga ir jam labai reikalinga nefinansuojama operacija -plaučiu perdėjimas, kuris kainuoja išties daug ir mes norime jam padėti surinkti šiuos pinigėlius",
+    "duration": "90",
+    "reached": "0",
+    "goal": "2500",
+    "by": "Labadros fondas"
+  },
+  {
+    "id": "1",
+    "category": "vaikai",
+    "title": "Padėkite miškams augti",
+    "image": "forest.jpeg",
+    "description": "Jau daug metų Girinio giria yra kertama, o pernai dar nukentėjo nuo stipraus gaisros, kuris kilo dėl neatsargaus gyventojų elgesio",
+    "duration": "150",
+    "reached": "1500",
+    "goal": "5000",
+    "by": "Labadros fondas"
+  },
+  {
+    "id": "2",
+    "category": "vaikai",
+    "title": "Parkelio parko atkūrimas",
+    "image": "park.jpeg",
+    "description": "Visai neseniai, prieš maždaug pusę metų, tėvelių su mažais vaikais mylimas Parkelis parkas buvo siuniokotas uraganinio vėjos",
+    "duration": "1000",
+    "reached": "23",
+    "goal": "1000",
+    "by": "Labadros fondas"
+  },
+  {
+    "id": "3",
+    "category": "neigalieji",
+    "title": "Parkelio parko atkūrimas",
+    "image": "park.jpeg",
+    "description": "Visai neseniai, prieš maždaug pusę metų, tėvelių su mažais vaikais mylimas Parkelis parkas buvo siuniokotas uraganinio vėjos",
+    "duration": "1000",
+    "reached": "840",
+    "goal": "1000",
+    "by": "Labadros fondas"
+  }
+]
