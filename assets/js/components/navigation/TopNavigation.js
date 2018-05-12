@@ -24,7 +24,7 @@ class TopNavigation extends React.Component {
             if (done) {
                 return (
                     <ul className="nav navbar-nav navbar-right">
-                        <li className="hidden-xs"><Link to="">{this.props.User.userData.balance}€ </Link></li>
+                        <li className="hidden-xs"><Link to=""><img className="project-view-bottle-image project-view-bottle-image-nav" src="https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png"/> {this.props.User.userData.balance*10}</Link></li>
                         <li className="dropdown">
                             <a className="dropdown-toggle" style={{paddingLeft: '0px'}} data-toggle="dropdown" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                <div className="navbar-profile-image-wraper">    {this.props.User.userData.firstname}<img className="navbar-profile-image" src={this.props.User.userData.image}/></div>
