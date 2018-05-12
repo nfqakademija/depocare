@@ -57,13 +57,13 @@ class User extends BaseUser
 
     /**
      * @var bool
-     * @ORM\Column(type="boolean", options={"default" = false})
+     * @ORM\Column(type="boolean", options={"default" = false}, nullable=true)
      */
     private $flagHasActiveProject;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=2000, options={"default" = "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"})
+     * @ORM\Column(type="string", length=2000, options={"default" = "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"}, nullable=true)
      */
     private $image;
 
