@@ -34,4 +34,4 @@ export const URL_GET_PROJECT_EDIT = API_URL + 'projectEdit/';
 export const URL_GET_USERS_PROJECT_LIST = API_URL + 'userProjects';
 export const URL_GET_USER = API_URL + 'profile';
 export const URL_REGISTER = API_URL + 'register';
-export const URL_LOGIN = API_URL + 'register';
+export const URL_LOGIN = API_URL + 'login';
