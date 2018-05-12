@@ -1,4 +1,4 @@
-const URL_LOGIN = 'http://localhost:8000/api/login';
+import {URL_LOGIN} from "../../Data/Constants";
 export const LOGIN_REQUEST = "user_login_request";
 export const LOGIN_SUCCESS = "user_login_success";
 export const LOGIN_ERROR = "user_login_error";
