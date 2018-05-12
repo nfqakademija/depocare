@@ -13,7 +13,7 @@ class SingleProject extends React.Component {
             favorite: false
         };
 
-        this.procent = this.props.project.reached / this.props.project.goal * 100 + '%';
+        this.procent = Math.round(this.props.project.reached / this.props.project.goal * 100) + '%';
         this.handleFavoriteClick=this.handleFavoriteClick.bind(this);
         this.checkIfFavorite=this.checkIfFavorite.bind(this);
     }
@@ -74,8 +74,8 @@ class SingleProject extends React.Component {
                 </div>
 
 
-                <h5 className="projects-view-h5-small">Tikslas:      {this.props.project.goal} &euro;</h5>
-                <h5 className="projects-view-h5-small">Surinkta:    {this.props.project.reached} &euro;</h5>
+                <h5 className="projects-view-h5-small">Tikslas:  <img className="project-view-bottle-image project-view-bottle-image-nav" src="https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png"/> {this.props.project.goal*10} </h5>
+                <h5 className="projects-view-h5-small">Surinkta: {this.procent} </h5>
                 <div className="wrapper">
                     <Link style={{ textDecoration: 'none' }} to={'/projektas/'+this.props.project.id}><input type="submit" className="btn-submit blue-button" value="Prisidėk"/></Link>
                 </div>

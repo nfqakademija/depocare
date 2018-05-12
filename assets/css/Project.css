@@ -72,7 +72,7 @@
     border: none;
     background: #2196F3;
     color: #FFF;
-    margin: 30px 10px 20px 10px;
+    margin: 10px 10px 20px 10px;
     padding: 5px;
     font-size: 15px;
     text-align: center;
@@ -374,7 +374,9 @@
 }
 
 .project-view-bottle-image-nav{
-    padding-top: 10px;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .project-view-goal-inline{
