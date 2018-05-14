@@ -24,10 +24,9 @@ class Home extends React.Component {
 
     render() {
         const carouselItems = [
-          '234.jpg',
-          '345.jpg',
-          '456.jpg',
-          '567.jpg',
+            '456.jpg',
+            '567.jpg',
+            '345.jpg'
         ];
         return (
             <div>
