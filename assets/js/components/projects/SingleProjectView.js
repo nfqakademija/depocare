@@ -135,7 +135,7 @@ class SingleProjectView extends React.Component {
                             </div>
                             <div className="project-view-image-bundle-wrapper">
                                 <div className="col-md-9 col-sm-12 project-view-image-wrapper">
-                                    <img src={this.state.project.image} className="project-view-image"/>
+                                    <img src={this.state.project.image} alt = "images/no-image.jpg" className="project-view-image"/>
                                 </div>
                                 <div className="col-md-3 col-sm-12 project-view-bundle">
                                     <div className="project-view-goal-wrapper">
