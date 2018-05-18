@@ -12,6 +12,7 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
+        this.chooseProjectsToRender=this.chooseProjectsToRender.bind(this);
     }
 
     componentDidMount(){
@@ -19,6 +20,21 @@ class Home extends React.Component {
         if(tok && this.props.User.dataReceived === false && this.props.User.loading === false)
         {
             this.props.onGetUserInfo();
+        }
+    }
+
+    chooseProjectsToRender(){
+        if(!this.props.User.loading)
+        {
+            if(this.props.User.dataReceived
+                && this.props.User.userData.favorite_projects
+                && this.props.User.userData.favorite_projects.length!==0)
+            {
+                return <RenderProjects category="Favorite" title="Mėgstamiausi"/>
+            }
+            else{
+                return <RenderProjects title="Projektai, kuriems mažai trūksta!" />
+            }
         }
     }
 
@@ -50,13 +66,7 @@ class Home extends React.Component {
                     </div>
                     <SliderContent/>
                 </div>
-
-                { (this.props.User.loading)
-                    ? false
-                    : (this.props.User.dataReceived && this.props.User.userData.favorite_projects!==undefined)
-                        ? <RenderProjects category="Favorite" title="Mėgstamiausi"/>
-                        : <RenderProjects category="" title="Projektai, kuriems mažai trūksta!"/>
-                }
+                {this.chooseProjectsToRender()}
 
             </div>
         )
