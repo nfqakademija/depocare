@@ -13,7 +13,7 @@ class ProjectsLanding extends React.Component{
 
         this.state = {
             currentCategory: "",
-            currentTitle: "Arti tikslo!"
+            currentTitle: "Projektai, kuriems mažai trūksta!"
         };
 
         this.renderCategories=this.renderCategories.bind(this);

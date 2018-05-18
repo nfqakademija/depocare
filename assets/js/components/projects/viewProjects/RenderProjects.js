@@ -51,7 +51,9 @@ class RenderProjects extends React.Component{
             });
         }
 
-        if(this.props.category !== -1 && this.props.category !== "Favorite" && this.props.projects.projectsData.length === 0 && !this.props.projects.loadingProjects)
+        if(this.props.category !== -1 && this.props.category !== "Favorite"
+            && this.props.projects.projectsData.length === 0 && !this.props.projects.loadingProjects
+            && !this.props.User.loading)
         {
             if(this.props.category){
                 this.props.onLoadMoreProjects("/"+this.props.category, 0, 6);
@@ -110,7 +112,7 @@ class RenderProjects extends React.Component{
         return (
            <div>
                <div className="container">
-                   {/*<h1 className="text-center">{this.props.title}</h1>*/}
+                   <h1 className="text-center">{this.props.title}</h1>
                    <div className="row">
                        {this.renderItems()}
                    </div>

@@ -24,6 +24,7 @@ class Home extends React.Component {
 
     render() {
         const carouselItems = [
+            '0.jpg',
             '1.png',
             '2.jpg',
             '3.jpg',
@@ -50,7 +51,12 @@ class Home extends React.Component {
                     <SliderContent/>
                 </div>
 
-                <RenderProjects category="Favorite" title="Mėgstamiausi"/>
+                { (this.props.User.loading)
+                    ? false
+                    : (this.props.User.dataReceived && this.props.User.userData.favorite_projects!==undefined)
+                        ? <RenderProjects category="Favorite" title="Mėgstamiausi"/>
+                        : <RenderProjects category="" title="Projektai, kuriems mažai trūksta!"/>
+                }
 
             </div>
         )
