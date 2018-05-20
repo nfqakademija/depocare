@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {getUserInfo} from "../../reducer/user/actions";
 import SliderContent from "./SliderContent";
 import RenderProjects from '../projects/viewProjects/RenderProjects';
+import DonateModal from "../DonateModal";
+
 
 const IMG_URL = "images/carouselImages/";
 
@@ -30,8 +32,12 @@ class Home extends React.Component {
             '4.jpg',
             '5.jpeg'
         ];
+        const modalProps = {
+          title: "Pavadinimas"
+        };
         return (
             <div>
+                <DonateModal modalProps={modalProps}/>
                 <div id="myCarousel" className="carousel slide carousel-fade" data-ride="carousel">
                     <div className="carousel-inner">
                         {  carouselItems.map((item, index) => {

@@ -9,8 +9,9 @@ import YouTube from 'react-youtube';
 import { Document, Page } from 'react-pdf/dist/entry.webpack';
 import throttle from "lodash.throttle";
 import {HOME_PAGE} from '../../Data/Constants';
+import DonateModal from "../DonateModal";
 
-const DEFAULT_IMG_URL = "images/no-image.jpg";
+//const DEFAULT_IMG_URL = "images/no-image.jpg";
 
 
 class SingleProjectView extends React.Component {
@@ -157,7 +158,9 @@ class SingleProjectView extends React.Component {
                                     <div className="project-view-goal-text">Liko dienų</div>
                                     <div className="project-view-blue-text"><b>{this.state.project.duration}</b></div>
                                     <div className="project-view-button-wrapper">
-                                        <div className="blue-button">Prisidėti</div>
+                                        <DonateModal  modalProps={{
+                                            title: "Pavadinimas"
+                                        }}/>
                                     </div>
                                 </div>
                             </div>
