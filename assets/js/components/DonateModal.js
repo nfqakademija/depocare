@@ -25,7 +25,7 @@ class DonateModal extends React.Component {
 
         this.state = {
             modalIsOpen: true,
-            donateAmount: 0
+            donateAmount: ''
         };
 
         this.openModal = this.openModal.bind(this);
@@ -82,7 +82,7 @@ class DonateModal extends React.Component {
                             className="blue-button donate-modal-button-donate donate-modal-button-donate-input"
                             type="number"
                             value = {this.state.donateAmount}
-                            placeholder="Kita suma"
+                            placeholder="Įveskite kiekį"
                             onChange={this.changeDonateAmount}
                             />
                         <button className="blue-button donate-modal-button-donate">Paremk!</button>
