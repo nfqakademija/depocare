@@ -24,9 +24,35 @@
 .donate-modal-button-value{
   width: 20%;
   margin: 1%;
+  font-weight: bold;
 }
 
 .donate-modal-button-donate{
   width: 42%;
   margin: 1%;
+  font-weight: bold;
 }
+.donate-modal-button-donate-input{
+  background: url(https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png) left no-repeat , linear-gradient(to bottom, #07418a70 0, #07418a 100%) ;
+  background-size: auto 40px;
+}
+
+.donate-modal-button-donate::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.donate-modal-button-donate::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.donate-modal-button-donate:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.donate-modal-button-donate::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+

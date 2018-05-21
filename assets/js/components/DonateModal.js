@@ -24,11 +24,14 @@ class DonateModal extends React.Component {
         super();
 
         this.state = {
-            modalIsOpen: true
+            modalIsOpen: true,
+            donateAmount: 0
         };
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.changeDonateAmount = this.changeDonateAmount.bind(this);
+        this.setDonateAmount = this.setDonateAmount.bind(this);
     }
 
     openModal() {
@@ -38,6 +41,18 @@ class DonateModal extends React.Component {
 
     closeModal() {
         this.setState({modalIsOpen: false});
+    }
+
+    changeDonateAmount(e){
+        this.setState({
+            donateAmount: e.target.value
+        });
+    }
+    setDonateAmount(value){
+        console.log(Math.round(this.props.modalProps.balance*value));
+        this.setState({
+            donateAmount: (Math.round(this.props.modalProps.balance*value)),
+        });
     }
 
     render() {
@@ -58,12 +73,18 @@ class DonateModal extends React.Component {
 
                     <div className="donate-modal-content text-center">
                         <h1 >{this.props.modalProps.title}</h1>
-                        <button className="blue-button donate-modal-button-value">10%</button>
-                        <button className="blue-button donate-modal-button-value">25%</button>
-                        <button className="blue-button donate-modal-button-value">50%</button>
-                        <button className="blue-button donate-modal-button-value">100%</button>
+                        <button className="blue-button donate-modal-button-value" onClick={()=>{this.setDonateAmount(0.10)}}>10%</button>
+                        <button className="blue-button donate-modal-button-value" onClick={()=>{this.setDonateAmount(0.25)}}>25%</button>
+                        <button className="blue-button donate-modal-button-value" onClick={()=>{this.setDonateAmount(0.5)}}>50%</button>
+                        <button className="blue-button donate-modal-button-value" onClick={()=>{this.setDonateAmount(1)}}>100%</button>
                         <br/>
-                        <button className="blue-button donate-modal-button-donate">Kita suma:</button>
+                        <input
+                            className="blue-button donate-modal-button-donate donate-modal-button-donate-input"
+                            type="number"
+                            value = {this.state.donateAmount}
+                            placeholder="Kita suma"
+                            onChange={this.changeDonateAmount}
+                            />
                         <button className="blue-button donate-modal-button-donate">Paremk!</button>
                     </div>
                 </Modal>

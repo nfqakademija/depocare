@@ -159,8 +159,11 @@ class SingleProjectView extends React.Component {
                                     <div className="project-view-blue-text"><b>{this.state.project.duration}</b></div>
                                     <div className="project-view-button-wrapper">
                                         <DonateModal  modalProps={{
-                                            title: "Pavadinimas"
+                                            title: "Pavadinimas",
+                                            balance: this.props.userBalance*10
+
                                         }}/>
+                                        {}
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +239,8 @@ class SingleProjectView extends React.Component {
 
 const mapStateToProps = (state) => ({
     projectRedux: state.projects.project,
-    status: state.projects.status
+    status: state.projects.status,
+    userBalance: state.User.userData.balance
 });
 
 const mapDispatchToProps = (dispatch) => {

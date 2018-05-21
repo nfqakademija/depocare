@@ -33,7 +33,8 @@ class Home extends React.Component {
             '5.jpeg'
         ];
         const modalProps = {
-          title: "Pavadinimas"
+            title: "Pavadinimas",
+            balance: this.props.User.userData.balance*10
         };
         return (
             <div>
