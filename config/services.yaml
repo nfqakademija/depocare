@@ -39,6 +39,12 @@ services:
         arguments:
             - '@App\Repository\CityRepository'
 
+    user_project_transaction.service:
+            public: true
+            class: App\Services\UserProjectTransactionService
+            arguments:
+                - '@App\Repository\UserProjectTransactionRepository'
+
     users.service:
         public: true
         class: App\Services\UsersService
