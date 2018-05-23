@@ -25,6 +25,17 @@ class UserProjectTransactionRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function addUserProjectTransaction($user, $project, $amount)
+    {
+        $transaction = new UserProjectTransaction();
+        $transaction->setProject($project);
+        $transaction->setUser($user);
+        $transaction->setBalance($amount);
+        $this->_em->persist($transaction);
+        $this->_em->flush($transaction);
+        return true;
+    }
 //    /**
 //     * @return UserProjectTransaction[] Returns an array of UserProjectTransaction objects
 //     */

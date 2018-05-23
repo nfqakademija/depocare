@@ -68,4 +68,15 @@ class ProjectRepository extends ServiceEntityRepository
             'user_id' => $user_id
         ]);
     }
+
+    /**
+     * @param Project $project
+     * @param $amount
+     */
+    public function changeProjectBalance($project, $amount)
+    {
+        $project->setReached($project->getReached() + $amount);
+        $this->_em->persist($project);
+        $this->_em->flush($project);
+    }
 }
