@@ -48,11 +48,8 @@ class UserProjectTransactionController extends FOSRestController
     {
         $projectId =  $request->get('project_id');
         $amount = $request->get('amount');
-        if(!$this->getUser()){
-            return new Response('Neprisijungete', 403);
-        }
         if($this->getUserProjectTransactionService()
-            ->addUserProjectTransaction( $this->getUser(), $projectId, $amount)) {
+            ->addUserProjectTransaction( $this->getUser(), $projectId, $amount) ) {
             return new Response('Sėkmingai parėmete',200);
         }
         else return new Response('Paremti nepavyko', 400);

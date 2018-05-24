@@ -3,6 +3,7 @@ LOAD_PROJECTS_ERROR, LOAD_CATEGORIES_REQUEST, LOAD_CATEGORIES_SUCCESS,
 LOAD_CATEGORIES_ERROR, GET_FAVORITE_PROJECTS, HANDLE_FAVORITE_PROJECT_ERRROR,
 HANDLE_FAVORITE_PROJECT_REQUEST, HANDLE_FAVORITE_PROJECT_SUCCESS} from "./actions";
 import _ from 'lodash';
+import {NEW_TRANSACTION_SUCCESS} from "../transaction/actions";
 
 
 const initialState ={
@@ -101,6 +102,28 @@ export default (state = initialState, action) => {
                 updatingFavorite: false,
                 errorFavorite: action.error
             });
+
+        case NEW_TRANSACTION_SUCCESS:
+        {
+            let newProject =
+                state.projectsData
+                    .find(p => p.id === action.payload.project_id);
+            let newProjectIndex =
+                state.projectsData
+                    .findIndex(p => p.id === action.payload.project_id);
+            newProject.reached += action.payload.amount;
+            return {
+                ...state,
+                project: newProject,
+                projectsData:
+                    [...state.projectsData.slice(0,newProjectIndex),
+                    newProject ,
+                    ...state.projectsData.slice(newProjectIndex + 1, state.projectsData.length)]
+            };
+
+
+        }
+
 
         default:
             return state;

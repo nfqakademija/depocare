@@ -5,7 +5,8 @@ import Login from './login';
 import User from './user';
 import Register from './register';
 import UserProjects from './userProjects/reducer'
-import updateProjectCreate from './updateProject/reducer'
+import updateProjectCreate from './updateProject/reducer';
+import Transaction from './transaction';
 
 export default combineReducers({
     projectCreate,
@@ -14,5 +15,6 @@ export default combineReducers({
     User,
     Register,
     UserProjects,
-    updateProjectCreate
+    updateProjectCreate,
+    Transaction
 });

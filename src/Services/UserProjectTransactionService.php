@@ -64,7 +64,7 @@ class UserProjectTransactionService
          */
         $project = $this->projectRepository->find($project_id);
 
-        if($project) {
+        if($project && $amount > 0) {
             if($this->userRepository->changeUserBalance($user, $amount)){
                 $this->projectRepository->changeProjectBalance($project, $amount);
                 $this->repository->addUserProjectTransaction($user, $project, $amount);
