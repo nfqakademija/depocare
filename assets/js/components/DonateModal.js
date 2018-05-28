@@ -46,7 +46,7 @@ class DonateModal extends React.Component {
     }
 
     openModal() {
-        if(this.props.balance)
+        if(this.props.modalProps.balance)
         {
             this.setState({modalIsOpen: true});
         }
