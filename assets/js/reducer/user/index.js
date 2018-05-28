@@ -1,6 +1,7 @@
 import {GET_USER_INFO_REQUEST, GET_USER_INFO_SUCCESS, GET_USER_INFO_ERROR} from './actions';
 import { LOGOUT } from "../login/actions";
 import {HANDLE_FAVORITE_PROJECT_SUCCESS} from "../projects/actions";
+import {NEW_TRANSACTION_SUCCESS} from "../transaction/actions";
 
 const initialState ={
     dataReceived: false,
@@ -63,7 +64,15 @@ export default (state = initialState, action) => {
                 default:
                     return state;
             }
-
+        case NEW_TRANSACTION_SUCCESS:
+            let newBalance = state.userData.balance-= action.payload.amount;
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    balance: newBalance
+                }
+            };
         default:
             return state;
     }

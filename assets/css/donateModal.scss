@@ -1,0 +1,60 @@
+.donate-modal-header{
+  background: #e2e2e2;
+  padding: 0;
+  height: 30px;
+}
+
+.donate-modal-header-title{
+  margin: 0;
+}
+
+.donate-modal-header-close{
+  float: right;
+  font-size: 19px;
+  padding: 4px 4px 3px 3px;
+}
+.donate-modal-header-close:hover{
+  color: grey;
+}
+
+.donate-modal-content{
+  padding: 2%;
+}
+
+.donate-modal-button-value{
+  width: 20%;
+  margin: 1%;
+  font-weight: bold;
+}
+
+.donate-modal-button-donate{
+  width: 42%;
+  margin: 1%;
+  font-weight: bold;
+}
+
+.donate-modal-button-donate-input{
+  background: url(https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png) left no-repeat , linear-gradient(to bottom, #09418e70 0, #09418e 100%) ;
+  background-size: auto 40px;
+  padding-left: 28px;
+}
+
+.donate-modal-button-donate::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.donate-modal-button-donate::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.donate-modal-button-donate:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+.donate-modal-button-donate::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+

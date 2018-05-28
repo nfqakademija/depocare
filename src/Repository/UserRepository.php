@@ -36,4 +36,20 @@ class UserRepository extends ServiceEntityRepository
             'id' => $user_id
         ]);
     }
+
+    /**
+     * @param User $user
+     * @param $amount
+     */
+    public function changeUserBalance($user, $amount)
+    {
+        if($user->getBalance()-$amount >= 0){
+            $user->setBalance($user->getBalance()-$amount);
+            $this->_em->persist($user);
+            $this->_em->flush($user);
+            return true;
+        }
+        else return false;
+
+    }
 }

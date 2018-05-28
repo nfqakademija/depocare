@@ -21,11 +21,6 @@ class RenderProjects extends React.Component{
         this.message=this.message.bind(this);
     }
 
-    componentDidMount(){
-        if(this.props.category === "Favorite"){
-            this.props.onGetFavoriteProjects(this.props.User.userData.favorite_projects);
-        }
-    }
 
     renderItems() {
         const $data = this.props.projects.projectsData;
@@ -51,18 +46,27 @@ class RenderProjects extends React.Component{
             });
         }
 
-        if(this.props.category !== -1 && this.props.category !== "Favorite" && this.props.projects.projectsData.length === 0 && !this.props.projects.loadingProjects)
+        if(this.props.category !== -1
+            && this.props.projects.projectsData.length === 0
+            && !this.props.projects.loadingProjects
+            && !this.props.User.loading)
         {
-            if(this.props.category){
-                this.props.onLoadMoreProjects("/"+this.props.category, 0, 6);
-            }
-            else{
-                this.props.onLoadMoreProjects("", 0, 6);
-            }
+            if(this.props.category !== "Favorite")
+            {
+                if(this.props.category){
+                    this.props.onLoadMoreProjects("/"+this.props.category, 0, 6);
+                }
+                else{
+                    this.props.onLoadMoreProjects("", 0, 6);
+                }
 
-            this.setState({
-                gotProjectsTo: 5
-            });
+                this.setState({
+                    gotProjectsTo: 5
+                });
+            }
+            else if (this.props.category === "Favorite"){
+                this.props.onGetFavoriteProjects(this.props.User.userData.favorite_projects);
+            }
         }
     }
 
@@ -110,7 +114,7 @@ class RenderProjects extends React.Component{
         return (
            <div>
                <div className="container">
-                   {/*<h1 className="text-center">{this.props.title}</h1>*/}
+                   <h1 className="text-center">{this.props.title}</h1>
                    <div className="row">
                        {this.renderItems()}
                    </div>

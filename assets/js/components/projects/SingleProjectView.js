@@ -2,6 +2,7 @@ import React from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {getProject} from  '../../reducer/projects/actions';
+import {addNewUserProjectTransaction} from  '../../reducer/transaction/actions';
 import {Redirect} from 'react-router-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -9,8 +10,10 @@ import YouTube from 'react-youtube';
 import { Document, Page } from 'react-pdf/dist/entry.webpack';
 import throttle from "lodash.throttle";
 import {HOME_PAGE} from '../../Data/Constants';
+import DonateModal from "../DonateModal";
 
-const DEFAULT_IMG_URL = "images/no-image.jpg";
+
+//const DEFAULT_IMG_URL = "images/no-image.jpg";
 
 
 class SingleProjectView extends React.Component {
@@ -148,16 +151,27 @@ class SingleProjectView extends React.Component {
                                         </div>
                                         <div className="project-view-goal-inline project-view-goal-inline-right">
                                             <div className="project-view-goal-text">Surinkta</div>
-                                            <div className="project-view-blue-text"><b>{Math.round(this.state.project.reached / this.state.project.goal * 100) + '%'}</b></div>
+                                            <div className="project-view-blue-text"><b>{Math.round(this.props.projectRedux.reached / this.state.project.goal * 100) + '%'}</b></div>
                                         </div>
                                     </div>
                                     <div className="w3-light-grey w3-light-grey w3-tiny project-view-progress-bar">
-                                        <div className="w3-blue project-view-progress-bar-inside" style={{width: this.state.project.reached / this.state.project.goal * 100 + '%', height: '8px'}}/>
+                                        <div className="w3-blue project-view-progress-bar-inside" style={{
+                                            width: this.props.projectRedux.reached / this.state.project.goal * 100 < 100
+                                                ? this.props.projectRedux.reached / this.state.project.goal * 100
+                                                : 100
+                                                + '%',
+                                            height: '8px'}}/>
                                     </div>
                                     <div className="project-view-goal-text">Liko dienų</div>
                                     <div className="project-view-blue-text"><b>{this.state.project.duration}</b></div>
                                     <div className="project-view-button-wrapper">
-                                        <div className="blue-button">Prisidėti</div>
+                                        <DonateModal  modalProps={{
+                                            title: this.state.project.title,
+                                            balance: this.props.userBalance*10,
+                                            projectId: this.state.project.id,
+                                            status: this.props.statusTransaction,
+                                            addNewUserProjectTransaction: this.props.onAddNewUserProjectTransaction
+                                        }}/>
                                     </div>
                                 </div>
                             </div>
@@ -233,12 +247,15 @@ class SingleProjectView extends React.Component {
 
 const mapStateToProps = (state) => ({
     projectRedux: state.projects.project,
-    status: state.projects.status
+    status: state.projects.status,
+    userBalance: state.User.userData.balance,
+    statusTransaction: state.Transaction.status,
 });
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getProject: getProject
+        getProject: getProject,
+        onAddNewUserProjectTransaction: addNewUserProjectTransaction
     }, dispatch)
 };
 

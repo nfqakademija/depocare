@@ -24,7 +24,9 @@ class TopNavigation extends React.Component {
             if (done) {
                 return (
                     <ul className="nav navbar-nav navbar-right">
-                        <li className="hidden-xs"><Link to=""><img className="project-view-bottle-image project-view-bottle-image-nav" src="https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png"/> {this.props.User.userData.balance*10}</Link></li>
+                        <li className="hidden-xs"><Link to="">
+                            <img className="project-view-bottle-image project-view-bottle-image-nav" src="https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png"/>
+                            {this.props.User.userData.balance*10}</Link></li>
                         <li className="dropdown">
                             <a className="dropdown-toggle" style={{paddingLeft: '0px'}} data-toggle="dropdown" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                <div className="navbar-profile-image-wraper">    {this.props.User.userData.firstname}<img className="navbar-profile-image" src={this.props.User.userData.image}/></div>
@@ -57,7 +59,7 @@ class TopNavigation extends React.Component {
                         <button type="button" className="navbar-toggle collapsed btn btn-primary btn-circle btn-xl navbar-collapse-button"
                                 data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                                 aria-expanded="false"><i className="fa fa-list"/></button>
-                        <Link to="" className="navbar-brand navbar-brand-style"><b style={{color: 'black'}}>DepoCare</b></Link>
+                        <Link to="" className="navbar-brand navbar-brand-style"><b style={{color: '#07418a'}}>DepoCare</b></Link>
                     </div>
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">

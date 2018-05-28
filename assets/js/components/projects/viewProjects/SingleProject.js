@@ -4,7 +4,6 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {handleFavoriteProjectsChange} from '../../../reducer/projects/actions';
 
-const DEFAULT_IMG_URL = "images/no-image.jpg";
 
 class SingleProject extends React.Component {
     constructor(props) {
@@ -13,8 +12,6 @@ class SingleProject extends React.Component {
         this.state = {
             favorite: false
         };
-
-        this.procent = Math.round(this.props.project.reached / this.props.project.goal * 100) + '%';
         this.handleFavoriteClick=this.handleFavoriteClick.bind(this);
         this.checkIfFavorite=this.checkIfFavorite.bind(this);
     }
@@ -71,12 +68,16 @@ class SingleProject extends React.Component {
                     </div>
                 <div className="w3-light-grey w3-light-grey w3-tiny"
                      style={{marginBottom: '15px', marginRight: '20px', marginLeft: '20px', height: '8px', borderRadius: '10px' }}>
-                    <div className="w3-blue" style={{width: this.procent, height: '8px', borderRadius: '10px'}}/>
+                    <div className="w3-blue" style={{width: this.props.project.reached / this.props.project.goal * 100 < 100
+                            ? this.props.project.reached / this.props.project.goal * 100
+                            : 100
+                            + '%',
+                        height: '8px', borderRadius: '10px'}}/>
                 </div>
 
 
                 <h5 className="projects-view-h5-small">Tikslas:  <img className="project-view-bottle-image project-view-bottle-image-nav" src="https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png"/> {this.props.project.goal*10} </h5>
-                <h5 className="projects-view-h5-small">Surinkta: {this.procent} </h5>
+                <h5 className="projects-view-h5-small">Surinkta: {Math.round(this.props.project.reached / this.props.project.goal * 100) + '%'} </h5>
                 <div className="wrapper">
                     <Link style={{ textDecoration: 'none' }} to={'/projektas/'+this.props.project.id}><input type="submit" className="btn-submit blue-button" value="Prisidėk"/></Link>
                 </div>

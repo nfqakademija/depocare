@@ -17,13 +17,19 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['projects']
+    whitelist: ['User.userData']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const middleware = applyMiddleware(thunk, createLogger());
+
+let middleware = applyMiddleware(thunk);
+
+if (process.env.NODE_ENV === 'development') {
+        middleware = applyMiddleware(thunk, createLogger());
+    }
 const store = createStore(persistedReducer, composeEnhancers(
     middleware,
 ));

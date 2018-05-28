@@ -14,7 +14,7 @@ class SliderContent extends React.Component {
         if (done) {
             return (
                 <div className="home-inline-buttons center-block">
-                    <Link to='/projektai' className="btn btn-primary-slider-content btn-lg">Projektai</Link>
+                    <Link to='/projektai' className="btn blue-button btn-lg">Projektai</Link>
                 </div>
             );
         }
