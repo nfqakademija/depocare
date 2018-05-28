@@ -1,7 +1,11 @@
 import React from 'react';
 import Modal from 'react-modal';
 import Notifications from './Notifications';
-import {NOTIFICATION_TIME} from "../Data/Constants";
+import { Redirect } from 'react-router';
+import {
+    LOGIN_PAGE,
+    NOTIFICATION_TIME
+} from "../Data/Constants";
 
 
 
@@ -30,6 +34,7 @@ class DonateModal extends React.Component {
         this.state = {
             modalIsOpen: false,
             donateAmount: 0,
+            redirect: false
         };
 
         this.openModal = this.openModal.bind(this);
@@ -41,7 +46,15 @@ class DonateModal extends React.Component {
     }
 
     openModal() {
-        this.setState({modalIsOpen: true});
+        if(this.props.balance)
+        {
+            this.setState({modalIsOpen: true});
+        }
+        else{
+            this.setState({
+                redirect: true,
+            });
+        }
     }
 
 
@@ -86,6 +99,10 @@ class DonateModal extends React.Component {
 
 
     render() {
+
+        if (this.state.redirect){
+            return  (<Redirect to={LOGIN_PAGE}/>)
+        }
         return (
             <div>
                 <button className="blue-button" onClick={this.openModal}>Prisidėti</button>

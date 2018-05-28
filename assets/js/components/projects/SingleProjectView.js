@@ -172,7 +172,6 @@ class SingleProjectView extends React.Component {
                                             status: this.props.statusTransaction,
                                             addNewUserProjectTransaction: this.props.onAddNewUserProjectTransaction
                                         }}/>
-                                        {}
                                     </div>
                                 </div>
                             </div>
