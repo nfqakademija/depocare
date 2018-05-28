@@ -147,7 +147,7 @@ class SingleProjectView extends React.Component {
                                     <div className="project-view-goal-wrapper">
                                         <div className="project-view-goal-inline">
                                             <div className="project-view-goal-text">Reikia <img className="project-view-bottle-image" src="https://d30y9cdsu7xlg0.cloudfront.net/png/100145-200.png"/></div>
-                                            <div className="project-view-blue-text"><b>{this.state.project.goal}</b></div>
+                                            <div className="project-view-blue-text"><b>{this.state.project.goal*10}</b></div>
                                         </div>
                                         <div className="project-view-goal-inline project-view-goal-inline-right">
                                             <div className="project-view-goal-text">Surinkta</div>
