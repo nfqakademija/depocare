@@ -278,7 +278,7 @@ class Basic extends React.Component {
                                     </p>
                                 </div>
                                 <div>
-                                    <Link style={{ textDecoration: 'none' }} to='/'><input type="submit" className="btn-submit blue-button project-create-button" value="Pridėti"/></Link>
+                                    <Link style={{ textDecoration: 'none' }} to='/'><input type="submit" className="btn-submit blue-button" value="Pridėti"/></Link>
                                 </div>
                             </div>
                         </div>

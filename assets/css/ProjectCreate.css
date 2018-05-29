@@ -344,7 +344,9 @@
 }
 
 .project-create-blue-button {
-    width: 95%;
+    width: 95% !important;
+    height: 60px !important;
+
 }
 
 .project-create-tabs-tab-right {

@@ -229,22 +229,6 @@ class Project
     }
 
     /**
-     * @return string
-     */
-    public function getEnddate(): string
-    {
-        return $this->end_date;
-    }
-
-    /**
-     * @param string $end_date
-     */
-    public function setEnddate(string $end_date): void
-    {
-        $this->end_date = $end_date;
-    }
-
-    /**
      * @return float
      */
     public function getGoal(): float
@@ -370,5 +354,21 @@ class Project
     public function setBank(Bank $bank): void
     {
         $this->bank = $bank;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEndDate(): string
+    {
+        return $this->end_date;
+    }
+
+    /**
+     * @param string $end_date
+     */
+    public function setEndDate(string $end_date): void
+    {
+        $this->end_date = $end_date;
     }
 }
