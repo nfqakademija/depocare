@@ -42,7 +42,7 @@ class ProjectCreate extends React.Component {
         this.props.projectCreateInputChange({type: SET_PROJECT_CREATE, id: this.props.match.params.project_id}).then(() => {
             switch (this.props.statusProject) {
                 case 200:
-                    this.setState({loading: false});
+                    this.setState({loading: false, redirect: false});
                     break;
                 case 400:
                     this.setState({loading: false, redirect: true, redirectTo: HOME_PAGE});

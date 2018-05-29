@@ -5,7 +5,7 @@ import {ORGANIZATION_IBAN_CHANGE, ORGANIZATION_EMAIL_ADDRESS_CHANGE,BANK_CHANGE,
 
 const initialState = {
     id: null, status: '', save: false,
-    title: '', charity_fund: '', description: '', goal: 0, category: 0, city: 1, image: '', end_date: '', flag_create: '',
+    title: '', charity_fund: '', description: '', goal: 0, category: 0, city: 1, image: '', end_date: '', flag_create: true,
     youtube: '', long_description: '',
     first_name: '', last_name: '', biography: '', profile_image: '',
     organization_name: '', organization_street_address: '', organization_phone_number: '', organization_email_address: '', organization_code: '', organization_web_address: '', organization_iban: '',
