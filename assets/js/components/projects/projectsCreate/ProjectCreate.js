@@ -23,7 +23,6 @@ import {
 } from "../../../Data/Constants";
 import {actionLogout} from "../../../reducer/login/actions";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 class ProjectCreate extends React.Component {
     constructor(props) {
         super(props);
