@@ -12,7 +12,6 @@ use App\Entity\Bank;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-
 class BankRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)

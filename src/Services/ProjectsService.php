@@ -52,8 +52,15 @@ class ProjectsService
      * @param OrganizationsService $organizationsService
      * @param OrganizationRepository $organizationRepository
      */
-    public function __construct(ProjectRepository $repository, BankRepository $bankRepository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationsService $organizationsService, OrganizationRepository $organizationRepository)
-    {
+    public function __construct(
+        ProjectRepository $repository,
+        BankRepository $bankRepository,
+        CategoryRepository $categoryRepository,
+        CityRepository $cityRepository,
+        UsersService $usersService,
+        OrganizationsService $organizationsService,
+        OrganizationRepository $organizationRepository
+    ) {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
@@ -119,11 +126,19 @@ class ProjectsService
         if (!$project) {
             return new Response('Projektas neegzistuoja', 400);
         }
-        if (!$this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $content->profile_image, $project->getUserId()->getId(), $user)) {
+        if (!$this->usersService->updateUserProjectCreate(
+            $content->first_name, $content->last_name, $content->biography,
+            $content->profile_image, $project->getUserId()->getId(), $user)) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
 
-        if (!$this->organizationService->updateOrganizationProjectCreate($content->organization_id, $content->organization_name, $content->organization_street_address, $content->organization_phone_number, $content->organization_email_address, $content->organization_web_address, $content->organization_code, $content->organization_owner_first_name, $content->organization_owner_last_name, $content->organization_owner_phone_number, $content->organization_iban, $content->organization_owner_email_address)) {
+        if (!$this->organizationService->updateOrganizationProjectCreate(
+            $content->organization_id, $content->organization_name, $content->
+            organization_street_address, $content->organization_phone_number,
+            $content->organization_email_address, $content->organization_web_address,
+            $content->organization_code, $content->organization_owner_first_name,
+            $content->organization_owner_last_name, $content->organization_owner_phone_number,
+            $content->organization_iban, $content->organization_owner_email_address)) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
 

@@ -118,6 +118,4 @@ class UserProjectTransaction
     {
         $this->transactionDate = $transactionDate;
     }
-
-
 }

@@ -270,5 +270,4 @@ class Organization
     {
         $this->organization_iban = $organization_iban;
     }
-
 }

@@ -62,7 +62,9 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=2000, options={"default" = "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"}, nullable=true)
+     * @ORM\Column(type="string", length=2000,
+     *     options={"default" = "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"},
+     *     nullable=true)
      */
     private $image;
 
@@ -231,5 +233,4 @@ class User extends BaseUser
         }
         $this->favorite_projects->add($project);
     }
-
 }

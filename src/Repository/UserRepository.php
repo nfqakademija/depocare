@@ -12,7 +12,6 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-
 class UserRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
@@ -49,7 +48,7 @@ class UserRepository extends ServiceEntityRepository
             $this->_em->persist($user);
             $this->_em->flush($user);
             return true;
-        } else return false;
-
+        } else
+            return false;
     }
 }

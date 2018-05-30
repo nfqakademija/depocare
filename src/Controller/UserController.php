@@ -9,7 +9,6 @@ use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/api")
  */
@@ -55,7 +54,6 @@ class UserController extends FOSRestController
     {
         return $this->success($this->getUsersService()->
         addUserFavoriteProject($this->getUser(), $project_id));
-
     }
 
 //    /**

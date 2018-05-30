@@ -14,7 +14,6 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/api")
  */
@@ -37,5 +36,4 @@ class CategoriesController extends FOSRestController
     {
         return $this->get('categories.service');
     }
-
 }

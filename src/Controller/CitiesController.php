@@ -32,7 +32,6 @@ class CitiesController extends FOSRestController
     public function getCities()
     {
         return $this->getCitiesService()->getCities();
-
     }
 
     /**
@@ -53,6 +52,5 @@ class CitiesController extends FOSRestController
     {
         var_dump($city);
         die;
-
     }
 }

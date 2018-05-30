@@ -37,10 +37,11 @@ class UsersService
      * @param ProjectRepository $projectRepository
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(UserRepository $repository,
-                                ProjectRepository $projectRepository,
-                                EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        UserRepository $repository,
+        ProjectRepository $projectRepository,
+        EntityManagerInterface $entityManager
+    ) {
         $this->repository = $repository;
         $this->projectRepository = $projectRepository;
         $this->em = $entityManager;

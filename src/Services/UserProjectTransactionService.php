@@ -8,13 +8,11 @@
 
 namespace App\Services;
 
-
 use App\Entity\Project;
 use App\Entity\User;
 use App\Repository\ProjectRepository;
 use App\Repository\UserProjectTransactionRepository;
 use App\Repository\UserRepository;
-
 
 class UserProjectTransactionService
 {
@@ -38,10 +36,11 @@ class UserProjectTransactionService
      * ProjectService constructor.
      * @param UserProjectTransactionRepository $repository
      */
-    public function __construct(UserProjectTransactionRepository $repository,
-                                UserRepository $userRepository,
-                                ProjectRepository $projectRepository)
-    {
+    public function __construct(
+        UserProjectTransactionRepository $repository,
+        UserRepository $userRepository,
+        ProjectRepository $projectRepository
+    ) {
         $this->repository = $repository;
         $this->projectRepository = $projectRepository;
         $this->userRepository = $userRepository;
@@ -75,5 +74,4 @@ class UserProjectTransactionService
         }
         return false;
     }
-
 }

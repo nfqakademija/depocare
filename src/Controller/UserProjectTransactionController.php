@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/api")
  */
@@ -34,7 +33,6 @@ class UserProjectTransactionController extends FOSRestController
     public function getUserProjectTransactions()
     {
         return $this->getUserProjectTransactionService()->getAllProjectsTransactions();
-
     }
 
     /**
@@ -49,8 +47,8 @@ class UserProjectTransactionController extends FOSRestController
         if ($this->getUserProjectTransactionService()
             ->addUserProjectTransaction($this->getUser(), $projectId, $amount)) {
             return new Response('Sėkmingai parėmete', 200);
-        } else return new Response('Paremti nepavyko', 400);
-
+        } else
+            return new Response('Paremti nepavyko', 400);
     }
 
     /**

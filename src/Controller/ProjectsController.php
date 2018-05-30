@@ -10,7 +10,6 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/api")
  */
