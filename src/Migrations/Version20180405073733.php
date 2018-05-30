@@ -329,7 +329,7 @@ class Version20180405073733 extends AbstractMigration
             'Breitenberg, Johnson and Zboncak'),
             (44, 5, 1,0,1,1,1,'https://www.youtube.com/watch?v=AptPGnVAXeM', 
             '<p>This is super long <strong>description</strong></p>','Flame and Citron (Flammen & Citronen)', 
-            'Duis consequat dui nec nisi volutpatMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.', 
+            'Duis consequat dui nec nisi volutpatMauris enim leo, rhoncus sed, vestibulum sit amet, cursus id.', 
             'http://dummyimage.com/233x176.jpg/5fa2dd/ffffff', '2018/05/29', 220, 141, 'Schuppe-Daniel'),
             (45, 2, 1,0,1,1,1,'https://www.youtube.com/watch?v=AptPGnVAXeM', 
             '<p>This is super long <strong>description</strong></p>',

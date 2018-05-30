@@ -65,8 +65,10 @@ class RestRegistrationController extends FOSRestController implements ClassResou
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRM, $event);
         $userManager->updateUser($user);
-        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_CONFIRMED,
-            new FilterUserResponseEvent($user, $request, new Response()));
+        $dispatcher->dispatch(
+        FOSUserEvents::REGISTRATION_CONFIRMED,
+        new FilterUserResponseEvent($user, $request, new Response())
+        );
 
         $response = new JsonResponse(
             [

@@ -127,8 +127,14 @@ class ProjectsService
             return new Response('Projektas neegzistuoja', 400);
         }
         if (!$this->usersService->updateUserProjectCreate(
-            $content->first_name, $content->last_name, $content->biography,
-            $content->profile_image, $project->getUserId()->getId(), $user)) {
+         $content->first_name,
+         $content->last_name,
+         $content->biography,
+         $content->profile_image,
+         $project->getUserId()->getId(),
+         $user
+        )
+        ) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
 
