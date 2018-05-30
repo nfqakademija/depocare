@@ -48,7 +48,8 @@ class UserRepository extends ServiceEntityRepository
             $this->_em->persist($user);
             $this->_em->flush($user);
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
 }

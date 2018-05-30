@@ -14,12 +14,12 @@ class Version20180522110218 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-        $this->connection->getDatabasePlatform()->getName() !== 'mysql',
-        'Migration can only be executed safely on \'mysql\'.'
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
         );
 
         $this->addSql(
-        'CREATE TABLE user_project_transaction (id INT AUTO_INCREMENT NOT NULL, 
+            'CREATE TABLE user_project_transaction (id INT AUTO_INCREMENT NOT NULL, 
         user_id INT DEFAULT NULL, 
         project_id INT DEFAULT NULL, 
         balance DOUBLE PRECISION NOT NULL, 
@@ -30,12 +30,12 @@ class Version20180522110218 extends AbstractMigration
         COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'
         );
         $this->addSql(
-        'ALTER TABLE user_project_transaction 
+            'ALTER TABLE user_project_transaction 
         ADD CONSTRAINT FK_903B9D58A76ED395 
         FOREIGN KEY (user_id) REFERENCES users (id)'
         );
         $this->addSql(
-        'ALTER TABLE user_project_transaction 
+            'ALTER TABLE user_project_transaction 
         ADD CONSTRAINT FK_903B9D58166D1F9C 
         FOREIGN KEY (project_id) REFERENCES projects (id)'
         );
@@ -45,8 +45,8 @@ class Version20180522110218 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf(
-        $this->connection->getDatabasePlatform()->getName() !== 'mysql',
-        'Migration can only be executed safely on \'mysql\'.'
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
         );
 
         $this->addSql('DROP TABLE user_project_transaction');
