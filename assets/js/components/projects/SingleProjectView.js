@@ -67,6 +67,8 @@ class SingleProjectView extends React.Component {
         }
     }
     componentDidMount() {
+        console.log(this.props.location);
+
         this.setDivSize();
         window.addEventListener("resize", throttle( () => this.setDivSize()));
     }
@@ -166,6 +168,7 @@ class SingleProjectView extends React.Component {
                                     <div className="project-view-blue-text"><b>{this.state.project.duration}</b></div>
                                     <div className="project-view-button-wrapper">
                                         <DonateModal  modalProps={{
+                                            url: this.props.location,
                                             title: this.state.project.title,
                                             balance: this.props.userBalance*10,
                                             projectId: this.state.project.id,
