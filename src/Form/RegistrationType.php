@@ -8,11 +8,9 @@
 
 namespace App\Form;
 
-
+use FOS\UserBundle\Form\Type\RegistrationFormType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use FOS\UserBundle\Form\Type\RegistrationFormType;
-
 
 class RegistrationType extends AbstractType
 {

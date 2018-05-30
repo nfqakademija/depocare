@@ -12,7 +12,6 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-
 class UserRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
@@ -31,7 +30,8 @@ class UserRepository extends ServiceEntityRepository
     }
 
 
-    public function getUserFavoriteProjects($user_id) {
+    public function getUserFavoriteProjects($user_id)
+    {
         return $this->findBy([
             'id' => $user_id
         ]);
@@ -43,13 +43,13 @@ class UserRepository extends ServiceEntityRepository
      */
     public function changeUserBalance($user, $amount)
     {
-        if($user->getBalance()-$amount >= 0){
-            $user->setBalance($user->getBalance()-$amount);
+        if ($user->getBalance() - $amount >= 0) {
+            $user->setBalance($user->getBalance() - $amount);
             $this->_em->persist($user);
             $this->_em->flush($user);
             return true;
+        } else {
+            return false;
         }
-        else return false;
-
     }
 }

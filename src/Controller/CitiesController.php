@@ -11,10 +11,10 @@ namespace App\Controller;
 use App\Entity\City;
 use App\Services\CitiesService;
 use App\Traits\ApiTraits;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\View\View;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,7 +32,6 @@ class CitiesController extends FOSRestController
     public function getCities()
     {
         return $this->getCitiesService()->getCities();
-
     }
 
     /**
@@ -53,6 +52,5 @@ class CitiesController extends FOSRestController
     {
         var_dump($city);
         die;
-
     }
 }

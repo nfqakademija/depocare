@@ -37,10 +37,11 @@ class UsersService
      * @param ProjectRepository $projectRepository
      * @param EntityManagerInterface $entityManager
      */
-    public function __construct(UserRepository $repository,
-                                ProjectRepository $projectRepository,
-                                EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        UserRepository $repository,
+        ProjectRepository $projectRepository,
+        EntityManagerInterface $entityManager
+    ) {
         $this->repository = $repository;
         $this->projectRepository = $projectRepository;
         $this->em = $entityManager;
@@ -55,14 +56,15 @@ class UsersService
      * @param $user_id
      * @return boolean
      */
-    public function updateUserProjectCreate($first_name, $last_name, $biography, $profile_image, $id, $user_id) {
-        if($id != $user_id) {
+    public function updateUserProjectCreate($first_name, $last_name, $biography, $profile_image, $id, $user_id)
+    {
+        if ($id != $user_id) {
             //return new Response('Neturite tam teisių',403);
             return false;
         }
 
         $user = $this->repository->find($user_id);
-        if($user) {
+        if ($user) {
             if (!$user->isFlagHasActiveProject()) {
                 $user->setFirstname($first_name);
                 $user->setLastname($last_name);
@@ -84,17 +86,19 @@ class UsersService
      * @param $user_id
      * @return mixed
      */
-    public function getUserFavoriteProjects($user_id) {
+    public function getUserFavoriteProjects($user_id)
+    {
         return $this->repository->getUserFavoriteProjects($user_id);
     }
 
 
-    public function removeUserFavoriteProject($user_id, $project_id){
+    public function removeUserFavoriteProject($user_id, $project_id)
+    {
 
         $user = $this->repository->find($user_id);
         $project = $this->projectRepository->find($project_id);
 
-        if($user && $project) {
+        if ($user && $project) {
             $user->removeFavoriteProject($project);
             $this->em->flush();
         } else {
@@ -103,12 +107,13 @@ class UsersService
         return true;
     }
 
-    public function addUserFavoriteProject($user_id, $project_id){
+    public function addUserFavoriteProject($user_id, $project_id)
+    {
 
         $user = $this->repository->find($user_id);
         $project = $this->projectRepository->find($project_id);
 
-        if($user && $project) {
+        if ($user && $project) {
             $user->addFavoriteProject($project);
             $this->em->persist($project);
             $this->em->flush();

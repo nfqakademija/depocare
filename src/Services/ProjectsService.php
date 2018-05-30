@@ -3,12 +3,12 @@
 namespace App\Services;
 
 use App\Entity\Organization;
-use App\Repository\ProjectRepository;
-use App\Repository\CategoryRepository;
+use App\Entity\Project;
 use App\Repository\BankRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
 use App\Repository\OrganizationRepository;
-use App\Entity\Project;
+use App\Repository\ProjectRepository;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProjectsService
@@ -52,8 +52,15 @@ class ProjectsService
      * @param OrganizationsService $organizationsService
      * @param OrganizationRepository $organizationRepository
      */
-    public function __construct(ProjectRepository $repository, BankRepository $bankRepository, CategoryRepository $categoryRepository, CityRepository $cityRepository, UsersService $usersService, OrganizationsService $organizationsService, OrganizationRepository $organizationRepository)
-    {
+    public function __construct(
+        ProjectRepository $repository,
+        BankRepository $bankRepository,
+        CategoryRepository $categoryRepository,
+        CityRepository $cityRepository,
+        UsersService $usersService,
+        OrganizationsService $organizationsService,
+        OrganizationRepository $organizationRepository
+    ) {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
@@ -63,7 +70,8 @@ class ProjectsService
         $this->bankRepository = $bankRepository;
     }
 
-    public function getProjects($from, $to){
+    public function getProjects($from, $to)
+    {
         return $this->repository->getProjects($from, $to);
     }
 
@@ -73,15 +81,17 @@ class ProjectsService
      * @param $to
      * @return mixed
      */
-    public function loadMoreProjectsByCat($cat, $from, $to){
-        return $this->repository->loadMoreProjectsByCat($cat,$from, $to);
+    public function loadMoreProjectsByCat($cat, $from, $to)
+    {
+        return $this->repository->loadMoreProjectsByCat($cat, $from, $to);
     }
 
     /**
      * @param $id
      * @return mixed
      */
-    public function getProjectById($id){
+    public function getProjectById($id)
+    {
         return $this->repository->find($id);
     }
 
@@ -90,12 +100,13 @@ class ProjectsService
      * @param $user_id
      * @return mixed
      */
-    public function getProjectEditById($id, $user_id){
+    public function getProjectEditById($id, $user_id)
+    {
         $project = $this->getProjectById($id);
-        if(!$project) {
-            return new Response('Projektas neegzistuoja',400);
+        if (!$project) {
+            return new Response('Projektas neegzistuoja', 400);
         }
-        if($project->getUserId()->getId() !== $user_id) {
+        if ($project->getUserId()->getId() !== $user_id) {
             return new Response("Neturite teisių redaguoti projektą", 403);
         }
         return $project;
@@ -107,18 +118,41 @@ class ProjectsService
      * @param $user
      * @return Response
      */
-    public function updateProject($request, $id, $user) {
+    public function updateProject($request, $id, $user)
+    {
         $project = $this->repository->find($id);
         $content = json_decode($request->getContent());
 
         if (!$project) {
-            return new Response('Projektas neegzistuoja',400);
+            return new Response('Projektas neegzistuoja', 400);
         }
-        if(!$this->usersService->updateUserProjectCreate($content->first_name, $content->last_name, $content->biography, $content->profile_image, $project->getUserId()->getId(), $user))  {
+        if (!$this->usersService->updateUserProjectCreate(
+            $content->first_name,
+            $content->last_name,
+            $content->biography,
+            $content->profile_image,
+            $project->getUserId()->getId(),
+            $user
+        )
+        ) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
 
-        if(!$this->organizationService->updateOrganizationProjectCreate($content->organization_id, $content->organization_name,$content->organization_street_address,$content->organization_phone_number,$content->organization_email_address,$content->organization_web_address,$content->organization_code,$content->organization_owner_first_name,$content->organization_owner_last_name,$content->organization_owner_phone_number,$content->organization_iban,$content->organization_owner_email_address ))  {
+        if (!$this->organizationService->updateOrganizationProjectCreate(
+            $content->organization_id,
+            $content->organization_name,
+            $content->rganization_street_address,
+            $content->organization_phone_number,
+            $content->organization_email_address,
+            $content->organization_web_address,
+            $content->organization_code,
+            $content->organization_owner_first_name,
+            $content->organization_owner_last_name,
+            $content->organization_owner_phone_number,
+            $content->organization_iban,
+            $content->organization_owner_email_address
+        )
+        ) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
 
@@ -143,14 +177,15 @@ class ProjectsService
 
         $this->repository->save($project);
 
-        return new Response('Projektas išsaugotas',200);
+        return new Response('Projektas išsaugotas', 200);
     }
 
     /**
      * @param $user_id
      * @return array
      */
-    public function getAllUserProjects($user_id) {
+    public function getAllUserProjects($user_id)
+    {
         return $this->repository->getAllUserProjects($user_id);
     }
 
@@ -158,7 +193,8 @@ class ProjectsService
      * @param $user_id
      * @return Project
      */
-    public function createEmptyProject($user_id) {
+    public function createEmptyProject($user_id)
+    {
         $project = new Project();
         $project->setUserId($user_id);
         $project->setTitle('');
@@ -178,7 +214,7 @@ class ProjectsService
         $organization = new Organization();
         $this->organizationRepository->save($organization);
         $project->setOrganization($organization);
-        $this->repository-> save($project);
+        $this->repository->save($project);
 
         return $project;
     }

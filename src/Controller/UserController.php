@@ -1,12 +1,13 @@
 <?php
+
 namespace App\Controller;
+
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Controller\Annotations\Delete;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 /**
  * @Route("/api")
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends FOSRestController
 {
     use ApiTraits;
+
     /**
      * @Get("/profile")
      * @return UserController
@@ -29,7 +31,7 @@ class UserController extends FOSRestController
     public function getUserFavoriteProjects()
     {
         return $this->success($this->getUsersService()->
-                getUserFavoriteProjects($this->getUser()));
+        getUserFavoriteProjects($this->getUser()));
     }
 
     /**
@@ -40,7 +42,7 @@ class UserController extends FOSRestController
     public function removeUserFavoriteProject($project_id)
     {
         return $this->success($this->getUsersService()->
-                removeUserFavoriteProject($this->getUser(), $project_id));
+        removeUserFavoriteProject($this->getUser(), $project_id));
     }
 
     /**
@@ -51,8 +53,7 @@ class UserController extends FOSRestController
     public function addUserFavoriteProject($project_id)
     {
         return $this->success($this->getUsersService()->
-                addUserFavoriteProject($this->getUser(), $project_id));
-
+        addUserFavoriteProject($this->getUser(), $project_id));
     }
 
 //    /**

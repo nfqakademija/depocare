@@ -1,13 +1,14 @@
 <?php
+
 namespace App\Controller;
+
 use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
+use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 /**
  * @Route("/api")
@@ -23,7 +24,7 @@ class ProjectsController extends FOSRestController
      */
     public function getProjects(Request $request)
     {
-        $from =  $request->get('getFrom');
+        $from = $request->get('getFrom');
         $to = $request->get('getTo');
         return $this->getProjectsService()->getProjects($from, $to);
     }
@@ -37,7 +38,7 @@ class ProjectsController extends FOSRestController
      */
     public function loadMoreProjectsByCat($cat, Request $request)
     {
-        $from =  $request->get('getFrom');
+        $from = $request->get('getFrom');
         $to = $request->get('getTo');
         return $this->getProjectsService()->loadMoreProjectsByCat($cat, $from, $to);
     }
@@ -46,7 +47,8 @@ class ProjectsController extends FOSRestController
      * @Get("/project/{id}")
      * @return View
      */
-    public function getProjectById($id){
+    public function getProjectById($id)
+    {
         return $this->getProjectsService()->getProjectById($id);
     }
 
@@ -55,7 +57,8 @@ class ProjectsController extends FOSRestController
      * @param $id
      * @return mixed
      */
-    public function getProjectEditById($id){
+    public function getProjectEditById($id)
+    {
         return $this->getProjectsService()->getProjectEditById($id, $this->getUser()->getId());
     }
 
