@@ -8,17 +8,15 @@
 
 namespace App\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
+use App\Services\UserProjectTransactionService;
+use App\Traits\ApiTraits;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Post;
-use App\Services\UserProjectTransactionService;
-use Symfony\Component\Routing\Annotation\Route;
+use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
-use App\Traits\ApiTraits;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-
+use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
@@ -46,13 +44,12 @@ class UserProjectTransactionController extends FOSRestController
      */
     public function addUserFavoriteProject(Request $request)
     {
-        $projectId =  $request->get('project_id');
+        $projectId = $request->get('project_id');
         $amount = $request->get('amount');
-        if($this->getUserProjectTransactionService()
-            ->addUserProjectTransaction( $this->getUser(), $projectId, $amount) ) {
-            return new Response('Sėkmingai parėmete',200);
-        }
-        else return new Response('Paremti nepavyko', 400);
+        if ($this->getUserProjectTransactionService()
+            ->addUserProjectTransaction($this->getUser(), $projectId, $amount)) {
+            return new Response('Sėkmingai parėmete', 200);
+        } else return new Response('Paremti nepavyko', 400);
 
     }
 

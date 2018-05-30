@@ -9,11 +9,11 @@
 namespace App\Services;
 
 
-use App\Repository\UserProjectTransactionRepository;
-use App\Repository\ProjectRepository;
-use App\Repository\UserRepository;
-use App\Entity\User;
 use App\Entity\Project;
+use App\Entity\User;
+use App\Repository\ProjectRepository;
+use App\Repository\UserProjectTransactionRepository;
+use App\Repository\UserRepository;
 
 
 class UserProjectTransactionService
@@ -47,7 +47,8 @@ class UserProjectTransactionService
         $this->userRepository = $userRepository;
     }
 
-    public function getAllProjectsTransactions(){
+    public function getAllProjectsTransactions()
+    {
         return $this->repository->getAllProjectsTransactions();
     }
 
@@ -57,15 +58,16 @@ class UserProjectTransactionService
      * @param $amount
      * @return bool
      */
-    public function addUserProjectTransaction($user, $project_id, $amount){
+    public function addUserProjectTransaction($user, $project_id, $amount)
+    {
 
         /**
          * @var Project $project
          */
         $project = $this->projectRepository->find($project_id);
 
-        if($project && $amount > 0) {
-            if($this->userRepository->changeUserBalance($user, $amount)){
+        if ($project && $amount > 0) {
+            if ($this->userRepository->changeUserBalance($user, $amount)) {
                 $this->projectRepository->changeProjectBalance($project, $amount);
                 $this->repository->addUserProjectTransaction($user, $project, $amount);
                 return true;

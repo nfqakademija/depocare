@@ -7,7 +7,9 @@
  */
 
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Table(name="organizations")
  * @ORM\Entity()
@@ -76,6 +78,7 @@ class Organization
      * @var string
      */
     private $organization_iban = "";
+
     /**
      * @return int
      */

@@ -20,7 +20,8 @@ class CitiesService
         $this->repository = $repository;
     }
 
-    public function getCities(){
+    public function getCities()
+    {
         return $this->repository->getCities();
     }
 }

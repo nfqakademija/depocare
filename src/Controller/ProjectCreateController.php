@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\Annotations\Post;
+use FOS\RestBundle\Controller\Annotations\Put;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,7 +32,8 @@ class ProjectCreateController extends FOSRestController
     /**
      * @Post("/newProject")
      */
-    public function createEmptyProject() {
+    public function createEmptyProject()
+    {
         return $this->success($this->getProjectsService()->createEmptyProject($this->getUser()));
     }
 

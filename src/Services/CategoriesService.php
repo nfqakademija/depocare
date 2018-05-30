@@ -5,6 +5,7 @@
  * Date: 18.5.2
  * Time: 11.52
  */
+
 namespace App\Services;
 
 use App\Repository\CategoryRepository;
@@ -25,7 +26,8 @@ class CategoriesService
         $this->repository = $repository;
     }
 
-    public function getCategories(){
+    public function getCategories()
+    {
         return $this->repository->getCategories();
     }
 }

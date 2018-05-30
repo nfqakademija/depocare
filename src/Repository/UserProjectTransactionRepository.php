@@ -19,7 +19,8 @@ class UserProjectTransactionRepository extends ServiceEntityRepository
         parent::__construct($registry, UserProjectTransaction::class);
     }
 
-    public function getAllProjectsTransactions(){
+    public function getAllProjectsTransactions()
+    {
         return $this->createQueryBuilder('u')
             ->select('u')
             ->getQuery()

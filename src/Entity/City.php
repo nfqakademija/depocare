@@ -7,12 +7,13 @@
  */
 
 namespace App\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Table(name="city")
  * @ORM\Entity()
  */
-
 class City
 {
 

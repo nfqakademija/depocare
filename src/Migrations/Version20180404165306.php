@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
@@ -34,7 +34,7 @@ class Version20180404165306 extends AbstractMigration
             "INSERT INTO `banks` (`id`, `bank_name`) 
                 VALUES ('1', 'Paysera'), ('2', 'Swedbank'), ('3', 'Citadelė'), ('4', 'Danske'), 
                 ('5', 'Nordea'), ('6', 'DNB'), ('7', 'Seb');"
-                );
+        );
         $this->addSql(
             "INSERT INTO `categories` (`id`, `title`, `glyph`) 
                 VALUES ('1', 'Vaikai', 'child.png'), ('2', 'Sveikata', 'health.png'), ('3', 'Gyvūnai ir gamta', 'nature.png'), 

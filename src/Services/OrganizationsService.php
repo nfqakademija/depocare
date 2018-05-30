@@ -21,9 +21,10 @@ class OrganizationsService
     }
 
 
-    public function updateOrganizationProjectCreate($id, $name, $street_address, $phone_number, $email_address, $web_address, $code, $first_name, $last_name, $owner_phone_number, $iban, $owner_email_address) {
+    public function updateOrganizationProjectCreate($id, $name, $street_address, $phone_number, $email_address, $web_address, $code, $first_name, $last_name, $owner_phone_number, $iban, $owner_email_address)
+    {
         $organization = $this->repository->find($id);
-        if($organization) {
+        if ($organization) {
             $organization->setOrganizationName($name);
             $organization->setOrganizationStreetAddress($street_address);
             $organization->setOrganizationPhoneNumber($phone_number);

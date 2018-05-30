@@ -17,7 +17,8 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-    public function getProjects($from, $to){
+    public function getProjects($from, $to)
+    {
         return $this->createQueryBuilder('p')
             ->select('p')
             ->where('p.flag_create = false')
@@ -40,7 +41,7 @@ class ProjectRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function loadMoreProjectsByCat($cat,$from, $to)
+    public function loadMoreProjectsByCat($cat, $from, $to)
     {
         return $this->createQueryBuilder('p')
             ->select('p')
@@ -52,6 +53,7 @@ class ProjectRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
     /**
      * @param $entity
      *
@@ -63,7 +65,8 @@ class ProjectRepository extends ServiceEntityRepository
         $this->_em->flush($entity);
     }
 
-    public function getAllUserProjects($user_id) {
+    public function getAllUserProjects($user_id)
+    {
         return $this->findBy([
             'user_id' => $user_id
         ]);
