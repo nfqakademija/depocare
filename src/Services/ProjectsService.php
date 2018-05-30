@@ -139,12 +139,19 @@ class ProjectsService
         }
 
         if (!$this->organizationService->updateOrganizationProjectCreate(
-            $content->organization_id, $content->organization_name, $content->
-        organization_street_address, $content->organization_phone_number,
-            $content->organization_email_address, $content->organization_web_address,
-            $content->organization_code, $content->organization_owner_first_name,
-            $content->organization_owner_last_name, $content->organization_owner_phone_number,
-            $content->organization_iban, $content->organization_owner_email_address)) {
+            $content->organization_id,
+            $content->organization_name,
+            $content->rganization_street_address,
+            $content->organization_phone_number,
+            $content->organization_email_address,
+            $content->organization_web_address,
+            $content->organization_code,
+            $content->organization_owner_first_name,
+            $content->organization_owner_last_name,
+            $content->organization_owner_phone_number,
+            $content->organization_iban,
+            $content->organization_owner_email_address)
+        ) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
 
