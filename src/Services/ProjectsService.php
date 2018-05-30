@@ -150,7 +150,8 @@ class ProjectsService
             $content->organization_owner_last_name,
             $content->organization_owner_phone_number,
             $content->organization_iban,
-            $content->organization_owner_email_address)
+            $content->organization_owner_email_address
+        )
         ) {
             return new Response("Nepavyko atnaujinti profilio informacijos", 400);
         }
