@@ -45,6 +45,8 @@ class DonateModal extends React.Component {
 
     }
 
+
+
     openModal() {
         if(this.props.modalProps.balance)
         {
@@ -99,9 +101,11 @@ class DonateModal extends React.Component {
 
 
     render() {
-
         if (this.state.redirect){
-            return  (<Redirect to={LOGIN_PAGE}/>)
+            return  (<Redirect to={{
+                pathname: LOGIN_PAGE,
+                state: { from: this.props.modalProps.url }
+            }}/>)
         }
         return (
             <div>

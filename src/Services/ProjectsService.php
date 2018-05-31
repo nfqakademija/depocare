@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ProjectsService
 {
+    const DEFAULT_LIMIT = 10;
     /**
      * @var UsersService
      */
@@ -70,20 +71,31 @@ class ProjectsService
         $this->bankRepository = $bankRepository;
     }
 
-    public function getProjects($from, $to)
-    {
-        return $this->repository->getProjects($from, $to);
+    /**
+     * @param string $from
+     * @param string $to
+     * @return Project[]
+     */
+    public function getProjects($from, $to){
+        $limit = $to > self::DEFAULT_LIMIT
+            ? self::DEFAULT_LIMIT
+            : $to;
+
+        return $this->repository->getProjects($from, $limit);
     }
 
     /**
      * @param $cat
      * @param $from
      * @param $to
-     * @return mixed
+     * @return Project[]
      */
-    public function loadMoreProjectsByCat($cat, $from, $to)
-    {
-        return $this->repository->loadMoreProjectsByCat($cat, $from, $to);
+    public function loadMoreProjectsByCat($cat, $from, $to){
+        $limit = $to > self::DEFAULT_LIMIT
+            ? self::DEFAULT_LIMIT
+            : $to;
+
+        return $this->repository->loadMoreProjectsByCat($cat, $from, $limit);
     }
 
     /**
