@@ -76,7 +76,8 @@ class ProjectsService
      * @param string $to
      * @return Project[]
      */
-    public function getProjects($from, $to){
+    public function getProjects($from, $to)
+    {
         $limit = $to > self::DEFAULT_LIMIT
             ? self::DEFAULT_LIMIT
             : $to;
@@ -90,7 +91,8 @@ class ProjectsService
      * @param $to
      * @return Project[]
      */
-    public function loadMoreProjectsByCat($cat, $from, $to){
+    public function loadMoreProjectsByCat($cat, $from, $to)
+    {
         $limit = $to > self::DEFAULT_LIMIT
             ? self::DEFAULT_LIMIT
             : $to;
