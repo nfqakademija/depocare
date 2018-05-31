@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-
 /**
  * Class HomeController
  * @package App\Controller
@@ -14,19 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class HomeController extends Controller
 {
     /**
-     * @Route("/api/{slug}", name="API")
-     */
-    public function apiAction(Request $request, $slug = null)
-    {
-        // replace this example code with whatever you need
-        // Symfony Backend integration
-    }
-
-    /**
+     * @Route("/registruotis", name="register")
+     * @Route("/projektai/{slug}", name="projectsId")
+     * @Route("/projektai", name="projects")
+     * @Route("/prisijungti", name="login")
+     * @Route("/atsijungti", name="logout")
+     * @Route("/kurti/{slug}", name="createProject")
+     * @Route("/projektas/{slug}", name="projectId")
+     * @Route("/mano_projektai", name="myProjects")
      * @Route("/", name="homepage")
-     * @Route("/{slug}", name="homepage2")
      */
-    public function indexAction(Request $request, $slug = null)
+    public function indexAction()
     {
         // replace this example code with whatever you need
         return $this->render('home/index.html.twig', [
