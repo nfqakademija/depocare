@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -20,7 +22,7 @@ class ProjectsController extends FOSRestController
     /**
      * @Get("/projects")
      * @param Request $request
-     * @return View
+     * @return Project[]
      */
     public function getProjects(Request $request)
     {
@@ -34,7 +36,7 @@ class ProjectsController extends FOSRestController
      * @Get("/projects/{cat}")
      * @param $cat
      * @param Request $request
-     * @return View
+     * @return Project[]
      */
     public function loadMoreProjectsByCat($cat, Request $request)
     {
@@ -45,7 +47,7 @@ class ProjectsController extends FOSRestController
 
     /**
      * @Get("/project/{id}")
-     * @return View
+     * @return object
      */
     public function getProjectById($id)
     {
@@ -59,7 +61,15 @@ class ProjectsController extends FOSRestController
      */
     public function getProjectEditById($id)
     {
-        return $this->getProjectsService()->getProjectEditById($id, $this->getUser()->getId());
+        $project = $this->getProjectsService()->getProjectEditById($id);
+        if (!$project) {
+            return new Response('Projektas neegzistuoja', 400);
+        }
+        if ($project->getUserId()->getId() !== $this->getUser()->getId()) {
+            return new Response("Neturite teisių redaguoti projektą", 403);
+        }
+
+        return $project;
     }
 
     /**

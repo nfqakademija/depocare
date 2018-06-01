@@ -25,7 +25,11 @@ class ProjectCreateController extends FOSRestController
      */
     public function updateProject(Request $request, $id)
     {
-        return $this->getProjectsService()->updateProject($request, $id, $this->getUser()->getId());
+        return $this->getProjectsService()->updateProject(
+            json_decode($request->getContent()),
+            $id,
+            $this->getUser()->getId()
+        );
     }
 
     /**

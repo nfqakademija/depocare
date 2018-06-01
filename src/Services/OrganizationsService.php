@@ -20,36 +20,24 @@ class OrganizationsService
         $this->repository = $repository;
     }
 
-
-    public function updateOrganizationProjectCreate(
-        $id,
-        $name,
-        $street_address,
-        $phone_number,
-        $email_address,
-        $web_address,
-        $code,
-        $first_name,
-        $last_name,
-        $owner_phone_number,
-        $iban,
-        $owner_email_address
-    ) {
-        $organization = $this->repository->find($id);
+    public function updateOrganizationProjectCreate($content)
+    {
+        $organization = $this->repository->find($content->organization_id);
         if ($organization) {
-            $organization->setOrganizationName($name);
-            $organization->setOrganizationStreetAddress($street_address);
-            $organization->setOrganizationPhoneNumber($phone_number);
-            $organization->setOrganizationEmailAddress($email_address);
-            $organization->setOrganizationCode($code);
-            $organization->setOrganizationWebAddress($web_address);
-            $organization->setOrganizationOwnerFirstName($first_name);
-            $organization->setOrganizationOwnerLastName($last_name);
-            $organization->setOrganizationOwnerPhoneNumber($owner_phone_number);
-            $organization->setOrganizationIban($iban);
-            $organization->setOrganizationOwnerEmailAddress($owner_email_address);
+            $organization->setOrganizationName($content->organization_name);
+            $organization->setOrganizationStreetAddress($content->organization_street_address);
+            $organization->setOrganizationPhoneNumber($content->organization_phone_number);
+            $organization->setOrganizationEmailAddress($content->organization_email_address);
+            $organization->setOrganizationCode($content->organization_code);
+            $organization->setOrganizationWebAddress($content->organization_web_address);
+            $organization->setOrganizationOwnerFirstName($content->organization_owner_first_name);
+            $organization->setOrganizationOwnerLastName($content->organization_owner_last_name);
+            $organization->setOrganizationOwnerPhoneNumber($content->organization_owner_phone_number);
+            $organization->setOrganizationIban($content->organization_iban);
+            $organization->setOrganizationOwnerEmailAddress($content->organization_owner_email_address);
         } else {
             //return new Response('Nera tokios organizacijos tokiu id',404);
+
             return false;
         }
 

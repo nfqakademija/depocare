@@ -48,29 +48,26 @@ class UsersService
     }
 
     /**
-     * @param $first_name
-     * @param $last_name
-     * @param $biography
-     * @param $profile_image
+     * @param $content
      * @param $id
      * @param $user_id
      * @return boolean
      */
-    public function updateUserProjectCreate($first_name, $last_name, $biography, $profile_image, $id, $user_id)
+    public function updateUserProjectCreate($content, $projectUserId, $userId)
     {
-        if ($id != $user_id) {
+        if ($projectUserId != $userId) {
             //return new Response('Neturite tam teisių',403);
             return false;
         }
 
-        $user = $this->repository->find($user_id);
+        $user = $this->repository->find($userId);
         if ($user) {
             if (!$user->isFlagHasActiveProject()) {
-                $user->setFirstname($first_name);
-                $user->setLastname($last_name);
+                $user->setFirstname($content->first_name);
+                $user->setLastname($content->last_name);
             }
-            $user->setBiography($biography);
-            $user->setImage($profile_image);
+            $user->setBiography($content->biography);
+            $user->setImage($content->profile_image);
         } else {
             //return new Response('Nera tokio vartotojo su tokiu id',404);
             return false;
