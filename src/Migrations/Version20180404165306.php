@@ -43,7 +43,7 @@ class Version20180404165306 extends AbstractMigration
         );
         $this->addSql(
             "INSERT INTO `organizations` (`id`, `organization_iban`,`organization_name`, 
-                `organization_street_address`, , `organization_phone_number`, `organization_email_address`, 
+                `organization_street_address`, `organization_phone_number`, `organization_email_address`, 
                 `organization_code`,`organization_web_address`, `organization_owner_first_name`,
                 `organization_owner_last_name`, `organization_owner_phone_number`, `organization_owner_email_address`) 
                 VALUES ('1', 'LT518916518165165151', 'Organizacijos pavadinimas', 
