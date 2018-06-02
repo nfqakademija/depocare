@@ -46,9 +46,9 @@ class Version20180404165306 extends AbstractMigration
                 `organization_street_address`, `organization_phone_number`, `organization_email_address`, 
                 `organization_code`,`organization_web_address`, `organization_owner_first_name`,
                 `organization_owner_last_name`, `organization_owner_phone_number`, `organization_owner_email_address`) 
-                VALUES ('1', 'LT518916518165165151', 'Organizacijos pavadinimas', 'Studentu g 71-111',
-                'Kaunas LT-588445', '+37068963444', 'Email@gmail.com', '165491515','www.google.lt', 'Jonas', 
-                'Jonaitis', '+370454811812', 'owner@gmail.com');"
+                VALUES ('1', 'LT518916518165165151', 'Organizacijos pavadinimas', 
+                'Studentu g 71-111, Kaunas LT-588445', '+37068963444', 'Email@gmail.com', '165491515', 
+                'www.google.lt', 'Jonas', 'Jonaitis', '+370454811812', 'owner@gmail.com');"
         );
     }
 

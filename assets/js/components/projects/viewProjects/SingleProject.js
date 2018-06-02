@@ -49,7 +49,7 @@ class SingleProject extends React.Component {
     render() {
         this.checkIfFavorite();
         return (
-            <div className="projects-view-grid">
+            <div id="singleProduct" className="projects-view-grid">
                 <img src={this.props.project.image} className="projects-view-img"/>
                     <div className="projects-view-title-by d-inline">
                         {
