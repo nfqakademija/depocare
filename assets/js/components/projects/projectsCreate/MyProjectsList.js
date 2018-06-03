@@ -17,7 +17,7 @@ import {
     NOTIFICATION_TIME
 } from '../../../Data/Constants';
 import {actionLogout} from "../../../reducer/login/actions";
-
+const IMG_URL = "../images/";
 class MyProjectsList extends React.Component {
     constructor(props) {
         super(props);
@@ -111,7 +111,7 @@ class MyProjectsList extends React.Component {
                             project.flag_create ? (
                                 <div key={project.id} className="col-md-12 user-project-list-item">
                                     <div className="col-md-2 user-project-list-image-wraper">
-                                        <img src={project.image} className="user-project-list-image" alt=""/>
+                                        <img src={IMG_URL+project.image} className="user-project-list-image" alt=""/>
                                     </div>
                                     <div className="col-md-8">
                                         <div>{project.title}</div>

@@ -15,7 +15,7 @@ import {getUserInfo} from "../../reducer/user/actions";
 
 
 
-//const DEFAULT_IMG_URL = "images/no-image.jpg";
+const IMG_URL = "/projects_files/";
 
 
 class SingleProjectView extends React.Component {
@@ -147,7 +147,7 @@ class SingleProjectView extends React.Component {
                             </div>
                             <div className="project-view-image-bundle-wrapper">
                                 <div className="col-md-9 col-sm-12 project-view-image-wrapper">
-                                    <img src={this.state.project.image} className="project-view-image"/>
+                                    <img src={IMG_URL+this.state.project.image} className="project-view-image"/>
                                 </div>
                                 <div className="col-md-3 col-sm-12 project-view-bundle">
                                     <div className="project-view-goal-wrapper">

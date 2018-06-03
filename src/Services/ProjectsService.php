@@ -157,12 +157,12 @@ class ProjectsService
         $project->setCity($this->cityRepository->find($content->city));
         $project->setBank($this->bankRepository->find($content->bank));
         $project->setTitle($content->title);
-        $project->setEnddate($content->end_date);
+        $project->setEndDate($content->end_date);
         $project->setDescription($content->description);
+        $project->setLongDescription($content->long_description);
         $project->setGoal($content->goal);
         $project->setCharityFund($content->charity_fund);
         $project->setYoutube($content->youtube);
-        $project->setLongDescription($content->long_description);
         $project->setImage($content->image);
 
         $this->repository->save($project);
@@ -197,7 +197,7 @@ class ProjectsService
         $project->setFlagCreate(true);
         $project->setLongDescription('');
         $project->setYoutube('');
-        $project->setImage('https://s3.eu-central-1.amazonaws.com/haroldas-depocare/photos/no-image.jpg');
+        $project->setImage('no-image.jpg');
         $project->setCity($this->cityRepository->find(1));
         $project->setCategory($this->categoryRepository->find(1));
         $project->setBank($this->bankRepository->find(1));
@@ -205,5 +205,24 @@ class ProjectsService
         $this->repository->save($project);
 
         return $project;
+    }
+
+    public function uploadFile($request) {
+        $file = $request->files->get('file');
+
+        $fileName = $this->generateUniqueFileName() . '_depocare_file_' . $file->getClientOriginalName();
+
+        // moves the file to the directory where brochures are stored
+        $file->move(
+            'projects_files',
+            $fileName
+        );
+
+        return $fileName;
+    }
+
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 }

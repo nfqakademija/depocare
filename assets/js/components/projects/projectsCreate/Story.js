@@ -1,12 +1,13 @@
 import React  from 'react';
-import {projectCreateInputChange} from "../../../reducer/projectCreate/actions";
+import {LONG_DESCRIPTION_CHANGE, projectCreateInputChange} from "../../../reducer/projectCreate/actions";
+import {uploadPdf} from "../../../reducer/updateProject/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import ReactS3 from "../../ReactS3/ReactS3";
 import Notifications from "../../Notifications";
 import Dropzone from 'react-dropzone'
 import { Page } from 'react-pdf';
 import { Document } from 'react-pdf/dist/entry.webpack';
+const PDF_URL = "/projects_files/";
 
 class Story extends React.Component {
     constructor(props) {
@@ -19,31 +20,24 @@ class Story extends React.Component {
             return;
         }
         acceptedFiles.forEach(file => {
-            Object.defineProperty(file, 'name', {
-                writable: true,
-                value: '_depocare_pdf_' + file.name + '_depocare_pdf_' + Date.now()
+            let formData = new FormData();
+            formData.append('file', file);
+            this.props.uploadPdf(
+                formData, this.props.id
+            ).then(() => {
+                if (this.props.pdf_status === 200) {
+                    Notifications.createNotification('success', 'Failas įkeltas', '');
+                } else {
+                    Notifications.createNotification('error', 'Nepavyko išsaugoti failo', 'Įvyko klaida, nepavyko išsaugoti failo, prašome pamėginti dar kartą');
+                }
             });
-            ReactS3.upload(file, {
-                bucketName: 'haroldas-depocare',
-                region: 'eu-central-1',
-                albumName: 'pdf',
-                accessKeyId: 'AKIAJHHG2MAQQW43W2QQ',
-                secretAccessKey: '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',
-            })
-                .then((data) => {
-                    if (data.result.status === 204) {
-                        Notifications.createNotification('success', 'Failas įkeltas', '');
-                        this.changeLongDescription(data.location);
-                    } else {
-                        Notifications.createNotification('error', 'Nepavyko išsaugoti failo', 'Įvyko klaida, nepavyko išsaugoti failo, prašome pamėginti dar kartą');
-                    }
-                })
-        });
+        })
     }
 
     changeLongDescription(value) {
         this.props.projectCreateInputChange({type: 'LONG_DESCRIPTION_CHANGE','long_description': value});
     };
+
 
     changeYoutube(e) {
         this.props.projectCreateInputChange({type: 'YOUTUBE_CHANGE','youtube': e.target.value});
@@ -97,7 +91,7 @@ class Story extends React.Component {
                                         <Dropzone className="drop-down" onDrop={this.onDrop.bind(this)} accept=".pdf">
                                             {this.props.long_description === "" ?
                                                 <span className="drop-down-text">Įkelkite PDF failą.</span> :
-                                                <span>{this.props.long_description.split("_depocare_pdf_")[1]}</span>}
+                                                <span>{this.props.long_description.split("_depocare_file_")[1]}</span>}
                                         </Dropzone>
                                     </div>
                                 </div>
@@ -119,7 +113,7 @@ class Story extends React.Component {
                     </div>
 
                     <div className="col-xs-4">
-                        <Document file={this.props.long_description}
+                        <Document file={PDF_URL + this.props.long_description}
                             loading={
                                 <div className="project-view-info-pdf-loading">
                                     <div id="clearBtn2" className="clearBtn2 project-create-loader"/>
@@ -141,12 +135,15 @@ class Story extends React.Component {
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         projectCreateInputChange: projectCreateInputChange,
+        uploadPdf: uploadPdf
     }, dispatch);
 }
 function mapStateToProps(state) {
     return {
         youtube: state.projectCreate.youtube,
-        long_description: state.projectCreate.long_description
+        long_description: state.projectCreate.long_description,
+        project_id: state.projectCreate.id,
+        pdf_status: state.updateProjectCreate.pdf_status
     };
 }
 
