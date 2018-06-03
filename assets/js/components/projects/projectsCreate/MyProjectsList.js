@@ -17,7 +17,7 @@ import {
     NOTIFICATION_TIME
 } from '../../../Data/Constants';
 import {actionLogout} from "../../../reducer/login/actions";
-const IMG_URL = "../images/";
+const IMG_URL = "/projects_files/";
 class MyProjectsList extends React.Component {
     constructor(props) {
         super(props);
