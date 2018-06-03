@@ -17,8 +17,7 @@ class Home extends React.Component {
     }
 
     componentDidMount(){
-        const tok = localStorage.getItem('token');
-        if(tok && this.props.User.dataReceived === false && this.props.User.loading === false)
+        if(localStorage.getItem('token') && this.props.User.dataReceived === false && this.props.User.loading === false)
         {
             this.props.onGetUserInfo();
         }

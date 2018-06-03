@@ -11,6 +11,8 @@ import { Document, Page } from 'react-pdf/dist/entry.webpack';
 import throttle from "lodash.throttle";
 import {HOME_PAGE} from '../../Data/Constants';
 import DonateModal from "../DonateModal";
+import {getUserInfo} from "../../reducer/user/actions";
+
 
 
 //const DEFAULT_IMG_URL = "images/no-image.jpg";
@@ -34,6 +36,7 @@ class SingleProjectView extends React.Component {
 
         this.setDivSize = this.setDivSize.bind(this);
     }
+
     componentWillMount(){
         if(this.props.project) {
             this.props.project.long_description === "" && this.props.project.youtube === "" ?
@@ -67,8 +70,6 @@ class SingleProjectView extends React.Component {
         }
     }
     componentDidMount() {
-        console.log(this.props.location);
-
         this.setDivSize();
         window.addEventListener("resize", throttle( () => this.setDivSize()));
     }
@@ -112,7 +113,10 @@ class SingleProjectView extends React.Component {
         if(this.state.redirect) {
             return <Redirect to={this.state.redirectTo}/>
         }
-
+        if(localStorage.getItem('token') && this.props.User.dataReceived === false && this.props.User.loading === false)
+        {
+            this.props.onGetUserInfo();
+        }
         const opts = {
             playerVars: { // https://developers.google.com/youtube/player_parameters
                 autoplay: 0
@@ -249,6 +253,7 @@ class SingleProjectView extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    User:state.User,
     projectRedux: state.projects.project,
     status: state.projects.status,
     userBalance: state.User.userData.balance,
@@ -257,6 +262,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
+        onGetUserInfo: getUserInfo,
         getProject: getProject,
         onAddNewUserProjectTransaction: addNewUserProjectTransaction
     }, dispatch)
