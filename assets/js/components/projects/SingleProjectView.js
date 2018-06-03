@@ -50,7 +50,6 @@ class SingleProjectView extends React.Component {
             this.setState({
                 loading: true
             });
-
             this.props.getProject(this.props.match.params.project_id).then(() => {
                 switch (this.props.status) {
                     case 200:

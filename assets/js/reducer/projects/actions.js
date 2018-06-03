@@ -49,12 +49,12 @@ function fetchMoreProjects(category, from, to) {
 
 export function getProject(id) {
     return (dispatch) => {
-        return fetchProject(id).then(([response, json]) =>{
-            if(response.status === 200){
+        return fetchProject(id).then(([response]) =>{
+            if(response.status === 200  ){
                 dispatch({
                     type: LOAD_PROJECT_SUCCESS,
                     status: response.status,
-                    project: json
+                    project: response.json()
                 })
             }
             else{
@@ -72,10 +72,11 @@ function fetchProject(id) {
     return fetch(URL, {
         method: 'GET',
         headers: new Headers({
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
         })
     })
-        .then( response => Promise.all([response, response.json()]));
+        .then( response => Promise.all([response]));
 }
 
 export function getCategories() {

@@ -105,11 +105,12 @@ class ProjectsService
 
     /**
      * @param $id
-     * @return Project
+     * @return object
      */
     public function getProjectById($id)
     {
-        return $this->repository->find($id);
+        $project = $this->repository->find($id);
+        return empty($project) ? new Response('Tokio projekto nera', 400) : $project;
     }
 
     /**
