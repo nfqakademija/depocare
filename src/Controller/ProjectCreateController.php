@@ -37,6 +37,16 @@ class ProjectCreateController extends FOSRestController
     }
 
     /**
+     * @Post("/uploadPdf/{id}")
+     * @param Request $request
+     * @param $id
+     * @return ProjectCreateController
+     */
+    public function uploadPdf(Request $request, $id) {
+        return $this->success($this->getProjectsService()->uploadPdf($request, $id, $this->getUser()->getId()));
+    }
+
+    /**
      * @return ProjectsService
      */
     private function getProjectsService()

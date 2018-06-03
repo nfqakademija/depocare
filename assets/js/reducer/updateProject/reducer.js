@@ -2,7 +2,8 @@ import _ from 'lodash';
 import {RESPONSE} from "../updateProject/actions";
 
 const initialState = {
-    status: ''
+    status: '',
+    pdfStatus: ''
 };
 
 export default function (state = initialState, action) {

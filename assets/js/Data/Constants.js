@@ -24,7 +24,7 @@ export const HOME_PAGE = '/';
 /*
 Api routes
  */
-export const API_URL = 'http://depocare.projektai.nfqakademija.lt/api/';
+export const API_URL = 'http://localhost:8000/api/';
 export const URL_GET_PROJECTS = API_URL + 'projects';
 export const URL_GET_PROJECT = API_URL + 'project/';
 export const URL_GET_CATEGORIES = API_URL + 'categories';
@@ -35,4 +35,5 @@ export const URL_GET_USERS_PROJECT_LIST = API_URL + 'userProjects';
 export const URL_GET_USER = API_URL + 'profile';
 export const URL_REGISTER = API_URL + 'register';
 export const URL_LOGIN = API_URL + 'login';
+export const URL_PDF_UPLOAD = API_URL + 'uploadPdf/';
 export const URL_NEW_TRANSACTION = API_URL + 'newtransaction';

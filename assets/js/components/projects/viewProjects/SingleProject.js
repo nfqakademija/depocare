@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {handleFavoriteProjectsChange} from '../../../reducer/projects/actions';
-
+const IMG_URL = "../images/";
 
 class SingleProject extends React.Component {
     constructor(props) {
@@ -50,7 +50,7 @@ class SingleProject extends React.Component {
         this.checkIfFavorite();
         return (
             <div className="projects-view-grid">
-                <img src={this.props.project.image} className="projects-view-img"/>
+                <img src={IMG_URL+this.props.project.image} className="projects-view-img"/>
                     <div className="projects-view-title-by d-inline">
                         {
                             this.props.User.dataReceived

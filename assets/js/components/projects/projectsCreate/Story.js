@@ -1,12 +1,13 @@
 import React  from 'react';
 import {projectCreateInputChange} from "../../../reducer/projectCreate/actions";
+import {uploadPdf} from "../../../reducer/updateProject/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import ReactS3 from "../../ReactS3/ReactS3";
 import Notifications from "../../Notifications";
 import Dropzone from 'react-dropzone'
 import { Page } from 'react-pdf';
 import { Document } from 'react-pdf/dist/entry.webpack';
+const PDF_URL = "../public/pdf/";
 
 class Story extends React.Component {
     constructor(props) {
@@ -19,25 +20,12 @@ class Story extends React.Component {
             return;
         }
         acceptedFiles.forEach(file => {
-            Object.defineProperty(file, 'name', {
-                writable: true,
-                value: '_depocare_pdf_' + file.name + '_depocare_pdf_' + Date.now()
+            let formData = new FormData();
+            formData.append('file', file);
+            this.props.uploadPdf(
+                formData, this.props.id
+            ).then(() => {
             });
-            ReactS3.upload(file, {
-                bucketName: 'haroldas-depocare',
-                region: 'eu-central-1',
-                albumName: 'pdf',
-                accessKeyId: 'AKIAJHHG2MAQQW43W2QQ',
-                secretAccessKey: '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',
-            })
-                .then((data) => {
-                    if (data.result.status === 204) {
-                        Notifications.createNotification('success', 'Failas įkeltas', '');
-                        this.changeLongDescription(data.location);
-                    } else {
-                        Notifications.createNotification('error', 'Nepavyko išsaugoti failo', 'Įvyko klaida, nepavyko išsaugoti failo, prašome pamėginti dar kartą');
-                    }
-                })
         });
     }
 
@@ -141,12 +129,14 @@ class Story extends React.Component {
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         projectCreateInputChange: projectCreateInputChange,
+        uploadPdf: uploadPdf
     }, dispatch);
 }
 function mapStateToProps(state) {
     return {
         youtube: state.projectCreate.youtube,
-        long_description: state.projectCreate.long_description
+        long_description: state.projectCreate.long_description,
+        project_id: state.projectCreate.id
     };
 }
 
