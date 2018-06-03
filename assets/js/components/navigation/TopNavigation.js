@@ -29,7 +29,7 @@ class TopNavigation extends React.Component {
                             {this.props.User.userData.balance*10}</Link></li>
                         <li className="dropdown">
                             <a className="dropdown-toggle" style={{paddingLeft: '0px'}} data-toggle="dropdown" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                               <div className="navbar-profile-image-wraper">    {this.props.User.userData.firstname}<img className="navbar-profile-image" src={this.props.User.userData.image}/></div>
+                               <div className="navbar-profile-image-wraper">    {this.props.User.userData.firstname}<img className="navbar-profile-image" src={'/avatars/' + this.props.User.userData.image}/></div>
                             </a>
                             <ul className="dropdown-menu">
                                 <li className="dropdown-item"><Link to='/profilis'>Mano paskyra</Link></li>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {handleFavoriteProjectsChange} from '../../../reducer/projects/actions';
-const IMG_URL = "../images/";
+const IMG_URL = "/projects_files/";
 
 class SingleProject extends React.Component {
     constructor(props) {

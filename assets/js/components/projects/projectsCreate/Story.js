@@ -7,7 +7,7 @@ import Notifications from "../../Notifications";
 import Dropzone from 'react-dropzone'
 import { Page } from 'react-pdf';
 import { Document } from 'react-pdf/dist/entry.webpack';
-const PDF_URL = "../pdf/";
+const PDF_URL = "/projects_files/";
 
 class Story extends React.Component {
     constructor(props) {
@@ -91,7 +91,7 @@ class Story extends React.Component {
                                         <Dropzone className="drop-down" onDrop={this.onDrop.bind(this)} accept=".pdf">
                                             {this.props.long_description === "" ?
                                                 <span className="drop-down-text">Įkelkite PDF failą.</span> :
-                                                <span>{this.props.long_description.split("_depocare_pdf_")[1]}</span>}
+                                                <span>{this.props.long_description.split("_depocare_file_")[1]}</span>}
                                         </Dropzone>
                                     </div>
                                 </div>

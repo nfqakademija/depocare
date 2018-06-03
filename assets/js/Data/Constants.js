@@ -35,5 +35,6 @@ export const URL_GET_USERS_PROJECT_LIST = API_URL + 'userProjects';
 export const URL_GET_USER = API_URL + 'profile';
 export const URL_REGISTER = API_URL + 'register';
 export const URL_LOGIN = API_URL + 'login';
-export const URL_PDF_UPLOAD = API_URL + 'uploadPdf/';
+export const URL_PROJECT_FILE_UPLOAD = API_URL + 'uploadProjectFile';
+export const URL_AVATAR_UPLOAD = API_URL + 'uploadAvatar';
 export const URL_NEW_TRANSACTION = API_URL + 'newtransaction';

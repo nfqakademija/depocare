@@ -10,7 +10,6 @@ use App\Repository\CityRepository;
 use App\Repository\OrganizationRepository;
 use App\Entity\Project;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProjectsService
 {
@@ -184,19 +183,16 @@ class ProjectsService
         return $project;
     }
 
-    public function uploadPdf($request, $id, $user) {
+    public function uploadFile($request) {
         $file = $request->files->get('file');
 
-        $project = $this->repository->find($id);
-
-        $fileName = $this->generateUniqueFileName() . '_depocare_pdf_' . $file->getClientOriginalName();
+        $fileName = $this->generateUniqueFileName() . '_depocare_file_' . $file->getClientOriginalName();
 
         // moves the file to the directory where brochures are stored
         $file->move(
-            'pdf',
+            'projects_files',
             $fileName
         );
-        $project->setLongDescription($fileName);
 
         return $fileName;
     }

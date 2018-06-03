@@ -117,4 +117,24 @@ class UsersService
         }
         return true;
     }
+
+    public function uploadAvatar($request) {
+        $file = $request->files->get('file');
+
+        $fileName = $this->generateUniqueFileName() . '_depocare_avatar_' . $file->getClientOriginalName();
+
+        // moves the file to the directory where brochures are stored
+        $file->move(
+            'avatars',
+            $fileName
+        );
+
+        return $fileName;
+    }
+
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
+    }
+
 }

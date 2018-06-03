@@ -5,12 +5,12 @@ import SingleProject from '../viewProjects/SingleProject';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { projectCreateInputChange } from '../../../reducer/projectCreate/actions';
-import {END_DATE_CHANGE, IMAGE_CHANGE, TITLE_CHANGE, CHARITY_FUND_CHANGE, DESCRIPTION_CHANGE, GOAL_CHANGE, CATEGORY_CHANGE, CITY_CHANGE} from "../../../reducer/projectCreate/actions";
+import { uploadPhoto } from "../../../reducer/updateProject/actions";
+import {END_DATE_CHANGE, TITLE_CHANGE, CHARITY_FUND_CHANGE, DESCRIPTION_CHANGE, GOAL_CHANGE, CATEGORY_CHANGE, CITY_CHANGE} from "../../../reducer/projectCreate/actions";
 import Cities from '../../../Data/cities.json'
 import Categories from '../../../Data/categories.json'
 import * as Constants from '../../../Data/Constants.js'
 import Notifications from "../../Notifications";
-import ReactS3 from '../../ReactS3/ReactS3';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -31,21 +31,13 @@ class Basic extends React.Component {
             return;
         }
         acceptedFiles.forEach(file => {
-            Object.defineProperty(file, 'name', {
-                writable: true,
-                value: file.name + '_' + Date.now()
-            });
-            ReactS3.upload(file, {
-                bucketName: 'haroldas-depocare',
-                region: 'eu-central-1',
-                albumName: 'photos',
-                accessKeyId: 'AKIAJHHG2MAQQW43W2QQ',
-                secretAccessKey: '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',
-            })
-            .then((data) => {
-                if (data.result.status === 204) {
+            let formData = new FormData();
+            formData.append('file', file);
+            this.props.uploadPhoto(
+                formData
+            ).then(() => {
+                if (this.props.photo_status === 200) {
                     Notifications.createNotification('success','Nuotrauka įkelta', '');
-                    this.changeImage(data.location);
                 } else {
                     Notifications.createNotification('error','Nepavyko išsaugoti nuotrakos','Įvyko klaida, nepavyko išsaugoti nuotraukos, prašome pamėginti dar kartą');
                 }
@@ -70,9 +62,6 @@ class Basic extends React.Component {
         })
     }
 
-    changeImage(value) {
-        this.props.projectCreateInputChange({type: IMAGE_CHANGE,'image': value});
-    }
     changeTitle(e) {
         this.props.projectCreateInputChange({type: TITLE_CHANGE,'title': e.target.value});
         this.setState({
@@ -295,6 +284,7 @@ class Basic extends React.Component {
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         projectCreateInputChange: projectCreateInputChange,
+        uploadPhoto: uploadPhoto
     }, dispatch);
 }
 function mapStateToProps(state) {
@@ -306,7 +296,8 @@ function mapStateToProps(state) {
         category: state.projectCreate.category,
         city: state.projectCreate.city,
         image: state.projectCreate.image,
-        end_date: state.projectCreate.end_date
+        end_date: state.projectCreate.end_date,
+        photo_status: state.updateProjectCreate.photo_status,
     };
 }
 

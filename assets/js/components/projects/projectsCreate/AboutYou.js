@@ -2,10 +2,11 @@ import React  from 'react';
 import Dropzone from 'react-dropzone'
 import {projectCreateInputChange} from "../../../reducer/projectCreate/actions";
 import {connect} from "react-redux";
+import { uploadAvatar } from "../../../reducer/updateProject/actions";
 import {bindActionCreators} from "redux";
 import Notifications from "../../Notifications";
-import ReactS3 from "../../ReactS3/ReactS3";
-import {PROFILE_IMAGE_CHANGE, BIOGRAPHY_CHANGE, FIRST_NAME_CHANGE, LAST_NAME_CHANGE}from "../../../reducer/projectCreate/actions"
+import {BIOGRAPHY_CHANGE, FIRST_NAME_CHANGE, LAST_NAME_CHANGE}from "../../../reducer/projectCreate/actions"
+const AVATAR_PATH = "/avatars/";
 class AboutYou extends React.Component {
     constructor(props) {
         super(props);
@@ -17,30 +18,18 @@ class AboutYou extends React.Component {
             return;
         }
         acceptedFiles.forEach(file => {
-            Object.defineProperty(file, 'name', {
-                writable: true,
-                value: file.name + '_' + Date.now()
-            });
-            ReactS3.upload(file, {
-                bucketName: 'haroldas-depocare',
-                region: 'eu-central-1',
-                albumName: 'photos',
-                accessKeyId: 'AKIAJHHG2MAQQW43W2QQ',
-                secretAccessKey: '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',
+            let formData = new FormData();
+            formData.append('file', file);
+            this.props.uploadAvatar(
+                formData
+            ).then(() => {
+                if (this.props.avatar_status === 200) {
+                    Notifications.createNotification('success','Nuotrauka įkelta', '');
+                } else {
+                    Notifications.createNotification('error','Nepavyko išsaugoti nuotrakos','Įvyko klaida, nepavyko išsaugoti nuotraukos, prašome pamėginti dar kartą');
+                }
             })
-                .then((data) => {
-                    if (data.result.status === 204) {
-                        Notifications.createNotification('success','Nuotrauka įkelta', '');
-                        this.changeImage(data.location);
-                    } else {
-                        Notifications.createNotification('error','Nepavyko išsaugoti nuotrakos','Įvyko klaida, nepavyko išsaugoti nuotraukos, prašome pamėginti dar kartą');
-                    }
-                })
         });
-    }
-
-    changeImage(value) {
-        this.props.projectCreateInputChange({type:PROFILE_IMAGE_CHANGE, 'profile_image': value });
     }
 
     changeBiography(e) {
@@ -68,7 +57,7 @@ class AboutYou extends React.Component {
                             <div className="col-xs-9 project-create-content">
                                 <div className="dropzone">
                                     <Dropzone className="drop-down" onDrop={this.onDrop.bind(this)} accept="image/jpeg, image/png">
-                                        <span style={{float: 'left'}} className="drop-down-text"><img style={{borderRadius: '50%', width: '94px', height: '94px'}} src={this.props.profile_image}/></span>
+                                        <span style={{float: 'left'}} className="drop-down-text"><img style={{borderRadius: '50%', width: '94px', height: '94px'}} src={AVATAR_PATH + this.props.profile_image}/></span>
                                         <span className="drop-down-text">Įkelkite profilio nuotrauką.</span>
                                     </Dropzone>
                                 </div>
@@ -176,6 +165,7 @@ class AboutYou extends React.Component {
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         projectCreateInputChange: projectCreateInputChange,
+        uploadAvatar: uploadAvatar
     }, dispatch);
 }
 function mapStateToProps(state) {
@@ -184,7 +174,8 @@ function mapStateToProps(state) {
         lastName: state.projectCreate.last_name,
         flagHasActiveProject: state.User.userData.flag_has_active_project,
         biography: state.projectCreate.biography,
-        profile_image: state.projectCreate.profile_image
+        profile_image: state.projectCreate.profile_image,
+        avatar_status: state.updateProjectCreate.avatar_status
     };
 }
 

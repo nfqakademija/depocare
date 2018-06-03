@@ -13,7 +13,7 @@ import {HOME_PAGE} from '../../Data/Constants';
 import DonateModal from "../DonateModal";
 
 
-const IMG_URL = "../images/";
+const IMG_URL = "/projects_files/";
 
 
 class SingleProjectView extends React.Component {

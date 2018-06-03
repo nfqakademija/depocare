@@ -5,6 +5,7 @@ use FOS\RestBundle\Controller\Annotations\Delete;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -53,6 +54,15 @@ class UserController extends FOSRestController
         return $this->success($this->getUsersService()->
                 addUserFavoriteProject($this->getUser(), $project_id));
 
+    }
+
+    /**
+     * @Post("/uploadAvatar")
+     * @param Request $request
+     * @return UserController
+     */
+    public function uploadAvatar(Request $request) {
+        return $this->success($this->getUsersService()->uploadAvatar($request));
     }
 
 //    /**
