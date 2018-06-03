@@ -1,5 +1,5 @@
 import {URL_UPDATE_PROJECT, URL_PDF_UPLOAD} from "../../Data/Constants";
-
+import {LONG_DESCRIPTION_CHANGE} from "../projectCreate/actions";
 export const RESPONSE = "RESPONSE_UPDATE_PROJECT_CREATE";
 export const RESPONSE_PDF_UPLOAD = "RESPONSE_PDF_UPLOAD";
 
@@ -25,8 +25,9 @@ function updateProjectCreateFunction(data) {
 
 export const uploadPdf = (data) => {
     return (dispatch) => {
-        return uploadPdfFunction(data).then(([response]) =>{
-            return dispatch({type: RESPONSE, status:response.status});
+        return uploadPdfFunction(data).then(([response, json]) =>{
+            dispatch({type: LONG_DESCRIPTION_CHANGE, payload: {long_description: json}});
+            return dispatch({type: RESPONSE_PDF_UPLOAD, status:response.status});
         })
     };
 };
@@ -36,7 +37,8 @@ function uploadPdfFunction(data) {
         method: 'POST',
         body: data,
         headers: new Headers({
-            'Authorization': 'Bearer '+ localStorage.getItem("token")
+            'Authorization': 'Bearer '+ localStorage.getItem("token"),
+            'Accept': 'application/json',
         })
-    }).then( response => Promise.all([response]));
+    }).then( response => Promise.all([response, response.json()]));
 }

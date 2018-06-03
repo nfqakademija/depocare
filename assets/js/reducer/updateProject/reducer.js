@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import {RESPONSE} from "../updateProject/actions";
+import {RESPONSE, RESPONSE_PDF_UPLOAD} from "../updateProject/actions";
 
 const initialState = {
     status: '',
-    pdfStatus: ''
+    pdf_status: ''
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +11,10 @@ export default function (state = initialState, action) {
         case RESPONSE:
                 return _.assign({}, state, {
                     status: action.status
+                });
+            case RESPONSE_PDF_UPLOAD:
+                return _.assign({}, state, {
+                    pdf_status: action.status
                 });
         default:
             return state

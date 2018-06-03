@@ -1,5 +1,5 @@
 import React  from 'react';
-import {projectCreateInputChange} from "../../../reducer/projectCreate/actions";
+import {LONG_DESCRIPTION_CHANGE, projectCreateInputChange} from "../../../reducer/projectCreate/actions";
 import {uploadPdf} from "../../../reducer/updateProject/actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
@@ -7,7 +7,7 @@ import Notifications from "../../Notifications";
 import Dropzone from 'react-dropzone'
 import { Page } from 'react-pdf';
 import { Document } from 'react-pdf/dist/entry.webpack';
-const PDF_URL = "../public/pdf/";
+const PDF_URL = "../pdf/";
 
 class Story extends React.Component {
     constructor(props) {
@@ -25,13 +25,19 @@ class Story extends React.Component {
             this.props.uploadPdf(
                 formData, this.props.id
             ).then(() => {
+                if (this.props.pdf_status === 200) {
+                    Notifications.createNotification('success', 'Failas įkeltas', '');
+                } else {
+                    Notifications.createNotification('error', 'Nepavyko išsaugoti failo', 'Įvyko klaida, nepavyko išsaugoti failo, prašome pamėginti dar kartą');
+                }
             });
-        });
+        })
     }
 
     changeLongDescription(value) {
         this.props.projectCreateInputChange({type: 'LONG_DESCRIPTION_CHANGE','long_description': value});
     };
+
 
     changeYoutube(e) {
         this.props.projectCreateInputChange({type: 'YOUTUBE_CHANGE','youtube': e.target.value});
@@ -107,7 +113,7 @@ class Story extends React.Component {
                     </div>
 
                     <div className="col-xs-4">
-                        <Document file={this.props.long_description}
+                        <Document file={PDF_URL + this.props.long_description}
                             loading={
                                 <div className="project-view-info-pdf-loading">
                                     <div id="clearBtn2" className="clearBtn2 project-create-loader"/>
@@ -136,7 +142,8 @@ function mapStateToProps(state) {
     return {
         youtube: state.projectCreate.youtube,
         long_description: state.projectCreate.long_description,
-        project_id: state.projectCreate.id
+        project_id: state.projectCreate.id,
+        pdf_status: state.updateProjectCreate.pdf_status
     };
 }
 

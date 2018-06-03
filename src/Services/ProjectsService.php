@@ -136,6 +136,7 @@ class ProjectsService
         $project->setTitle($content->title);
         $project->setEndDate($content->end_date);
         $project->setDescription($content->description);
+        $project->setLongDescription($content->long_description);
         $project->setGoal($content->goal);
         $project->setCharityFund($content->charity_fund);
         $project->setYoutube($content->youtube);
