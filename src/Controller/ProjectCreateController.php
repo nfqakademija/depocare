@@ -36,7 +36,11 @@ class ProjectCreateController extends FOSRestController
                 new Response('Prisijunktite', RESPONSE::HTTP_UNAUTHORIZED) :
             (($this->getUser()->getId() !== $project->getUserId()->getId() || !$project->isFlagCreate()) ?
                 new Response('Negalima redaguoti projekto', RESPONSE::HTTP_FORBIDDEN) :
-            ((!$this->getUsersService()->updateUserProjectCreate($content, $project->getUserId()->getId(), $this->getUser()->getId())) ?
+            ((!$this->getUsersService()->updateUserProjectCreate(
+                $content,
+                $project->getUserId()->getId(),
+                $this->getUser()->getId()
+            )) ?
                 new Response('Nepavyko atnaujinti profilio informacijos', RESPONSE::HTTP_BAD_REQUEST) :
             ((!$this->getOrganizationService()->updateOrganizationProjectCreate($content)) ?
                 new Response('Nepavyko atnaujinti organizacijos informacijos', RESPONSE::HTTP_BAD_REQUEST) :
