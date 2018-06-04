@@ -1,4 +1,5 @@
 import {URL_GET_USER} from "../../Data/Constants";
+import {LOGOUT} from "../login/actions";
 
 export const GET_USER_INFO_REQUEST = "get_user_info_request";
 export const GET_USER_INFO_SUCCESS = "get_user_info_success";
@@ -19,6 +20,9 @@ export function getUserInfo() {
                     type: GET_USER_INFO_ERROR,
                     error: response
                 });
+                dispatch({
+                    type: LOGOUT
+                })
             }
         })
     }
