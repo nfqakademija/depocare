@@ -9,19 +9,11 @@ use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
 use App\Repository\OrganizationRepository;
 use App\Repository\ProjectRepository;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 class ProjectsService
 {
     const DEFAULT_LIMIT = 10;
-    /**
-     * @var UsersService
-     */
-    private $usersService;
-    /**
-     * @var OrganizationsService
-     */
-    private $organizationService;
     /**
      * @var ProjectRepository
      */
@@ -35,13 +27,13 @@ class ProjectsService
      */
     private $cityRepository;
     /**
-     * @var OrganizationRepository
-     */
-    private $organizationRepository;
-    /**
      * @var BankRepository
      */
     private $bankRepository;
+    /**
+     * @var OrganizationRepository
+     */
+    private $organizationRepository;
 
     /**
      * ProjectService constructor.
@@ -49,8 +41,6 @@ class ProjectsService
      * @param BankRepository $bankRepository
      * @param CategoryRepository $categoryRepository
      * @param CityRepository $cityRepository
-     * @param \App\Services\UsersService $usersService
-     * @param OrganizationsService $organizationsService
      * @param OrganizationRepository $organizationRepository
      */
     public function __construct(
@@ -58,17 +48,13 @@ class ProjectsService
         BankRepository $bankRepository,
         CategoryRepository $categoryRepository,
         CityRepository $cityRepository,
-        UsersService $usersService,
-        OrganizationsService $organizationsService,
         OrganizationRepository $organizationRepository
     ) {
         $this->repository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->cityRepository = $cityRepository;
-        $this->usersService = $usersService;
-        $this->organizationService = $organizationsService;
-        $this->organizationRepository = $organizationRepository;
         $this->bankRepository = $bankRepository;
+        $this->organizationRepository = $organizationRepository;
     }
 
     /**
@@ -104,71 +90,30 @@ class ProjectsService
     }
 
     /**
-     * @param $id
-     * @return object
+     * @param $content
+     * @param $project
+     * @return bool|\Exception|Exception
      */
-    public function getProjectById($id)
+    public function updateProject($content, $project)
     {
-        $project = $this->repository->find($id);
-        return empty($project) ? new Response('Tokio projekto nera', 400) : $project;
-    }
+        try {
+            $project->setCategory($this->categoryRepository->find($content->category));
+            $project->setCity($this->cityRepository->find($content->city));
+            $project->setBank($this->bankRepository->find($content->bank));
+            $project->setTitle($content->title);
+            $project->setEndDate($content->end_date);
+            $project->setDescription($content->description);
+            $project->setLongDescription($content->long_description);
+            $project->setGoal($content->goal);
+            $project->setCharityFund($content->charity_fund);
+            $project->setYoutube($content->youtube);
+            $project->setImage($content->image);
 
-    /**
-     * @param $id
-     * @return object
-     */
-    public function getProjectEditById($projectId)
-    {
-        return $this->getProjectById($projectId);
-    }
-
-    /**
-     * @param $request
-     * @param $id
-     * @param $user
-     * @return Response
-     */
-    public function updateProject($content, $id, $user)
-    {
-        $project = $this->repository->find($id);
-        if (!$project) {
-            return new Response('Projektas neegzistuoja', 400);
+            $this->repository->save($project);
+        } catch (\Exception $e){
+            return false;
         }
-        if (!$this->usersService->updateUserProjectCreate(
-            $content,
-            $project->getUserId()->getId(),
-            $user
-        )
-        ) {
-            return new Response("Nepavyko atnaujinti profilio informacijos", 400);
-        }
-
-        if (!$this->organizationService->updateOrganizationProjectCreate($content)) {
-            return new Response("Nepavyko atnaujinti profilio informacijos", 400);
-        }
-
-        if (!$project->getUserId()->getId() === $user) {
-            return new Response("Neturite teisių redaguoti projektą", 403);
-        }
-        if (!$project->isFlagCreate()) {
-            return new Response("Projekto negalima redaguoti", 403);
-        }
-
-        $project->setCategory($this->categoryRepository->find($content->category));
-        $project->setCity($this->cityRepository->find($content->city));
-        $project->setBank($this->bankRepository->find($content->bank));
-        $project->setTitle($content->title);
-        $project->setEndDate($content->end_date);
-        $project->setDescription($content->description);
-        $project->setLongDescription($content->long_description);
-        $project->setGoal($content->goal);
-        $project->setCharityFund($content->charity_fund);
-        $project->setYoutube($content->youtube);
-        $project->setImage($content->image);
-
-        $this->repository->save($project);
-
-        return new Response('Projektas išsaugotas', 200);
+        return true;
     }
 
     /**
@@ -177,49 +122,64 @@ class ProjectsService
      */
     public function getAllUserProjects($userId)
     {
-        return $this->repository->getAllUserProjects($userId);
+        return $this->repository->findBy([
+            'user_id' => $userId
+        ]);
     }
 
     /**
      * @param $userId
-     * @return Project
+     * @return Project|bool
      */
     public function createEmptyProject($userId)
     {
-        $project = new Project();
-        $project->setUserId($userId);
-        $project->setTitle('');
-        $project->setImage('');
-        $project->setDescription('');
-        $project->setEnddate('');
-        $project->setGoal(0);
-        $project->setReached(0);
-        $project->setCharityFund('');
-        $project->setFlagCreate(true);
-        $project->setLongDescription('');
-        $project->setYoutube('');
-        $project->setImage('no-image.jpg');
-        $project->setCity($this->cityRepository->find(1));
-        $project->setCategory($this->categoryRepository->find(1));
-        $project->setBank($this->bankRepository->find(1));
-        $project->setOrganization(new Organization());
-        $this->repository->save($project);
+        try {
+            $project = new Project();
+            $project->setUserId($userId);
+            $project->setTitle('');
+            $project->setImage('');
+            $project->setDescription('');
+            $project->setEnddate('');
+            $project->setGoal(0);
+            $project->setReached(0);
+            $project->setCharityFund('');
+            $project->setFlagCreate(true);
+            $project->setLongDescription('');
+            $project->setYoutube('');
+            $project->setImage('no-image.jpg');
+            $project->setCity($this->cityRepository->find(1));
+            $project->setCategory($this->categoryRepository->find(1));
+            $project->setBank($this->bankRepository->find(1));
 
-        return $project;
+            $organization = new Organization();
+            $project->setOrganization($organization);
+            $this->organizationRepository->save($organization);
+            $this->repository->save($project);
+
+            return $project;
+        } catch( \Exception $e) {
+            return false;
+        }
     }
 
-    public function uploadFile($request) {
-        $file = $request->files->get('file');
+    /**
+     * @param $request
+     * @return bool|string
+     */
+    public function uploadProjectFile($request)
+    {
+        try {
+            $file = $request->files->get('file');
+            $fileName = $this->generateUniqueFileName() . '_depocare_file_' . $file->getClientOriginalName();
 
-        $fileName = $this->generateUniqueFileName() . '_depocare_file_' . $file->getClientOriginalName();
-
-        // moves the file to the directory where brochures are stored
-        $file->move(
-            'projects_files',
-            $fileName
-        );
-
-        return $fileName;
+            $file->move(
+                'projects_files',
+                $fileName
+            );
+            return $fileName;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     private function generateUniqueFileName()

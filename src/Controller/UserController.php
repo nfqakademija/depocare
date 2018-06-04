@@ -62,7 +62,8 @@ class UserController extends FOSRestController
      * @param Request $request
      * @return UserController
      */
-    public function uploadAvatar(Request $request) {
+    public function uploadAvatar(Request $request)
+    {
         return $this->success($this->getUsersService()->uploadAvatar($request));
     }
 

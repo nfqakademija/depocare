@@ -65,13 +65,6 @@ class ProjectRepository extends ServiceEntityRepository
         $this->_em->flush($entity);
     }
 
-    public function getAllUserProjects($user_id)
-    {
-        return $this->findBy([
-            'user_id' => $user_id
-        ]);
-    }
-
     /**
      * @param Project $project
      * @param $amount

@@ -3,11 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Project;
-use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\View\View;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,29 +46,37 @@ class ProjectsController extends FOSRestController
 
     /**
      * @Get("/project/{id}")
-     * @return object
+     * @param $id
+     * @return Project|JsonResponse
      */
     public function getProjectById($id)
     {
-        return $this->getProjectsService()->getProjectById($id);
+        $project = $this->getProjectRepository()->find($id);
+
+        return
+            empty($project) ?
+                new JsonResponse('', Response::HTTP_NOT_FOUND) :
+            $project->isFlagCreate() ?
+                new JsonResponse( '',Response::HTTP_FORBIDDEN) :
+                $project;
     }
 
     /**
      * @Get("/projectEdit/{id}")
      * @param $id
-     * @return mixed
+     * @return Project|JsonResponse
      */
     public function getProjectEditById($id)
     {
-        $project = $this->getProjectsService()->getProjectEditById($id);
-        if (!$project) {
-            return new Response('Projektas neegzistuoja', 400);
-        }
-        if ($project->getUserId()->getId() !== $this->getUser()->getId()) {
-            return new Response("Neturite teisių redaguoti projektą", 403);
-        }
+        $project = $this->getProjectRepository()->find($id);
 
-        return $project;
+        return
+            empty($project) ?
+                new JsonResponse('', Response::HTTP_NOT_FOUND) :
+            !$project->isFlagCreate() || $this->getUser() !== $project->getUserId() ?
+                new JsonResponse('', Response::HTTP_FORBIDDEN) :
+                $project;
+
     }
 
     /**
@@ -80,9 +87,10 @@ class ProjectsController extends FOSRestController
         return $this->success($this->getProjectsService()->getAllUserProjects($this->getUser()));
     }
 
-    /**
-     * @return ProjectsService
-     */
+    private function getProjectRepository() {
+        return  $this->getDoctrine()->getRepository(Project::class);
+    }
+
     private function getProjectsService()
     {
         return $this->get('projects.service');

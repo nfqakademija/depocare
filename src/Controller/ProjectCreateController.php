@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
-use App\Services\ProjectsService;
 use App\Traits\ApiTraits;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Put;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Project;
 
 /**
  * @Route("/api")
@@ -21,36 +23,69 @@ class ProjectCreateController extends FOSRestController
      * @Put("/updateProject/{id}")
      * @param Request $request
      * @param $id
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function updateProject(Request $request, $id)
     {
-        return $this->getProjectsService()->updateProject(
-            json_decode($request->getContent()),
-            $id,
-            $this->getUser()->getId()
-        );
+        $project = $this->getProjectRepository()->find($id);
+        $content = json_decode($request->getContent());
+        return
+            (empty($project)) ?
+                new Response('Projektas neegzistuoja', RESPONSE::HTTP_NOT_FOUND) :
+            ((empty($this->getUser())) ?
+                new Response('Prisijunktite', RESPONSE::HTTP_UNAUTHORIZED) :
+            (($this->getUser()->getId() !== $project->getUserId()->getId() || !$project->isFlagCreate()) ?
+                new Response('Negalima redaguoti projekto', RESPONSE::HTTP_FORBIDDEN) :
+            ((!$this->getUsersService()->updateUserProjectCreate($content, $project->getUserId()->getId(), $this->getUser()->getId())) ?
+                new Response('Nepavyko atnaujinti profilio informacijos', RESPONSE::HTTP_BAD_REQUEST) :
+            ((!$this->getOrganizationService()->updateOrganizationProjectCreate($content)) ?
+                new Response('Nepavyko atnaujinti organizacijos informacijos', RESPONSE::HTTP_BAD_REQUEST  ) :
+            (($this->getProjectsService()->updateProject($content, $project)) ?
+                new Response('Projektas išsaugotas', RESPONSE::HTTP_OK) :
+                new Response('Nepavyko išsaugoti projekto', RESPONSE::HTTP_BAD_REQUEST))))));
     }
 
     /**
      * @Post("/newProject")
+     * @return ProjectCreateController|JsonResponse
      */
     public function createEmptyProject()
     {
-        return $this->success($this->getProjectsService()->createEmptyProject($this->getUser()));
+        $result = $this->success($this->getProjectsService()->createEmptyProject($this->getUser()));
+        //return $project;
+        return
+            $result ?
+                $result :
+                new JsonResponse('Nepavyko sukurti projekto', RESPONSE::HTTP_BAD_REQUEST);
     }
 
     /**
      * @Post("/uploadProjectFile")
      * @param Request $request
-     * @return ProjectCreateController
+     * @return JsonResponse|Response
      */
-    public function uploadPdf(Request $request) {
-        return $this->success($this->getProjectsService()->uploadFile($request));
+    public function uploadProjectFile(Request $request) {
+        $fileName = $this->getProjectsService()->uploadProjectFile($request);
+        return
+            $fileName ?
+                new JsonResponse($fileName, RESPONSE::HTTP_OK) :
+                new JsonResponse('Nepavyko įkleti failo', RESPONSE::HTTP_BAD_REQUEST);
+    }
+
+    private function getProjectRepository() {
+        return  $this->getDoctrine()->getRepository(Project::class);
     }
 
     private function getProjectsService()
     {
         return $this->get('projects.service');
+    }
+    private function getUsersService()
+    {
+        return $this->get('users.service');
+    }
+    private function getOrganizationService()
+    {
+        return $this->get('organizations.service');
     }
 }

@@ -48,12 +48,12 @@ function fetchMoreProjects(category, from, to) {
 
 export function getProject(id) {
     return (dispatch) => {
-        return fetchProject(id).then(([response]) =>{
+        return fetchProject(id).then(([response, json]) =>{
             if(response.status === 200  ){
                 dispatch({
                     type: LOAD_PROJECT_SUCCESS,
                     status: response.status,
-                    project: response.json()
+                    project: json
                 })
             } else {
                 dispatch({
@@ -74,7 +74,7 @@ function fetchProject(id) {
             'Content-Type': 'application/json',
         })
     })
-        .then( response => Promise.all([response]));
+        .then( response => Promise.all([response, response.json()]));
 }
 
 export function getCategories() {
@@ -92,7 +92,7 @@ export function getCategories() {
             else{
                 dispatch({
                     type: LOAD_CATEGORIES_ERROR,
-                    error: response
+                    error: response.json
                 })
             }
         })
@@ -106,7 +106,7 @@ function fetchCategories() {
             'Content-Type': 'application/json',
         })
     })
-        .then( response => Promise.all([response, response.json()]));
+    .then( response => Promise.all([response, response.json()]));
 }
 
 export function getFavoriteProjects(favorite_projects){
