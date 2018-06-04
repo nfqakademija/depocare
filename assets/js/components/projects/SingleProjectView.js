@@ -130,6 +130,7 @@ class SingleProjectView extends React.Component {
                 autoplay: 0
             }
         };
+
         if(!this.state.loading) {
             return (
                 <div>
@@ -165,15 +166,23 @@ class SingleProjectView extends React.Component {
                                         </div>
                                         <div className="project-view-goal-inline project-view-goal-inline-right">
                                             <div className="project-view-goal-text">Surinkta</div>
-                                            <div className="project-view-blue-text"><b>{Math.round(this.props.projectRedux.reached / this.state.project.goal * 100) + '%'}</b></div>
+                                            <div className="project-view-blue-text"><b>{Math.round(
+                                                !this.state.project.reached || this.state.project.reached <= 0
+                                                ? 0
+                                                :this.state.project.reached / this.state.project.goal * 100) + '%'}
+                                                </b>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="w3-light-grey w3-light-grey w3-tiny project-view-progress-bar">
                                         <div className="w3-blue project-view-progress-bar-inside" style={{
-                                            width: this.props.projectRedux.reached / this.state.project.goal * 100 < 100
-                                                ? this.props.projectRedux.reached / this.state.project.goal * 100
-                                                : 100
-                                                + '%',
+                                            width:
+                                                !this.state.project.reached || this.state.project.reached <= 0
+                                                ? 0
+                                                : this.state.project.reached / this.state.project.goal * 100 > 100
+                                                    ? 100
+                                                    :this.state.project.reached / this.state.project.goal * 100
+                                                    + '%',
                                             height: '8px'}}/>
                                     </div>
                                     <div className="project-view-goal-text">Liko dienų</div>
