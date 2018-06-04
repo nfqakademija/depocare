@@ -110,7 +110,7 @@ class ProjectsService
             $project->setImage($content->image);
 
             $this->repository->save($project);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
         return true;
@@ -157,7 +157,7 @@ class ProjectsService
             $this->repository->save($project);
 
             return $project;
-        } catch( \Exception $e) {
+        } catch (\Exception $e) {
             return false;
         }
     }

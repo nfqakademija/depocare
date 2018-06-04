@@ -57,7 +57,7 @@ class ProjectsController extends FOSRestController
             empty($project) ?
                 new JsonResponse('', Response::HTTP_NOT_FOUND) :
             $project->isFlagCreate() ?
-                new JsonResponse( '',Response::HTTP_FORBIDDEN) :
+                new JsonResponse('', Response::HTTP_FORBIDDEN) :
                 $project;
     }
 
@@ -76,7 +76,6 @@ class ProjectsController extends FOSRestController
             !$project->isFlagCreate() || $this->getUser() !== $project->getUserId() ?
                 new JsonResponse('', Response::HTTP_FORBIDDEN) :
                 $project;
-
     }
 
     /**
@@ -87,7 +86,8 @@ class ProjectsController extends FOSRestController
         return $this->success($this->getProjectsService()->getAllUserProjects($this->getUser()));
     }
 
-    private function getProjectRepository() {
+    private function getProjectRepository()
+    {
         return  $this->getDoctrine()->getRepository(Project::class);
     }
 

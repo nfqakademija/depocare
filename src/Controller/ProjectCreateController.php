@@ -39,7 +39,7 @@ class ProjectCreateController extends FOSRestController
             ((!$this->getUsersService()->updateUserProjectCreate($content, $project->getUserId()->getId(), $this->getUser()->getId())) ?
                 new Response('Nepavyko atnaujinti profilio informacijos', RESPONSE::HTTP_BAD_REQUEST) :
             ((!$this->getOrganizationService()->updateOrganizationProjectCreate($content)) ?
-                new Response('Nepavyko atnaujinti organizacijos informacijos', RESPONSE::HTTP_BAD_REQUEST  ) :
+                new Response('Nepavyko atnaujinti organizacijos informacijos', RESPONSE::HTTP_BAD_REQUEST) :
             (($this->getProjectsService()->updateProject($content, $project)) ?
                 new Response('Projektas išsaugotas', RESPONSE::HTTP_OK) :
                 new Response('Nepavyko išsaugoti projekto', RESPONSE::HTTP_BAD_REQUEST))))));
@@ -64,7 +64,8 @@ class ProjectCreateController extends FOSRestController
      * @param Request $request
      * @return JsonResponse|Response
      */
-    public function uploadProjectFile(Request $request) {
+    public function uploadProjectFile(Request $request)
+    {
         $fileName = $this->getProjectsService()->uploadProjectFile($request);
         return
             $fileName ?
@@ -72,7 +73,8 @@ class ProjectCreateController extends FOSRestController
                 new JsonResponse('Nepavyko įkleti failo', RESPONSE::HTTP_BAD_REQUEST);
     }
 
-    private function getProjectRepository() {
+    private function getProjectRepository()
+    {
         return  $this->getDoctrine()->getRepository(Project::class);
     }
 
