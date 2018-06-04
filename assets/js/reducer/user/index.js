@@ -27,7 +27,6 @@ export default (state = initialState, action) => {
                 userData: action.payload
             });
         case GET_USER_INFO_ERROR:
-            localStorage.removeItem('token');
             return Object.assign({}, state, {
                 loading: false,
                 error: action.error
