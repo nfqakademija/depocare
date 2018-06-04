@@ -31,7 +31,8 @@ class SingleProjectView extends React.Component {
             redirect: false,
             redirectTo: '',
             showPDF: false,
-            showYoutube: false
+            showYoutube: false,
+            notExist: false
         };
 
         this.setDivSize = this.setDivSize.bind(this);
@@ -61,6 +62,11 @@ class SingleProjectView extends React.Component {
                         this.props.projectRedux.long_description !== "" && this.props.projectRedux.youtube === "" ?
                             this.setState({loading: false, project: this.props.projectRedux, showPDF: true, showYoutube: false}) :
                             this.setState({loading: false, project: this.props.projectRedux, showPDF: true, showYoutube: true});
+                        break;
+                    case 204:
+                        this.setState({
+                            notExist: true
+                        });
                         break;
                     default:
                         this.setState({loading: false, redirect: true, redirectTo: HOME_PAGE});
@@ -107,6 +113,9 @@ class SingleProjectView extends React.Component {
     }
 
     render() {
+        if(this.state.notExist) {
+            return <Redirect to='/projektai'/>
+        }
         if(this.state.project.flag_create === 1) {
             return <Redirect to={HOME_PAGE}/>
         }

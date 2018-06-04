@@ -7,7 +7,7 @@ export const LOAD_PROJECTS_ERROR = "load_projects_error";
 export const LOAD_CATEGORIES_REQUEST = "load_categories_request";
 export const LOAD_CATEGORIES_SUCCESS = "load_categories_success";
 export const LOAD_CATEGORIES_ERROR = "load_categories_error";
-export const LOAD_PROJECT_SUCCESS = "LOAD_PROJECT_SUUCCESS";
+export const LOAD_PROJECT_SUCCESS = "LOAD_PROJECT_SUCCESS";
 export const LOAD_PROJECT_RESPONSE = "LOAD_PROJECT_RESPONSE";
 export const GET_FAVORITE_PROJECTS = "get_favorite_projects";
 export const HANDLE_FAVORITE_PROJECT_REQUEST = "handle_favorite_project_request";
@@ -25,8 +25,7 @@ export function loadMoreProjects(category, from, to) {
                     type: LOAD_PROJECTS_SUCCESS,
                     payload: json
                 })
-            }
-            else{
+            } else {
                 dispatch({
                     type: LOAD_PROJECTS_ERROR,
                     error: response
@@ -56,8 +55,7 @@ export function getProject(id) {
                     status: response.status,
                     project: json
                 })
-            }
-            else{
+            } else {
                 dispatch({
                     type: LOAD_PROJECT_RESPONSE,
                     status: response.status
@@ -75,8 +73,10 @@ function fetchProject(id) {
             'Content-Type': 'application/json',
         })
     })
-        .then( response => Promise.all([response, response.json()]));
+        .then( response => Promise.all([response, response.status===200?response.json():{}]));
 }
+
+
 
 export function getCategories() {
     return (dispatch) => {
