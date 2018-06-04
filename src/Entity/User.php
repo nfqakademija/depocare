@@ -50,23 +50,23 @@ class User extends BaseUser
 
     /**
      * @var string
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", options={"default" = ""}, nullable=true)
      */
-    private $biography = null;
+    private $biography = "";
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", options={"default" = false}, nullable=true)
      */
-    private $flagHasActiveProject;
+    private $flagHasActiveProject = false;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=2000,
-     *     options={"default" = "https://s3.eu-central-1.amazonaws.com/haroldas-depocare/default_profile.png"},
+     *     options={"default" = "no-avatar.jpeg"},
      *     nullable=true)
      */
-    private $image;
+    private $image="no-avatar.jpeg";
 
     /**
      * Many Users have Many Groups.
