@@ -108,8 +108,6 @@ class ProjectCreate extends React.Component {
         if(!this.props.project.title)
         {
             Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti pavadinimą!');
-        } else if(!this.props.project.uploadPhoto){
-            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti nuotrauką!')
         } else if(!this.props.project.charity_fund){
             Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti aukojimo fondą!');
         } else if(!this.props.project.description){
