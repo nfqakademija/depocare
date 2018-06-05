@@ -61,12 +61,18 @@ class UsersService
         $user = $this->repository->find($userId);
         if ($user) {
             try {
-                if (!$user->isFlagHasActiveProject()) {
+                if (!$user->isFlagHasActiveProject() && $content->first_name) {
                     $user->setFirstname($content->first_name);
+                }
+                if (!$user->isFlagHasActiveProject() && $content->last_name) {
                     $user->setLastname($content->last_name);
                 }
-                $user->setBiography($content->biography);
-                $user->setImage($content->profile_image);
+                if ($content->biography) {
+                    $user->setBiography($content->biography);
+                }
+                if ($content->profile_image) {
+                    $user->setImage($content->profile_image);
+                }
             } catch (\Exception $e) {
                 return false;
             }
