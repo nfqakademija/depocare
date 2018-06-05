@@ -54,7 +54,8 @@ class OrganizationsService
         return true;
     }
 
-    public function validateOrganization($organization) {
+    public function validateOrganization($organization)
+    {
         if (empty(trim($organization->getOrganizationName())) ||
             empty(trim($organization->getOrganizationStreetAddress())) ||
             empty(trim($organization->getOrganizationPhoneNumber())) ||

@@ -182,7 +182,8 @@ class ProjectsService
         }
     }
 
-    public function validateProject($project) {
+    public function validateProject($project)
+    {
         if (empty(trim($project->getTitle())) ||
             empty(trim($project->getDescription())) ||
             empty(trim($project->getImage())) ||
@@ -195,11 +196,14 @@ class ProjectsService
         return true;
     }
 
-    public function changetSubmitStatus($project, $status) {
+    public function changeSubmitStatus($project, $status)
+    {
         $project->setFlagSubmit($status);
         $this->repository->save($project);
     }
-    public function changeCreateStatus($project, $status) {
+
+    public function changeCreateStatus($project, $status)
+    {
         $project->setFlagCreate($status);
         $this->repository->save($project);
     }

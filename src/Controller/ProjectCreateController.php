@@ -58,17 +58,17 @@ class ProjectCreateController extends FOSRestController
     public function submitProject(Request $request, $id)
     {
         $project = $this->getProjectRepository()->find($id);
-        if(empty($project)) {
+        if (empty($project)) {
             return new Response('Projektas neegzistuoja', RESPONSE::HTTP_NOT_FOUND);
-        } else if ($project->getUserId()->getId() !== $this->getUser()->getId()) {
+        } elseif ($project->getUserId()->getId() !== $this->getUser()->getId()) {
             return new Response('Negalite pateikti projekto', RESPONSE::HTTP_FORBIDDEN);
-        } else if (!$project->isFlagCreate()) {
+        } elseif (!$project->isFlagCreate()) {
             return new Response('Negalima pateikti projekto', RESPONSE::HTTP_BAD_REQUEST);
-        } else if (!$this->updateProject($request, $id)->getStatusCode() === RESPONSE::HTTP_OK) {
+        } elseif (!$this->updateProject($request, $id)->getStatusCode() === RESPONSE::HTTP_OK) {
             return new Response('Nepavyko pateikti projekto', RESPONSE::HTTP_BAD_REQUEST);
-        } else if(!$this->getProjectsService()->validateProject($project)) {
+        } elseif (!$this->getProjectsService()->validateProject($project)) {
             return new Response('Neužpildyti projekto laukai', RESPONSE::HTTP_BAD_REQUEST);
-        } else if(!$this->getOrganizationService()->validateOrganization($project->getOrganization())) {
+        } elseif (!$this->getOrganizationService()->validateOrganization($project->getOrganization())) {
             return new Response('Neužpildyti organizacijos laukai', RESPONSE::HTTP_BAD_REQUEST);
         } else {
             $this->getProjectsService()->changetSubmitStatus($project, true);
@@ -85,16 +85,16 @@ class ProjectCreateController extends FOSRestController
     public function startProject(Request $request, $id)
     {
         $project = $this->getProjectRepository()->find($id);
-        if(empty($project)) {
+        if (empty($project)) {
             return new Response('Projektas neegzistuoja', RESPONSE::HTTP_NOT_FOUND);
-        } else if ($project->getUserId()->getId() !== $this->getUser()->getId()) {
+        } elseif ($project->getUserId()->getId() !== $this->getUser()->getId()) {
             return new Response('Negalite pradėti projekto', RESPONSE::HTTP_FORBIDDEN);
-        } else if (!$project->isFlagCreate()) {
+        } elseif (!$project->isFlagCreate()) {
             return new Response('Negalima pradėti projekto', RESPONSE::HTTP_BAD_REQUEST);
-        } else if (!$this->updateProject($request, $id)->getStatusCode() === RESPONSE::HTTP_OK) {
+        } elseif (!$this->updateProject($request, $id)->getStatusCode() === RESPONSE::HTTP_OK) {
             return new Response('Nepavyko pradėti projekto', RESPONSE::HTTP_BAD_REQUEST);
-        }  else {
-            $this->getProjectsService()->changetSubmitStatus($project, false);
+        } else {
+            $this->getProjectsService()->changeSubmitStatus($project, false);
             $this->getProjectsService()->changeCreateStatus($project, false);
             return new Response('Projektas pradėtas', RESPONSE::HTTP_OK);
         }
