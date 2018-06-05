@@ -9,7 +9,7 @@ import {Redirect} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {PROJECT_CREATE_SAVE_CHANGE, SET_PROJECT_CREATE, projectCreateInputChange} from "../../../reducer/projectCreate/actions";
-import {updateProjectCreate,} from "../../../reducer/updateProject/actions";
+import {updateProjectCreate, submitProject} from "../../../reducer/updateProject/actions";
 import {getUserInfo} from "../../../reducer/user/actions";
 import {
     HOME_PAGE,
@@ -32,7 +32,9 @@ class ProjectCreate extends React.Component {
             redirectTo: '',
             save: false,
             tabIndex: 0
-        }
+        };
+        this.submitProject = this.submitProject.bind(this);
+
     }
     componentDidMount(){
         this.setState({
@@ -101,7 +103,52 @@ class ProjectCreate extends React.Component {
         });
     }
 
+    submitProject(e){
+        e.preventDefault();
+        if(!this.props.project.title)
+        {
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti pavadinimą!');
+        } else if(!this.props.project.uploadPhoto){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti nuotrauką!')
+        } else if(!this.props.project.charity_fund){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti aukojimo fondą!');
+        } else if(!this.props.project.description){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti aprašymą!')
+        } else if(!this.props.project.goal){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti tikslą!');
+        } else if(!this.props.project.organization_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos pavadinimą!')
+        } else if(!this.props.project.organization_street_address){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos adresą!')
+        } else if(!this.props.project.organization_phone_number){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos telefono numerį!')
+        } else if(!this.props.project.organization_email_address){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos el.paštą!')
+        } else if(!this.props.project.organization_code){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos įmonės kodą!')
+        } else if(!this.props.project.organization_owner_first_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko vardą!')
+        } else if(!this.props.project.organization_owner_last_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko pavardę!')
+        } else if(!this.props.project.organization_owner_phone_number){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko telefono numerį!')
+        } else if(!this.props.project.organization_owner_email_address){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko el. paštą!')
+        } else if(!this.props.project.first_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Turite įvesti savo vardą!')
+        } else if(!this.props.project.last_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Turite įvesti savo pavardę!')
+        } else if(!this.props.project.organization_iban){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti sąskaitą!')
+        } else {
+            this.props.onSubmitProject(this.props.project);
+        }
+    }
+
     render() {
+        if (this.props.submitStatus) {
+            return <Redirect to={'/projektas/' + this.props.project.id}/>
+        }
         if (this.state.redirect) {
             return <Redirect to={this.state.redirectTo}/>
         }
@@ -110,6 +157,7 @@ class ProjectCreate extends React.Component {
         }
 
         const content = (
+            <form onSubmit={this.submitProject}>
                 <div className="project-create-save-button-content-wrapper">
                     <div className="container container-create">
                         <Tabs selectedIndex={this.state.tabIndex} onSelect={ tabIndex => this.setState({tabIndex})}>
@@ -128,32 +176,39 @@ class ProjectCreate extends React.Component {
                                 </TabList>
                             </div>
                             <div className="col-xs-2"/>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <Basic/>
-                            </TabPanel>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <Story/>
-                            </TabPanel>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <AboutYou/>
-                            </TabPanel>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <Account/>
-                            </TabPanel>
-                            <TabPanel forceRender={false} selectedClassName="project-create-tabs-tab-selected">
-                                <Preview/>
-                            </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <Basic/>
+                                </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <Story/>
+                                </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <AboutYou/>
+                                </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <Account/>
+                                </TabPanel>
+                                <TabPanel forceRender={false} selectedClassName="project-create-tabs-tab-selected">
+                                    <Preview/>
+                                </TabPanel>
                         </Tabs>
                     </div>
-                    {this.props.project.save ?
-                        <div className="project-create-save-bar">
-                            <div className="project-create-save-button-wrapper">
-                                <button type="button" onClick={this.componentDidMount.bind(this)} className="project-create-discard-button btn-lg btn btn-danger">Ištrinti pakeitimus</button>
-                                <button type="button" onClick={this.updateProject.bind(this)} className="project-create-save-button btn-lg btn btn-success">Išsaugoti</button>
-                            </div>
-                        </div> : <div/>
+                    <div className="project-create-save-bar">
+                        <div className="project-create-save-button-wrapper">
+                            <button type="submit" className="project-create-upload-button btn-lg btn btn-success">Pateikti projektą</button>
+
+                            {this.props.project.save ?
+                        <span>
+                            <button type="button" onClick={this.updateProject.bind(this)} className="project-create-save-button btn-lg btn btn-success">Išsaugoti</button>
+                            <button type="button" onClick={this.componentDidMount.bind(this)} className="project-create-discard-button btn-lg btn btn-danger">Ištrinti pakeitimus</button>
+                        </span>
+                             : <span/>
                     }
-                </div>);
+                        </div>
+                    </div>
+                </div>
+            </form>
+        );
 
         if (this.state.loading) {
             return (
@@ -173,21 +228,23 @@ class ProjectCreate extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        project: state.projectCreate,
+        statusProject: state.projectCreate.status,
+        status: state.updateProjectCreate.status,
+        submitStatus: state.updateProjectCreate.submit_success
+    };
+}
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         projectCreateInputChange: projectCreateInputChange,
         updateProjectCreate: updateProjectCreate,
         actionLogout: actionLogout,
-        getUserInfo: getUserInfo
+        getUserInfo: getUserInfo,
+        onSubmitProject: submitProject
     }, dispatch);
-}
-function mapStateToProps(state) {
-    return {
-        project: state.projectCreate,
-        statusProject: state.projectCreate.status,
-        status: state.updateProjectCreate.status,
-    };
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(ProjectCreate);

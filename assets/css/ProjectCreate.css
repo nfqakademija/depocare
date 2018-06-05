@@ -304,11 +304,23 @@
 }
 
 .project-create-save-button{
+    margin-right:10px;
     border-radius: 0;
     -webkit-appearance: button;
     background-image: unset;
     border: unset;
     background: #007460;
+    float: right;
+}
+.project-create-upload-button{
+    margin-right:10px;
+    border-radius: 0;
+    -webkit-appearance: button;
+    background-image: unset;
+    border: unset;
+    background: #09418e;
+    float: right;
+
 }
 
 .project-create-discard-button {
@@ -318,13 +330,14 @@
     background-image: unset;
     border: unset;
     background-color: #780500;
+    float: right;
+
 }
 
 .project-create-save-button-wrapper {
     position: absolute;
     top: 10%;
     width: 100%;
-    left: 65%;
 }
 
 .react-datepicker__input-container input{

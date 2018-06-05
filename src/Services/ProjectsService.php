@@ -182,6 +182,28 @@ class ProjectsService
         }
     }
 
+    public function validateProject($project) {
+        if (empty(trim($project->getTitle())) ||
+            empty(trim($project->getDescription())) ||
+            empty(trim($project->getImage())) ||
+            empty(trim($project->getEndDate())) ||
+            empty(trim($project->getGoal())) ||
+            empty(trim($project->getCharityFund()))
+        ) {
+            return false;
+        }
+        return true;
+    }
+
+    public function changetSubmitStatus($project, $status) {
+        $project->setFlagSubmit($status);
+        $this->repository->save($project);
+    }
+    public function changeCreateStatus($project, $status) {
+        $project->setFlagCreate($status);
+        $this->repository->save($project);
+    }
+
     private function generateUniqueFileName()
     {
         return md5(uniqid());

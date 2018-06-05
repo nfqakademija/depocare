@@ -50,6 +50,57 @@ class ProjectCreateController extends FOSRestController
     }
 
     /**
+     * @Put("/submitProject/{id}")
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
+    public function submitProject(Request $request, $id)
+    {
+        $project = $this->getProjectRepository()->find($id);
+        if(empty($project)) {
+            return new Response('Projektas neegzistuoja', RESPONSE::HTTP_NOT_FOUND);
+        } else if ($project->getUserId()->getId() !== $this->getUser()->getId()) {
+            return new Response('Negalite pateikti projekto', RESPONSE::HTTP_FORBIDDEN);
+        } else if (!$project->isFlagCreate()) {
+            return new Response('Negalima pateikti projekto', RESPONSE::HTTP_BAD_REQUEST);
+        } else if (!$this->updateProject($request, $id)->getStatusCode() === RESPONSE::HTTP_OK) {
+            return new Response('Nepavyko pateikti projekto', RESPONSE::HTTP_BAD_REQUEST);
+        } else if(!$this->getProjectsService()->validateProject($project)) {
+            return new Response('Neužpildyti projekto laukai', RESPONSE::HTTP_BAD_REQUEST);
+        } else if(!$this->getOrganizationService()->validateOrganization($project->getOrganization())) {
+            return new Response('Neužpildyti organizacijos laukai', RESPONSE::HTTP_BAD_REQUEST);
+        } else {
+            $this->getProjectsService()->changetSubmitStatus($project, true);
+            return new Response('Projektas pateiktas administratoriui', RESPONSE::HTTP_OK);
+        }
+    }
+
+    /**
+     * @Put("/startProject/{id}")
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
+    public function startProject(Request $request, $id)
+    {
+        $project = $this->getProjectRepository()->find($id);
+        if(empty($project)) {
+            return new Response('Projektas neegzistuoja', RESPONSE::HTTP_NOT_FOUND);
+        } else if ($project->getUserId()->getId() !== $this->getUser()->getId()) {
+            return new Response('Negalite pradėti projekto', RESPONSE::HTTP_FORBIDDEN);
+        } else if (!$project->isFlagCreate()) {
+            return new Response('Negalima pradėti projekto', RESPONSE::HTTP_BAD_REQUEST);
+        } else if (!$this->updateProject($request, $id)->getStatusCode() === RESPONSE::HTTP_OK) {
+            return new Response('Nepavyko pradėti projekto', RESPONSE::HTTP_BAD_REQUEST);
+        }  else {
+            $this->getProjectsService()->changetSubmitStatus($project, false);
+            $this->getProjectsService()->changeCreateStatus($project, false);
+            return new Response('Projektas pradėtas', RESPONSE::HTTP_OK);
+        }
+    }
+
+    /**
      * @Post("/newProject")
      * @return ProjectCreateController|JsonResponse
      */
