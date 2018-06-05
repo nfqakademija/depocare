@@ -54,14 +54,14 @@ class RenderProjects extends React.Component{
             if(this.props.category !== "Favorite")
             {
                 if(this.props.category){
-                    this.props.onLoadMoreProjects("/"+this.props.category, 0, 6);
+                    this.props.onLoadMoreProjects("/"+this.props.category, 0, 3);
                 }
                 else{
-                    this.props.onLoadMoreProjects("", 0, 6);
+                    this.props.onLoadMoreProjects("", 0, 3);
                 }
 
                 this.setState({
-                    gotProjectsTo: 5
+                    gotProjectsTo: 2
                 });
             }
             else if (this.props.category === "Favorite"){

@@ -71,6 +71,7 @@ class SingleProjectView extends React.Component {
                         this.setState({loading: false, redirect: true, redirectTo: HOME_PAGE});
                         break;
                 }
+                console.log(this.state.project);
             });
         }
     }
@@ -245,12 +246,12 @@ class SingleProjectView extends React.Component {
                                         }
                                         <TabPanel>
                                             <div className="project-view-info-organization-wrapper">
-                                                <h1 className="project-view-info-organization-big-text">{this.state.project.organization_name}</h1>
-                                                <h2 className="project-view-info-organization-small-text">{this.state.project.organization_web_address}</h2>
-                                                <h2 className="project-view-info-organization-small-text">{this.state.project.organization_email_address}</h2>
-                                                <h2 className="project-view-info-organization-small-text">{this.state.project.organization_phone_number}</h2>
-                                                <h2 className="project-view-info-organization-small-text">{this.state.project.organization_street_address}</h2>
-                                                <h2 className="project-view-info-organization-small-text">{this.state.project.organization_iban}</h2>
+                                                <h1 className="project-view-info-organization-big-text">{typeof(this.state.project.organization) === 'undefined' ? this.state.project.organization_name : this.state.project.organization.organization_name}</h1>
+                                                <h2 className="project-view-info-organization-small-text">{typeof(this.state.project.organization) === 'undefined' ? this.state.project.organization_web_address : this.state.project.organization.organization_web_address}</h2>
+                                                <h2 className="project-view-info-organization-small-text">{typeof(this.state.project.organization) === 'undefined' ? this.state.project.organization_email_address : this.state.project.organization.organization_email_address}</h2>
+                                                <h2 className="project-view-info-organization-small-text">{typeof(this.state.project.organization) === 'undefined' ? this.state.project.organization_phone_number : this.state.project.organization.organization_phone_number}</h2>
+                                                <h2 className="project-view-info-organization-small-text">{typeof(this.state.project.organization) === 'undefined' ? this.state.project.organization_street_address : this.state.project.organization.organization_street_address}</h2>
+                                                <h2 className="project-view-info-organization-small-text">{typeof(this.state.project.organization) === 'undefined' ? this.state.project.organization_iban : this.state.project.organization.organization_iban}</h2>
                                             </div>
                                         </TabPanel>
                                     </div>
