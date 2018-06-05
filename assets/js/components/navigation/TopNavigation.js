@@ -32,7 +32,6 @@ class TopNavigation extends React.Component {
                                <div className="navbar-profile-image-wraper">    {this.props.User.userData.firstname}<img className="navbar-profile-image" src={'/avatars/' + this.props.User.userData.image}/></div>
                             </a>
                             <ul className="dropdown-menu">
-                                <li className="dropdown-item"><Link to='/profilis'>Mano paskyra</Link></li>
                                 <li className="dropdown-item"><Link to='/mano_projektai'>Kurti projektą</Link></li>
                                 <li className="dropdown-item"><Link to='/atsijungti'><span className="glyphicon glyphicon-log-out"/> Atsijungti</Link></li>
                             </ul>
@@ -64,7 +63,6 @@ class TopNavigation extends React.Component {
                     <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
                             <li><Link to='/projektai'>Projektai</Link></li>
-                            <li><Link to='/'>Apie</Link></li>
                         </ul>
                         {this.rightNavContent()}
                     </div>
