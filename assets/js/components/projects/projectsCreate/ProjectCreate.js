@@ -145,14 +145,19 @@ class ProjectCreate extends React.Component {
                             </TabPanel>
                         </Tabs>
                     </div>
-                    {this.props.project.save ?
-                        <div className="project-create-save-bar">
-                            <div className="project-create-save-button-wrapper">
-                                <button type="button" onClick={this.componentDidMount.bind(this)} className="project-create-discard-button btn-lg btn btn-danger">Ištrinti pakeitimus</button>
-                                <button type="button" onClick={this.updateProject.bind(this)} className="project-create-save-button btn-lg btn btn-success">Išsaugoti</button>
-                            </div>
-                        </div> : <div/>
+                    <div className="project-create-save-bar">
+                        <div className="project-create-save-button-wrapper">
+                            <button type="button" onClick={} className="project-create-upload-button btn-lg btn btn-success">Pateikti projektą</button>
+
+                            {this.props.project.save ?
+                        <span>
+                            <button type="button" onClick={this.updateProject.bind(this)} className="project-create-save-button btn-lg btn btn-success">Išsaugoti</button>
+                            <button type="button" onClick={this.componentDidMount.bind(this)} className="project-create-discard-button btn-lg btn btn-danger">Ištrinti pakeitimus</button>
+                        </span>
+                             : <span/>
                     }
+                        </div>
+                    </div>
                 </div>);
 
         if (this.state.loading) {
