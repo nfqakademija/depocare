@@ -53,4 +53,21 @@ class OrganizationsService
         //return new Response('Išsaugota',200);
         return true;
     }
+
+    public function validateOrganization($organization) {
+        if (empty(trim($organization->getOrganizationName())) ||
+            empty(trim($organization->getOrganizationStreetAddress())) ||
+            empty(trim($organization->getOrganizationPhoneNumber())) ||
+            empty(trim($organization->getOrganizationEmailAddress())) ||
+            empty(trim($organization->getOrganizationCode())) ||
+            empty(trim($organization->getOrganizationOwnerEmailAddress())) ||
+            empty(trim($organization->getOrganizationIban())) ||
+            empty(trim($organization->getOrganizationOwnerPhoneNumber())) ||
+            empty(trim($organization->getOrganizationOwnerLastName())) ||
+            empty(trim($organization->getOrganizationOwnerFirstName()))
+        ) {
+            return false;
+        }
+        return true;
+    }
 }

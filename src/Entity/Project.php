@@ -93,6 +93,11 @@ class Project
      */
     private $flag_create = true;
     /**
+     * @var bool
+     * @ORM\Column(type="boolean", options={"default" = false})
+     */
+    private $flag_submit = false;
+    /**
      * @var double
      * @ORM\Column(type="float", scale=2)
      */
@@ -370,5 +375,21 @@ class Project
     public function setEndDate(string $end_date): void
     {
         $this->end_date = $end_date;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFlagSubmit(): bool
+    {
+        return $this->flag_submit;
+    }
+
+    /**
+     * @param bool $flag_submit
+     */
+    public function setFlagSubmit(bool $flag_submit): void
+    {
+        $this->flag_submit = $flag_submit;
     }
 }
