@@ -9,7 +9,7 @@ import {Redirect} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {PROJECT_CREATE_SAVE_CHANGE, SET_PROJECT_CREATE, projectCreateInputChange} from "../../../reducer/projectCreate/actions";
-import {updateProjectCreate,} from "../../../reducer/updateProject/actions";
+import {updateProjectCreate, submitProject} from "../../../reducer/updateProject/actions";
 import {getUserInfo} from "../../../reducer/user/actions";
 import {
     HOME_PAGE,
@@ -32,7 +32,9 @@ class ProjectCreate extends React.Component {
             redirectTo: '',
             save: false,
             tabIndex: 0
-        }
+        };
+        this.submitProject = this.submitProject.bind(this);
+
     }
     componentDidMount(){
         this.setState({
@@ -101,7 +103,15 @@ class ProjectCreate extends React.Component {
         });
     }
 
+    submitProject(e){
+        e.preventDefault();
+        this.props.onSubmitProject(this.props.project);
+    }
+
     render() {
+        if (this.props.submitStatus) {
+            return <Redirect to={'/projektas/' + this.props.project.id}/>
+        }
         if (this.state.redirect) {
             return <Redirect to={this.state.redirectTo}/>
         }
@@ -110,6 +120,7 @@ class ProjectCreate extends React.Component {
         }
 
         const content = (
+            <form onSubmit={this.submitProject}>
                 <div className="project-create-save-button-content-wrapper">
                     <div className="container container-create">
                         <Tabs selectedIndex={this.state.tabIndex} onSelect={ tabIndex => this.setState({tabIndex})}>
@@ -128,26 +139,26 @@ class ProjectCreate extends React.Component {
                                 </TabList>
                             </div>
                             <div className="col-xs-2"/>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <Basic/>
-                            </TabPanel>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <Story/>
-                            </TabPanel>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <AboutYou/>
-                            </TabPanel>
-                            <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
-                                <Account/>
-                            </TabPanel>
-                            <TabPanel forceRender={false} selectedClassName="project-create-tabs-tab-selected">
-                                <Preview/>
-                            </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <Basic/>
+                                </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <Story/>
+                                </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <AboutYou/>
+                                </TabPanel>
+                                <TabPanel forceRender={true} selectedClassName="project-create-tabs-tab-selected">
+                                    <Account/>
+                                </TabPanel>
+                                <TabPanel forceRender={false} selectedClassName="project-create-tabs-tab-selected">
+                                    <Preview/>
+                                </TabPanel>
                         </Tabs>
                     </div>
                     <div className="project-create-save-bar">
                         <div className="project-create-save-button-wrapper">
-                            <button type="button" onClick={} className="project-create-upload-button btn-lg btn btn-success">Pateikti projektą</button>
+                            <button type="submit" className="project-create-upload-button btn-lg btn btn-success">Pateikti projektą</button>
 
                             {this.props.project.save ?
                         <span>
@@ -158,7 +169,9 @@ class ProjectCreate extends React.Component {
                     }
                         </div>
                     </div>
-                </div>);
+                </div>
+            </form>
+        );
 
         if (this.state.loading) {
             return (
@@ -178,21 +191,23 @@ class ProjectCreate extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        project: state.projectCreate,
+        statusProject: state.projectCreate.status,
+        status: state.updateProjectCreate.status,
+        submitStatus: state.updateProjectCreate.submit_success
+    };
+}
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators({
         projectCreateInputChange: projectCreateInputChange,
         updateProjectCreate: updateProjectCreate,
         actionLogout: actionLogout,
-        getUserInfo: getUserInfo
+        getUserInfo: getUserInfo,
+        onSubmitProject: submitProject
     }, dispatch);
-}
-function mapStateToProps(state) {
-    return {
-        project: state.projectCreate,
-        statusProject: state.projectCreate.status,
-        status: state.updateProjectCreate.status,
-    };
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(ProjectCreate);

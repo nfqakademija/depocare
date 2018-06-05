@@ -60,7 +60,8 @@ class Story extends React.Component {
                             </div>
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
-                                    <textarea className="form-control project-create-input-field" rows="1"
+                                    <textarea
+                                        className="form-control project-create-input-field" rows="1"
                                         value={this.props.youtube}
                                         onChange={this.changeYoutube.bind(this)}
                                     />
@@ -98,18 +99,18 @@ class Story extends React.Component {
                             </div>
                         </div>
 
-                        <div className="row project-create-border">
-                            <div className="col-xs-3 project-create-title">
-                                Projekto D.U.K.
-                            </div>
-                            <div className="col-xs-9 project-create-content">
-                                <div className="project-create-comment">
-                                    <p>
-                                        Galėsite pridėti dažniausiai užduodamus klausimus, kai projektas bus paleistas. <strong>Sužinokite daugiau.</strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="row project-create-border">*/}
+                            {/*<div className="col-xs-3 project-create-title">*/}
+                                {/*Projekto D.U.K.*/}
+                            {/*</div>*/}
+                            {/*<div className="col-xs-9 project-create-content">*/}
+                                {/*<div className="project-create-comment">*/}
+                                    {/*<p>*/}
+                                        {/*Galėsite pridėti dažniausiai užduodamus klausimus, kai projektas bus paleistas. <strong>Sužinokite daugiau.</strong>*/}
+                                    {/*</p>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                     </div>
 
                     <div className="col-xs-4">

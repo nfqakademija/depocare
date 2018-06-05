@@ -38,3 +38,4 @@ export const URL_LOGIN = API_URL + 'login';
 export const URL_PROJECT_FILE_UPLOAD = API_URL + 'uploadProjectFile';
 export const URL_AVATAR_UPLOAD = API_URL + 'uploadAvatar';
 export const URL_NEW_TRANSACTION = API_URL + 'newtransaction';
+export const URL_SUBMIT_PROJECT = API_URL + 'startProject/';

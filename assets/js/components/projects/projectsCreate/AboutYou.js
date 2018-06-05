@@ -74,11 +74,14 @@ class AboutYou extends React.Component {
                                 Jūsų vardas
                             </div>
                             <div className="col-xs-9 project-create-content">
-                                <textarea className="form-control project-create-input-field" rows="1"
+                                <textarea
+                                    className="form-control project-create-input-field"
+                                    rows="1"
                                     placeholder="Jonas"
                                     disabled={this.props.flagHasActiveProject}
                                     value={this.props.firstName}
                                     onChange={this.changeFirstName.bind(this)}
+                                    required
                                 />
                                 <div className="project-create-comment">
                                     <p>
@@ -93,11 +96,14 @@ class AboutYou extends React.Component {
                                 Jūsų pavardė
                             </div>
                             <div className="col-xs-9 project-create-content">
-                                <textarea className="form-control project-create-input-field" rows="1"
+                                <textarea
+                                    className="form-control project-create-input-field"
+                                    rows="1"
                                     placeholder="Kazlauskas"
                                     disabled={this.props.flagHasActiveProject}
                                     value={this.props.lastName}
                                     onChange={this.changeLastName.bind(this)}
+                                    required
                                 />
                                 <div className="project-create-comment">
                                     <p>
@@ -114,9 +120,12 @@ class AboutYou extends React.Component {
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
                                     <div className="project-create-counter-wrap">
-                                        <textarea className="form-control project-create-input-field" rows="4"
+                                        <textarea
+                                            className="form-control project-create-input-field"
+                                            rows="4"
                                             value={this.props.biography}
                                             onChange={this.changeBiography.bind(this)}
+                                            required
                                         />
                                     </div>
                                     <div className="project-create-comment">
@@ -125,22 +134,22 @@ class AboutYou extends React.Component {
                             </div>
                         </div>
 
-                        <div className="row project-create-border">
-                            <div className="col-xs-3 project-create-title">
-                                Google Analytics
-                            </div>
-                            <div className="col-xs-9 project-create-content">
-                                <div className="form-group">
-                                    <textarea placeholder="UA-XXXXXXXX-X" className="form-control project-create-input-field" rows="1"
-                                    />
-                                    <div className="project-create-comment">
-                                        <p>
-                                        Pridėkite savo sekimo numerį, kad galėtumėte stebėti, kaip sekasi jūsų projektui mūsų paieškoje
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="row project-create-border">*/}
+                            {/*<div className="col-xs-3 project-create-title">*/}
+                                {/*Google Analytics*/}
+                            {/*</div>*/}
+                            {/*<div className="col-xs-9 project-create-content">*/}
+                                {/*<div className="form-group">*/}
+                                    {/*<textarea placeholder="UA-XXXXXXXX-X" className="form-control project-create-input-field" rows="1"*/}
+                                    {/*/>*/}
+                                    {/*<div className="project-create-comment">*/}
+                                        {/*<p>*/}
+                                        {/*Pridėkite savo sekimo numerį, kad galėtumėte stebėti, kaip sekasi jūsų projektui mūsų paieškoje*/}
+                                        {/*</p>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                     </div>
                     <div className="col-xs-4">
                         <p>

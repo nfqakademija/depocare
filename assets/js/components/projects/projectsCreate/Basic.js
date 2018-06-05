@@ -127,10 +127,14 @@ class Basic extends React.Component {
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
                                     <div className="project-create-counter-wrap">
-                                        <textarea className="form-control project-create-input-field" rows="1" maxLength={Constants.MAX_CHARS_TITLE}
+                                        <textarea
+                                            className="form-control project-create-input-field"
+                                            rows="1"
+                                            maxLength={Constants.MAX_CHARS_TITLE}
                                             placeholder="“Darom 2018“"
                                             value={this.props.title}
                                             onChange={this.changeTitle.bind(this)}
+                                            required
                                         />
                                         <span>{this.state.charsLeftTitle}</span>
                                     </div>
@@ -149,10 +153,14 @@ class Basic extends React.Component {
                             </div>
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
-                                    <textarea className="form-control project-create-input-field" rows="1"
-                                              placeholder="“Maisto Bankas“"
-                                              value={this.props.charity_fund}
-                                              onChange={this.changeCharityFund.bind(this)} />
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="1"
+                                        placeholder="“Maisto Bankas“"
+                                        value={this.props.charity_fund}
+                                        onChange={this.changeCharityFund.bind(this)}
+                                        required
+                                    />
                                     <div className="project-create-comment">
                                     </div>
                                 </div>
@@ -166,9 +174,11 @@ class Basic extends React.Component {
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
                                     <div className="project-create-counter-wrap">
-                                        <textarea className="form-control project-create-input-field" rows="2" maxLength={Constants.MAX_CHARS_SHORT_BLURB}
+                                        <textarea
+                                            className="form-control project-create-input-field" rows="2" maxLength={Constants.MAX_CHARS_SHORT_BLURB}
                                             value={this.props.description}
                                             onChange={this.changeDescription.bind(this)}
+                                            required
                                         />
                                         <span>{this.state.charsLeftShortBlurb}</span>
                                     </div>
@@ -243,9 +253,12 @@ class Basic extends React.Component {
                                 Projekto finansiniai tikslai
                             </div>
                             <div className="col-xs-9 project-create-content">
-                                <textarea className="form-control project-create-input-field" rows="1"
+                                <textarea
+                                    className="form-control project-create-input-field"
+                                    rows="1"
                                     value={this.props.goal}
                                     onChange={this.changeGoal.bind(this)}
+                                    required
                                 />
 
                                 <div className="project-create-comment">
@@ -256,21 +269,21 @@ class Basic extends React.Component {
                             </div>
                         </div>
 
-                        <div className="row project-create-border">
-                            <div className="col-xs-3 project-create-title">
-                                Projekto kūrėjai
-                            </div>
-                            <div className="col-xs-9 project-create-content">
-                                <div className="project-create-comment margin-none">
-                                    <p>
-                                        Pridėkite projekto dalyvius, kurie galėtų redaguoti ar papildyti projekto aprašymą
-                                    </p>
-                                </div>
-                                <div>
-                                    <Link style={{ textDecoration: 'none' }} to='/'><input type="submit" className="btn-submit blue-button" value="Pridėti"/></Link>
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div className="row project-create-border">*/}
+                            {/*<div className="col-xs-3 project-create-title">*/}
+                                {/*Projekto kūrėjai*/}
+                            {/*</div>*/}
+                            {/*<div className="col-xs-9 project-create-content">*/}
+                                {/*<div className="project-create-comment margin-none">*/}
+                                    {/*<p>*/}
+                                        {/*Pridėkite projekto dalyvius, kurie galėtų redaguoti ar papildyti projekto aprašymą*/}
+                                    {/*</p>*/}
+                                {/*</div>*/}
+                                {/*<div>*/}
+                                    {/*<Link style={{ textDecoration: 'none' }} to='/'><input type="submit" className="btn-submit blue-button" value="Pridėti"/></Link>*/}
+                                {/*</div>*/}
+                            {/*</div>*/}
+                        {/*</div>*/}
                     </div>
                     <div className="col-xs-4">
                         <SingleProject project={this.props}/>

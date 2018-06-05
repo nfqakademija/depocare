@@ -111,9 +111,12 @@ class AboutYou extends React.Component {
                         Banko sąskaitos numeris:
                         </div>
                         <div className="col-xs-9 project-create-content">
-                            <textarea className="form-control project-create-input-field" rows="1"
+                            <textarea
+                                className="form-control project-create-input-field"
+                                rows="1"
                                 value={this.props.organization_iban}
                                 onChange={this.changeOrganizationIban.bind(this)}
+                                required
                             />
                         </div>
                     </div>
@@ -141,10 +144,13 @@ class AboutYou extends React.Component {
                                     Pavadimas:
                                 </div>
                                 <div className="col-xs-9 project-create-content">
-                                    <textarea className="form-control project-create-input-field" rows="1"
-                                              placeholder="“Maisto Bankas“"
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="1"
+                                        placeholder="“Maisto Bankas“"
                                         value={this.props.organization_name}
                                         onChange={this.changeOrganizationName.bind(this)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -153,10 +159,13 @@ class AboutYou extends React.Component {
                                     Adresas
                                 </div>
                                 <div className="col-xs-9 project-create-content">
-                                    <textarea className="form-control project-create-input-field" rows="4"
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="4"
                                         placeholder="Vytenio g. 54, LT-03229 Vilnius"
                                         value={this.props.organization_street_address}
                                         onChange={this.changeStreetAddress.bind(this)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -167,7 +176,10 @@ class AboutYou extends React.Component {
                                 <div className="col-xs-9 project-create-content">
                                     <div className="form-group">
                                         <div className="project-create-counter-wrap">
-                                            <textarea className="form-control project-create-input-field" rows="1" maxLength='15'
+                                            <textarea
+                                                className="form-control project-create-input-field"
+                                                rows="1"
+                                                maxLength='15'
                                                 placeholder="+37011111111"
                                                 value={this.props.organization_phone_number}
                                                 onChange={this.changePhoneNumber.bind(this)}
@@ -182,10 +194,14 @@ class AboutYou extends React.Component {
                                 </div>
                                 <div className="col-xs-9 project-create-content">
                                     <div className="form-group">
-                                        <textarea className="form-control project-create-input-field" rows="1" maxLength='50'
+                                        <textarea
+                                            className="form-control project-create-input-field"
+                                            rows="1"
+                                            maxLength='50'
                                             placeholder="pavyzdys@gmail.com"
                                             value={this.props.organization_email_address}
                                             onChange={this.changeEmailAddress.bind(this)}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -196,10 +212,14 @@ class AboutYou extends React.Component {
                                 </div>
                                 <div className="col-xs-9 project-create-content">
                                     <div className="form-group">
-                                        <textarea className="form-control project-create-input-field" rows="1" maxLength='50'
+                                        <textarea
+                                            className="form-control project-create-input-field"
+                                            rows="1"
+                                            maxLength='50'
                                             placeholder="192015172"
                                             value={this.props.organization_code}
                                             onChange={this.changeCode.bind(this)}
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -228,10 +248,15 @@ class AboutYou extends React.Component {
                             </div>
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
-                                    <textarea className="form-control project-create-input-field" rows="1" maxLength='50'
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="1"
+                                        maxLength='50'
                                         placeholder="Jonas"
                                         value={this.props.organization_owner_first_name}
                                         onChange={this.changeFirstName.bind(this)}
+                                        required
+
                                     />
                                 </div>
                             </div>
@@ -240,10 +265,14 @@ class AboutYou extends React.Component {
                             </div>
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
-                                    <textarea className="form-control project-create-input-field" rows="1" maxLength='50'
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="1"
+                                        maxLength='50'
                                         placeholder="Kazlauskas"
                                         value={this.props.organization_owner_last_name}
                                         onChange={this.changeLastName.bind(this)}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -252,10 +281,15 @@ class AboutYou extends React.Component {
                             </div>
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
-                                    <textarea className="form-control project-create-input-field" rows="1" maxLength='50'
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="1"
+                                        maxLength='50'
                                         placeholder="+37011111111"
                                         value={this.props.organization_owner_phone_number}
                                         onChange={this.changeOwnerPhoneNumber.bind(this)}
+                                        required
+
                                     />
                                 </div>
                             </div>
@@ -264,7 +298,10 @@ class AboutYou extends React.Component {
                             </div>
                             <div className="col-xs-9 project-create-content">
                                 <div className="form-group">
-                                    <textarea className="form-control project-create-input-field" rows="1" maxLength='50'
+                                    <textarea
+                                        className="form-control project-create-input-field"
+                                        rows="1"
+                                        maxLength='50'
                                         placeholder="pavyzdys@gmail.com"
                                         value={this.props.organization_owner_email_address}
                                         onChange={this.changeOwnerEmailAddress.bind(this)}

@@ -1,9 +1,12 @@
-import {URL_UPDATE_PROJECT, URL_PROJECT_FILE_UPLOAD, URL_AVATAR_UPLOAD} from "../../Data/Constants";
+import {URL_UPDATE_PROJECT, URL_PROJECT_FILE_UPLOAD, URL_AVATAR_UPLOAD, URL_SUBMIT_PROJECT} from "../../Data/Constants";
 import {LONG_DESCRIPTION_CHANGE, IMAGE_CHANGE, PROFILE_IMAGE_CHANGE} from "../projectCreate/actions";
 export const RESPONSE = "RESPONSE_UPDATE_PROJECT_CREATE";
 export const RESPONSE_PDF_UPLOAD = "RESPONSE_PDF_UPLOAD";
 export const RESPONSE_PHOTO_UPLOAD = "RESEPONSE_PHOTO_UPLOAD";
 export const RESPONSE_AVATAR_UPLOAD = "RESPONSE_AVATAR_UPLOAD";
+export const SUBMIT_PROJECT_REQUEST = "SUBMIT_PROJECT_REQUEST";
+export const SUBMIT_PROJECT_SUCCESS = "SUBMIT_PROJECT_SUCCESS";
+export const SUBMIT_PROJECT_ERROR = "RESPONSE_AVATAR_UPLOAD";
 
 export const updateProjectCreate = (data) => {
     return (dispatch) => {
@@ -72,4 +75,31 @@ function uploadAvatarFunction(data) {
             'Accept': 'application/json',
         })
     }).then( response => Promise.all([response, response.json()]));
+}
+
+export const submitProject = (data) => {
+    return (dispatch) => {
+        dispatch({
+            type: SUBMIT_PROJECT_REQUEST
+        });
+        return submitProjectFunction(data).then(([response]) =>{
+            response.status === 200
+                ? dispatch({
+                    type: SUBMIT_PROJECT_SUCCESS
+                })
+                : dispatch({
+                    type: SUBMIT_PROJECT_ERROR,
+                });
+        })
+    };
+};
+
+function submitProjectFunction(data) {
+    return fetch(URL_SUBMIT_PROJECT + data.id, {
+        method: 'PUT',
+        headers: new Headers({
+            'Authorization': 'Bearer '+ localStorage.getItem("token"),
+            'Accept': 'application/json',
+        })
+    }).then( response => Promise.all([response]));
 }
