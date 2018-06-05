@@ -81,7 +81,6 @@ class AboutYou extends React.Component {
                                     disabled={this.props.flagHasActiveProject}
                                     value={this.props.firstName}
                                     onChange={this.changeFirstName.bind(this)}
-                                    required
                                 />
                                 <div className="project-create-comment">
                                     <p>
@@ -103,7 +102,6 @@ class AboutYou extends React.Component {
                                     disabled={this.props.flagHasActiveProject}
                                     value={this.props.lastName}
                                     onChange={this.changeLastName.bind(this)}
-                                    required
                                 />
                                 <div className="project-create-comment">
                                     <p>
@@ -125,7 +123,6 @@ class AboutYou extends React.Component {
                                             rows="4"
                                             value={this.props.biography}
                                             onChange={this.changeBiography.bind(this)}
-                                            required
                                         />
                                     </div>
                                     <div className="project-create-comment">

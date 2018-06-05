@@ -14,6 +14,7 @@ import Notifications from "../../Notifications";
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import {NOTIFICATION_TIME} from "../../../Data/Constants";
 
 class Basic extends React.Component {
     constructor(props) {
@@ -134,7 +135,6 @@ class Basic extends React.Component {
                                             placeholder="“Darom 2018“"
                                             value={this.props.title}
                                             onChange={this.changeTitle.bind(this)}
-                                            required
                                         />
                                         <span>{this.state.charsLeftTitle}</span>
                                     </div>
@@ -159,7 +159,6 @@ class Basic extends React.Component {
                                         placeholder="“Maisto Bankas“"
                                         value={this.props.charity_fund}
                                         onChange={this.changeCharityFund.bind(this)}
-                                        required
                                     />
                                     <div className="project-create-comment">
                                     </div>
@@ -178,7 +177,6 @@ class Basic extends React.Component {
                                             className="form-control project-create-input-field" rows="2" maxLength={Constants.MAX_CHARS_SHORT_BLURB}
                                             value={this.props.description}
                                             onChange={this.changeDescription.bind(this)}
-                                            required
                                         />
                                         <span>{this.state.charsLeftShortBlurb}</span>
                                     </div>
@@ -258,7 +256,6 @@ class Basic extends React.Component {
                                     rows="1"
                                     value={this.props.goal}
                                     onChange={this.changeGoal.bind(this)}
-                                    required
                                 />
 
                                 <div className="project-create-comment">

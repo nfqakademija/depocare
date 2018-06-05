@@ -105,7 +105,44 @@ class ProjectCreate extends React.Component {
 
     submitProject(e){
         e.preventDefault();
-        this.props.onSubmitProject(this.props.project);
+        if(!this.props.project.title)
+        {
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti pavadinimą!');
+        } else if(!this.props.project.uploadPhoto){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti nuotrauką!')
+        } else if(!this.props.project.charity_fund){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti aukojimo fondą!');
+        } else if(!this.props.project.description){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti aprašymą!')
+        } else if(!this.props.project.goal){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti tikslą!');
+        } else if(!this.props.project.organization_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos pavadinimą!')
+        } else if(!this.props.project.organization_street_address){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos adresą!')
+        } else if(!this.props.project.organization_phone_number){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos telefono numerį!')
+        } else if(!this.props.project.organization_email_address){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos el.paštą!')
+        } else if(!this.props.project.organization_code){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos įmonės kodą!')
+        } else if(!this.props.project.organization_owner_first_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko vardą!')
+        } else if(!this.props.project.organization_owner_last_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko pavardę!')
+        } else if(!this.props.project.organization_owner_phone_number){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko telefono numerį!')
+        } else if(!this.props.project.organization_owner_email_address){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti organizacijos savininko el. paštą!')
+        } else if(!this.props.project.first_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Turite įvesti savo vardą!')
+        } else if(!this.props.project.last_name){
+            Notifications.createNotification('error', 'Neužpildėte', 'Turite įvesti savo pavardę!')
+        } else if(!this.props.project.organization_iban){
+            Notifications.createNotification('error', 'Neužpildėte', 'Projektas turi turėti sąskaitą!')
+        } else {
+            this.props.onSubmitProject(this.props.project);
+        }
     }
 
     render() {

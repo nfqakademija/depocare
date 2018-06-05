@@ -116,7 +116,6 @@ class AboutYou extends React.Component {
                                 rows="1"
                                 value={this.props.organization_iban}
                                 onChange={this.changeOrganizationIban.bind(this)}
-                                required
                             />
                         </div>
                     </div>
@@ -150,7 +149,6 @@ class AboutYou extends React.Component {
                                         placeholder="“Maisto Bankas“"
                                         value={this.props.organization_name}
                                         onChange={this.changeOrganizationName.bind(this)}
-                                        required
                                     />
                                 </div>
                             </div>
@@ -165,7 +163,6 @@ class AboutYou extends React.Component {
                                         placeholder="Vytenio g. 54, LT-03229 Vilnius"
                                         value={this.props.organization_street_address}
                                         onChange={this.changeStreetAddress.bind(this)}
-                                        required
                                     />
                                 </div>
                             </div>
@@ -201,7 +198,6 @@ class AboutYou extends React.Component {
                                             placeholder="pavyzdys@gmail.com"
                                             value={this.props.organization_email_address}
                                             onChange={this.changeEmailAddress.bind(this)}
-                                            required
                                         />
                                     </div>
                                 </div>
@@ -219,7 +215,6 @@ class AboutYou extends React.Component {
                                             placeholder="192015172"
                                             value={this.props.organization_code}
                                             onChange={this.changeCode.bind(this)}
-                                            required
                                         />
                                     </div>
                                 </div>
@@ -255,8 +250,6 @@ class AboutYou extends React.Component {
                                         placeholder="Jonas"
                                         value={this.props.organization_owner_first_name}
                                         onChange={this.changeFirstName.bind(this)}
-                                        required
-
                                     />
                                 </div>
                             </div>
@@ -272,7 +265,6 @@ class AboutYou extends React.Component {
                                         placeholder="Kazlauskas"
                                         value={this.props.organization_owner_last_name}
                                         onChange={this.changeLastName.bind(this)}
-                                        required
                                     />
                                 </div>
                             </div>
@@ -288,8 +280,6 @@ class AboutYou extends React.Component {
                                         placeholder="+37011111111"
                                         value={this.props.organization_owner_phone_number}
                                         onChange={this.changeOwnerPhoneNumber.bind(this)}
-                                        required
-
                                     />
                                 </div>
                             </div>
