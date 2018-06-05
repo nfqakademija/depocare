@@ -52,7 +52,10 @@ class DonateModal extends React.Component {
         {
             this.setState({modalIsOpen: true});
         }
-        else{
+        else if (this.props.modalProps.balance){
+            Notifications.createNotification('warning', 'Dėmesio!', 'Jūsų sąskaita tuščia.')
+        }
+        else {
             this.setState({
                 redirect: true,
             });

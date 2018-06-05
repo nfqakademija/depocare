@@ -71,7 +71,6 @@ class SingleProjectView extends React.Component {
                         this.setState({loading: false, redirect: true, redirectTo: HOME_PAGE});
                         break;
                 }
-                console.log(this.state.project);
             });
         }
     }
@@ -131,7 +130,6 @@ class SingleProjectView extends React.Component {
                 autoplay: 0
             }
         };
-
         if(!this.state.loading) {
             return (
                 <div>
